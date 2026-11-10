@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Браузерки — сайты с играми, которые открываются сразу</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&display=swap">
+<style>
+:root{--bg:#EDEBFF;--ink:#14123A;--card:#fff;--mut:#4C4880;--ac:#5B3DF5;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14123A;--ink:#F4F2FF;--card:#1F1C52;--mut:#B7B2E8;--ac:#8B6CFF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14123A;--ink:#F4F2FF;--card:#1F1C52;--mut:#B7B2E8;--ac:#8B6CFF;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:1040px;margin:0 auto;padding:0 18px}
+.logo,h1,.rnd,.site b{font-family:Unbounded,"Arial Black",system-ui,sans-serif}
+header{padding:20px 0 4px}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.5px}
+h1{font-weight:800;font-size:clamp(32px,8.5vw,58px);line-height:1.08;letter-spacing:-1.5px;margin:28px 0 16px;max-width:13em}
+.lead{color:var(--mut);max-width:32em;margin:0 0 30px}
+.rnd{font-weight:800;font-size:18px;color:#fff;background:var(--ac);border:3px solid var(--ink);border-radius:18px;padding:18px 26px;box-shadow:6px 6px 0 var(--ink);cursor:pointer;transition:transform .1s,box-shadow .1s}
+.rnd:active,.site:active{transform:translate(5px,5px);box-shadow:1px 1px 0 var(--ink)}
+.rnd:focus-visible,.chip:focus-visible,.site:focus-visible,#pick a:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+#pick{margin:20px 0 0;color:var(--mut);max-width:32em}
+#pick a{color:var(--ink);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:40px 0 22px}
+.chip{font:600 15px system-ui,sans-serif;color:var(--ink);background:transparent;border:3px solid var(--ink);border-radius:99px;padding:6px 16px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.list{display:grid;gap:26px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-bottom:52px}
+.site{display:flex;flex-direction:column;color:var(--ink);background:var(--card);text-decoration:none;border:3px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;transition:transform .1s,box-shadow .1s}
+.cover{position:relative;display:grid;place-items:center;height:170px;background-color:var(--a);border-bottom:3px solid var(--ink);overflow:hidden}
+.cover i{font-style:normal;line-height:1}
+.e1{font-size:80px;filter:drop-shadow(4px 5px 0 #14123A);transition:transform .15s}
+.e2,.e3{position:absolute;filter:drop-shadow(2px 3px 0 #14123A)}
+.e2{left:16px;top:14px;font-size:32px;transform:rotate(-14deg)}
+.e3{right:18px;bottom:12px;font-size:36px;transform:rotate(12deg)}
+.p0{background-image:radial-gradient(var(--b) 22%,transparent 24%);background-size:20px 20px}
+.p1{background-image:repeating-linear-gradient(45deg,var(--b) 0 8px,transparent 8px 18px)}
+.p2{background-image:linear-gradient(var(--b) 2px,transparent 2px),linear-gradient(90deg,var(--b) 2px,transparent 2px);background-size:22px 22px}
+.p3{background-image:repeating-conic-gradient(from 0deg at 50% 62%,var(--b) 0 8deg,transparent 8deg 24deg)}
+.p4{background-image:conic-gradient(var(--b) 25%,transparent 0 50%,var(--b) 0 75%,transparent 0);background-size:44px 44px}
+.txt{display:flex;flex-direction:column;gap:6px;flex:1;padding:16px 18px 18px}
+.txt b{font-weight:800;font-size:17px;overflow-wrap:anywhere}
+.d{font-size:15px;line-height:1.45;color:var(--mut)}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px}
+.foot small{font-size:13px;font-weight:600;color:var(--mut)}
+.go{font-weight:700;font-size:14px;background:var(--ink);color:var(--bg);padding:7px 18px;border-radius:99px}
+@media(hover:hover){.site:hover .e1{transform:scale(1.12) rotate(-6deg)}}
+footer{border-top:3px solid var(--ink);padding:22px 0 32px;color:var(--mut);font-size:14px}
+h2{font:800 22px/1.2 Unbounded,"Arial Black",system-ui,sans-serif;margin:38px 0 12px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#logo{user-select:none;-webkit-user-select:none;cursor:pointer}
+.snd,.tab{font:600 15px system-ui,sans-serif;color:var(--ink);background:transparent;border:3px solid var(--ink);border-radius:99px;padding:6px 16px;cursor:pointer}
+.snd[aria-pressed="false"]{opacity:.55}
+.tabs{display:flex;align-items:flex-end;gap:10px;margin-top:18px}
+.tab{font:800 15px Unbounded,"Arial Black",system-ui,sans-serif;border-radius:14px;padding:10px 22px}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.snd:focus-visible,.tab:focus-visible,.mood:focus-visible,.au:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.dd{margin:0 0 22px;color:var(--mut)}
+.dd a,.rec a{color:var(--ink);font-weight:700}
+.moods{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.mood{font:700 15px system-ui,sans-serif;color:#14123A;border:3px solid var(--ink);border-radius:14px;padding:11px 18px;box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+.mood:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.rec{margin:0 0 28px;max-width:34em;color:var(--mut)}
+.pick2{max-width:40em;background:#FFE066;color:#14123A;border:3px solid var(--ink);border-radius:20px;box-shadow:6px 6px 0 var(--ink);padding:18px 20px}
+.tipsg{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.tip{background:var(--card);border:3px solid var(--ink);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:16px 18px}
+.tip b{display:block;margin-bottom:4px}
+.tip span{color:var(--mut);font-size:15px}
+footer p{margin:0 0 6px}
+.au{all:unset;font-weight:800;color:var(--ink);cursor:pointer}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);font-weight:700;padding:12px 20px;border-radius:14px;z-index:20;width:max-content;max-width:90vw;text-align:center}
+.fall{position:fixed;top:-48px;font-size:28px;pointer-events:none;z-index:30;animation:fall 2.4s linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(360deg)}}
+@keyframes shake{25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+.shake{animation:shake .4s}
+body.disco .list{animation:hue 3s linear infinite}
+@media(prefers-reduced-motion:reduce){.fall{display:none}.shake,body.disco .list{animation:none}}
+.w{transition:transform .8s}
+.flip{transform:rotate(180deg);transform-origin:50% 300px}
+.door{position:relative;flex:none;width:38px;height:52px;margin-left:auto;padding:0;background:#14123A;border:3px solid var(--ink);border-radius:18px 18px 0 0;cursor:pointer;perspective:240px}
+.leaf{position:absolute;inset:0;display:grid;place-items:end center;padding-bottom:6px;background:#C98A4B;border-radius:15px 15px 0 0;color:#14123A;font:800 11px Unbounded,'Arial Black',system-ui,sans-serif;transform-origin:left;transition:transform .5s}
+.knob{position:absolute;right:5px;top:56%;width:6px;height:6px;border-radius:50%;background:#FFE066;border:1px solid #14123A}
+.door.open .leaf{transform:rotateY(-72deg)}
+.door:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.psbox{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:calc(18px + env(safe-area-inset-top,0px)) 18px calc(18px + env(safe-area-inset-bottom,0px));background:rgba(20,18,58,.75)}
+.psc{max-width:420px;background:#FFE066;color:#14123A;border:3px solid var(--ink);border-radius:20px;box-shadow:6px 6px 0 var(--ink);padding:22px;text-align:center}
+.psc p{font-weight:700;font-size:18px;margin:10px 0 18px}
+body.hw{--bg:#1B0B2E;--ink:#FF9A3C;--card:#2B1447;--mut:#CDB4F5;--ac:#C85400}
+.hwx{position:fixed;inset:0;z-index:15;pointer-events:none;overflow:hidden}
+.hwx>*{position:absolute}
+.sk,.bt{left:0;animation:linear infinite}
+.sk{animation-name:run}
+.bt{animation-name:fly}
+.sk span,.bt span{display:block;animation:ease-in-out infinite alternate}
+.sk span{font-size:34px;animation-name:bob;animation-duration:.35s}
+.bt span{font-size:30px;animation-name:flap;animation-duration:.25s}
+.pm{bottom:-4px;line-height:1;filter:drop-shadow(0 0 10px #FF8A1F)}
+@keyframes run{from{transform:translateX(-15vw)}to{transform:translateX(115vw)}}
+@keyframes bob{to{transform:translateY(-10px) rotate(8deg)}}
+@keyframes fly{0%{transform:translate(-12vw,0)}25%{transform:translate(25vw,-6vh)}50%{transform:translate(58vw,5vh)}75%{transform:translate(88vw,-5vh)}100%{transform:translate(115vw,2vh)}}
+@keyframes flap{to{transform:scaleY(.5)}}
+.scr{position:fixed;inset:0;z-index:60;display:grid;place-items:center;background:#000;cursor:pointer}
+.scr span{font-size:70vmin;line-height:1;filter:drop-shadow(0 0 40px #f00);animation:zoom .25s ease-out}
+@keyframes zoom{from{transform:scale(.15)}to{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.scr span{animation:none}.sk,.bt{display:none}}
+body{transition:background-color .6s}
+body.wt{--bg:#fff;--ink:#14123A;--card:#F1F6FF;--mut:#4A5A85;--ac:#2F6BFF;color-scheme:light}
+.snow{position:fixed;inset:0;z-index:12;pointer-events:none;overflow:hidden}
+.snow span{position:absolute;top:0;color:#8EC5FF;animation:snowfall linear infinite}
+@keyframes snowfall{0%{transform:translate(0,-10vh)}25%{transform:translate(16px,22vh)}50%{transform:translate(-12px,50vh)}75%{transform:translate(14px,78vh)}100%{transform:translate(0,112vh)}}
+@media(prefers-reduced-motion:reduce){.snow{display:none}}
+.ws{position:fixed;left:0;right:0;bottom:0;height:200px;overflow:hidden;pointer-events:none;z-index:11;animation:rise .9s ease-out}
+.dr{position:absolute;bottom:-6px;box-sizing:border-box;border:3px solid #14123A;border-radius:50% 50% 0 0/100% 100% 0 0}
+.fir{position:absolute;bottom:14px}
+@keyframes rise{from{transform:translateY(100%)}}
+@media(prefers-reduced-motion:reduce){.ws{animation:none}}
+.scr{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.scr span{font-size:52vmin}
+.cap{margin-top:2vmin;padding:0 16px;text-align:center;color:#fff;text-shadow:0 0 24px #f00;font:800 clamp(24px,9vw,64px)/1.1 Unbounded,'Arial Black',system-ui,sans-serif}
+.d9{position:relative;height:130px;margin:0 0 52px;border:3px solid var(--ink);border-radius:20px;overflow:hidden;background-color:#C9B75A;background-image:repeating-linear-gradient(90deg,rgba(104,82,14,.28) 0 5px,transparent 5px 26px),linear-gradient(rgba(255,255,210,.2),rgba(30,20,0,.35));animation:flick 5s steps(1) infinite}
+.d9::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.12) 0 1px,transparent 1px 3px)}
+.d9g{all:unset;position:absolute;right:16%;bottom:16px;width:74px;height:48px;display:grid;place-items:center;cursor:pointer;color:#fff;background:#14123A;font:700 13px ui-monospace,Menlo,monospace;letter-spacing:1px;opacity:.5;text-shadow:-2px 0 #ff2d6f,2px 0 #19e5ff;box-shadow:-3px 0 #ff2d6f,3px 0 #19e5ff;animation:glt 2.8s steps(1) infinite}
+.d9g:hover,.d9g:focus-visible{opacity:1}
+.d9g:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@keyframes flick{0%,90%,100%{filter:none}91%{filter:brightness(.55)}93%{filter:brightness(1.15)}95%{filter:brightness(.4)}97%{filter:brightness(.9)}}
+@keyframes glt{0%{transform:translate(0);clip-path:inset(0)}8%{transform:translate(-4px,1px);clip-path:inset(18% 0 52% 0)}16%{transform:translate(5px,-2px);clip-path:inset(62% 0 8% 0)}24%{transform:translate(0);clip-path:inset(0)}60%{transform:translate(2px,0);clip-path:inset(40% 0 30% 0)}66%{transform:translate(0);clip-path:inset(0)}}
+@media(prefers-reduced-motion:reduce){.d9,.d9g{animation:none}}
+.d9{margin-top:16px}
+
+
+.d9g{all:unset;position:absolute;left:50%;bottom:60px;width:60px;height:46px;display:grid;place-items:center;cursor:pointer}
+.d9g i{display:block;padding:2px 5px;background:#14123A;color:#fff;font:700 10px ui-monospace,Menlo,monospace;letter-spacing:1px;text-shadow:-1px 0 #ff2d6f,1px 0 #19e5ff;box-shadow:-2px 0 #ff2d6f,2px 0 #19e5ff;opacity:.09;animation:glt2 7s steps(1) infinite}
+.d9g:hover i,.d9g:focus-visible i{opacity:.9!important}
+@keyframes glt2{0%,38%,50%,100%{opacity:.09;transform:none;clip-path:inset(0)}40%{opacity:.75;transform:translate(-4px,1px);clip-path:inset(15% 0 50% 0)}42%{opacity:.9;transform:translate(5px,-2px);clip-path:inset(60% 0 10% 0)}44%{opacity:.4;transform:none;clip-path:inset(0)}46%{opacity:.8;transform:translate(2px,0);clip-path:inset(35% 0 30% 0)}}
+@media(prefers-reduced-motion:reduce){.d9::before{animation:none}.d9g i{animation:none;opacity:.2}}
+.top{flex-wrap:wrap}
+.ctl{display:flex;gap:8px}
+body.ds{--bg:#1A0B3A;--ink:#fff;--card:rgba(32,12,76,.78);--mut:#F0DDFF;--ac:#FF2BD6;color-scheme:dark}
+body.ds .w{animation:hue 6s linear infinite}
+body.ds .site{box-shadow:0 0 22px 3px #ff4df0}
+body.ds h1,body.ds .logo{text-shadow:0 0 14px #fff,0 0 28px #ff4df0}
+.dsx{position:fixed;inset:0;z-index:13;pointer-events:none;overflow:hidden}
+.dsl{position:fixed;left:50%;top:50%;width:170vmax;height:170vmax;margin:-85vmax 0 0 -85vmax;z-index:-1;pointer-events:none;background:conic-gradient(#ff1744,#ff9100,#ffee00,#00e676,#00b0ff,#651fff,#f50057,#ff1744);-webkit-mask-image:repeating-conic-gradient(#000 0 12deg,transparent 12deg 30deg);mask-image:repeating-conic-gradient(#000 0 12deg,transparent 12deg 30deg);opacity:.4;animation:spin 14s linear infinite}
+.ball{position:absolute;left:50%;top:70px;width:96px;height:96px;margin-left:-48px;border-radius:50%;transform-origin:50% -70px;animation:swing 3.2s ease-in-out infinite alternate;background:radial-gradient(circle at 35% 30%,#fff 0,#dfe3f5 22%,#8a8fb0 70%,#3b3e66 100%);box-shadow:0 0 40px 10px rgba(255,255,255,.5)}
+.ball::before{content:'';position:absolute;left:50%;bottom:100%;width:2px;height:70px;background:#c8c8d8}
+.ball i{position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(0deg,rgba(0,0,0,.32) 0 2px,transparent 2px 10px),repeating-linear-gradient(90deg,rgba(0,0,0,.32) 0 2px,transparent 2px 10px);animation:facet 1.6s linear infinite}
+.sp{position:absolute;border-radius:50%;background:radial-gradient(circle,#fff,rgba(255,255,255,0) 70%);mix-blend-mode:screen;animation:spot ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes swing{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+@keyframes facet{to{background-position:0 0,40px 0}}
+@keyframes spot{0%{transform:translate(0,0) scale(.5);opacity:0}30%{opacity:.9}60%{transform:translate(16vw,-9vh) scale(1.3);opacity:.9}100%{transform:translate(-12vw,11vh) scale(.5);opacity:0}}
+body.br{--bg:#D6C560;--ink:#3A3110;--card:#E7DA8C;--mut:#6B5A18;--ac:#7A6A12;color-scheme:light;background-image:repeating-linear-gradient(90deg,rgba(104,82,14,.22) 0 6px,transparent 6px 30px),linear-gradient(rgba(255,255,210,.12),rgba(40,30,0,.22));background-attachment:fixed}
+body.br .w{animation:flick 7s steps(1) infinite}
+body.br .cover{filter:sepia(.7) saturate(.75)}
+body.br h1,body.br h2,body.br .logo,body.br .tab,body.br .rnd,body.br .site b{font-family:'Courier New',Courier,ui-monospace,monospace}
+body.br::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;background:radial-gradient(ellipse at center,transparent 40%,rgba(30,20,0,.5)),repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0 1px,transparent 1px 3px)}
+.exp{all:unset;position:absolute;left:9%;bottom:4px;width:36px;height:72px;cursor:pointer;animation:twitch 9s steps(1) infinite}
+.exp svg{display:block}
+.exp:focus-visible{outline:2px solid #3A3110;outline-offset:4px}
+.brx{all:unset;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:14;padding:6px 12px;background:#0B7A3B;color:#fff;font:800 13px 'Courier New',monospace;border:2px solid #fff;box-shadow:0 0 14px #19d16a;cursor:pointer}
+@keyframes twitch{0%,92%,100%{transform:none}93%{transform:translateX(-1px) skewX(2deg)}95%{transform:translateX(1px) skewX(-2deg)}97%{transform:none}}
+@media(prefers-reduced-motion:reduce){body.ds .w,body.br .w,.dsl,.ball,.ball i,.sp,.exp{animation:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="w">
+<header><div class="top"><div class="logo" id="logo">браузерки</div><div class="ctl"><button class="snd" id="mus" aria-pressed="true">♪ вкл</button><button class="snd" id="snd" aria-pressed="true">Звук: вкл</button></div></div><nav class="tabs" id="tabs"><button class="tab" data-t="g" aria-pressed="true">Игры</button><button class="tab" data-t="t" aria-pressed="false">Советы</button><button class="door" id="door" aria-label="ps"><span class="leaf">ps<i class="knob"></i></span></button></nav></header>
+<main id="g">
+<h1>Нажми — и тебя перекинет в игру</h1>
+<p class="lead">Подборка сайтов вроде neal.fun: открываешь страницу и играешь, без установки и регистрации. Выбери сам или доверься случаю.</p>
+<p class="dd" id="dd"></p>
+<button class="rnd" id="rnd">Открыть случайный сайт</button>
+<p id="pick" hidden></p>
+<div class="chips" id="chips"></div>
+<div class="list" id="list"></div>
+</main>
+<main id="tips" hidden>
+<h1>Советы и рекомендации</h1>
+<p class="lead">Во что сыграть, как не нарваться на неприятности и что делать, если всё тормозит.</p>
+<h2>Во что поиграть сейчас</h2>
+<div class="moods" id="moods"></div>
+<p class="rec" id="rec">Выбери настроение, и мы подскажем, во что сыграть.</p>
+<div class="pick2"><b>Выбор Claude: Infinite Craft.</b> Здесь нет правил и целей, только любопытство. Соединяешь два слова и смотришь, что получится. Хороший способ провести вечер, не думая о счёте.</div>
+<h2>Советы</h2>
+<div class="tipsg">
+<div class="tip"><b>Начни с коротких партий</b><span>Нет настроения вникать? Открой Wordle, 2048 или «Сапёра»: раунд занимает пару минут.</span></div>
+<div class="tip"><b>Поверни телефон</b><span>Во многих играх горизонтальный экран даёт больше места и точнее управление.</span></div>
+<div class="tip"><b>Не вводи личные данные</b><span>Не пиши в играх и чатах пароли, адрес, школу и номер телефона. Ник лучше придумать новый.</span></div>
+<div class="tip"><b>Ничего не скачивай</b><span>Если сайт просит поставить расширение или файл, чтобы начать играть, закрой вкладку. Настоящие браузерные игры запускаются сразу.</span></div>
+<div class="tip"><b>Береги глаза</b><span>Каждые полчаса отрывайся от экрана хотя бы на минуту и посмотри вдаль.</span></div>
+<div class="tip"><b>Новичкам в io-играх</b><span>В slither.io и agar.io первые минуты самые опасные. Держись подальше от самых крупных и учись на проигрышах.</span></div>
+<div class="tip"><b>Играй с друзьями</b><span>skribbl.io и Gartic Phone веселее всего в компании: создай комнату и отправь друзьям ссылку.</span></div>
+<div class="tip"><b>Если всё тормозит</b><span>Закрой лишние вкладки, отключи тяжёлые расширения или попробуй другой браузер.</span></div>
+<div class="tip"><b>Про страшные игры</b><span>Хоррор нравится не всем. Смотри возрастные метки на сайтах, а если после страшилки трудно уснуть, лучше выбрать что-то спокойное.</span></div>
+</div>
+<h2>Тут ничего нет</h2>
+<p class="rec">Совсем ничего. Серьёзно.</p>
+<button class="mood" id="dn" style="background:#FF8A8A">Не нажимай</button>
+</main>
+<footer><p>Автор проекта: <button class="au" id="au">213rty785</button>. Над проектом помогал <button class="au" id="cl">Claude</button> от Anthropic.</p><p>Все игры живут на сторонних сайтах и принадлежат их авторам. Ссылки открываются в новой вкладке, часть сайтов на английском.</p></footer>
+<div class="d9" id="d9" hidden><a class="d9g" id="d9g" href="https://dimension9.space/" target="_blank" rel="noopener noreferrer" aria-label="Странный глюк в стене"><i>▒D9▒</i></a><button class="exp" id="exp" aria-label="Исследователь в жёлтом костюме"><svg viewBox='0 0 40 80' width='36' height='72'><g stroke='#14123A' stroke-width='2' stroke-linejoin='round'><rect x='11' y='34' width='7' height='36' rx='3' fill='#F2C500'/><rect x='22' y='34' width='7' height='36' rx='3' fill='#F2C500'/><rect x='9' y='68' width='10' height='9' rx='2' fill='#2B2B2B'/><rect x='21' y='68' width='10' height='9' rx='2' fill='#2B2B2B'/><rect x='6' y='16' width='28' height='28' rx='8' fill='#F2C500'/><rect x='0' y='20' width='8' height='22' rx='4' fill='#F2C500'/><rect x='32' y='20' width='8' height='22' rx='4' fill='#F2C500'/><circle cx='20' cy='11' r='10' fill='#F2C500'/><ellipse cx='20' cy='11' rx='6.5' ry='5.5' fill='#1D2A36'/><circle cx='29' cy='15' r='2.6' fill='#555'/></g><ellipse cx='17.5' cy='9' rx='2' ry='1.2' fill='#8FB8D8' opacity='.7'/></svg></button></div>
+</div>
+<div class="psbox" id="psbox" hidden><div class="psc"><div style="font-size:44px">🚪</div><p id="pst"></p><button class="mood" id="psx" style="background:#7CE3A1">Выйти</button></div></div>
+<script>
+const $=s=>document.querySelector(s);
+const S=[
+['The Password Game','https://neal.fun/password-game/','🔑 😈 🥚','Придумай пароль, а правила становятся всё абсурднее.','odd mind'],
+['Infinite Craft','https://neal.fun/infinite-craft/','♾️ 💧 🔥','Сочетай элементы и создавай вообще всё, что придёт в голову.','odd mind'],
+['Spend Bill Gates’ Money','https://neal.fun/spend/','💸 🤑 🏠','Попробуй потратить состояние Билла Гейтса. Это сложнее, чем кажется.','odd'],
+['poki.com','https://poki.com/','🎪 🕹️ 🎈','Огромный портал бесплатных игр: от аркад до io-игр, без регистрации.','portal'],
+['crazygames.com','https://www.crazygames.com/','🤪 🏎️ 🧩','Тысячи игр в браузере: гонки, головоломки и игры с друзьями.','portal multi'],
+['y8.com','https://www.y8.com/','🎲 🚀 🏀','Давний портал с огромной библиотекой простых игр на любой вкус.','portal'],
+['coolmathgames.com','https://www.coolmathgames.com/','🧮 ➕ 🎯','Головоломки, стратегии и логические игры, которые тренируют мозг.','portal mind'],
+['itch.io','https://itch.io/games/html5','👾 🧩 ⭐','Инди-игры, которые запускаются в браузере: экспериментальные и авторские.','portal odd'],
+['newgrounds.com','https://www.newgrounds.com/','🧨 📼 🕹️','Культовый портал с 1995 года: игры и анимации от независимых авторов.','portal odd retro'],
+['Internet Arcade','https://archive.org/details/internetarcade','🕹️ 👻 🪙','Классические аркадные автоматы прямо в браузере, от Интернет-архива.','retro'],
+['Tetris','https://tetris.com/play-tetris','🧱 🟦 🟨','Официальная бесплатная версия той самой игры с падающими фигурами.','retro mind'],
+['Сапёр','https://minesweeperonline.com/','💣 🚩 🔢','Сапёр, как в старой Windows: открывай клетки и не взорвись.','retro mind'],
+['sudoku.com','https://sudoku.com/','✏️ 🔢 🧠','Бесплатное судоку с разными уровнями сложности.','mind'],
+['play2048.co','https://play2048.co/','🔢 ➕ 🟧','Двигай плитки и собери 2048. От этой головоломки трудно оторваться.','mind'],
+['littlealchemy2.com','https://littlealchemy2.com/','⚗️ 💧 🌍','Соединяй базовые элементы и открывай сотни новых предметов.','mind'],
+['Wordle','https://www.nytimes.com/games/wordle/index.html','🔤 🟩 🟨','Угадай слово из пяти букв за шесть попыток. Загадка новая каждый день, на английском.','mind'],
+['thewikigame.com','https://www.thewikigame.com/','📚 🧭 🏁','Добирайся от одной статьи Википедии до другой, кликая только по ссылкам.','mind multi'],
+['Акинатор','https://ru.akinator.com/','🧞 🔮 ❓','Джинн угадывает загаданного тобой персонажа по ответам на вопросы.','mind'],
+['geoguessr.com','https://www.geoguessr.com/','🌍 📍 🧭','Тебя выбрасывает в случайную точку мира, а ты угадываешь, где оказался. Бесплатно играть можно ограниченно.','mind multi'],
+['lichess.org','https://lichess.org/','♟️ 👑 ⏱️','Шахматы онлайн: партии с игроками со всего мира, бесплатно и без рекламы.','mind multi'],
+['Cookie Clicker','https://orteil.dashnet.org/cookieclicker/','🍪 👵 🏭','Кликай по печенью, покупай бабушек и фабрики. Отличный способ потерять вечер.','odd'],
+['slither.io','https://slither.io/','🐍 ✨ 🟣','Змейка в мультиплеере: расти, собирая светящиеся точки, и не врезайся в чужих змей.','multi'],
+['agar.io','https://agar.io/','🦠 🟢 🔴','Ты клетка: поглощай тех, кто мельче, и берегись тех, кто крупнее.','multi'],
+['skribbl.io','https://skribbl.io/','🖍️ 🎨 ❓','Рисуй и угадывай слова вместе с друзьями или случайными игроками.','multi'],
+['garticphone.com','https://garticphone.com/','📞 🎨 😂','Испорченный телефон с рисунками: смешные искажения гарантированы.','multi odd'],
+['play.typeracer.com','https://play.typeracer.com/','⌨️ 🏎️ 💨','Гонки на скорость печати против живых игроков.','multi'],
+['Google Doodles','https://doodles.google/','🎨 🔍 🎮','Архив интерактивных дудлов Google, среди них много мини-игр.','odd'],
+['theuselessweb.com','https://theuselessweb.com/','🎰 🌐 🤷','Одна кнопка — и тебя перекидывает на случайный странный сайт. Дальний родственник этой подборки.','odd'],
+['Яндекс Игры','https://yandex.ru/games/','🎮 ⭐ 🚀','Большой каталог бесплатных игр на русском языке от Яндекса.','portal'],
+['silvergames.com','https://www.silvergames.com/','🥈 🎮 🧠','Каталог бесплатных браузерных игр, в котором удобно искать по жанрам.','portal'],
+['armorgames.com','https://armorgames.com/','🛡️ ⚔️ 🏰','Приключения, стратегии и защита башен от независимых разработчиков.','portal'],
+['gamejolt.com','https://gamejolt.com/','🕹️ 🆕 🎲','Площадка инди-разработчиков: много экспериментальных и необычных игр.','portal odd'],
+['Scratch','https://scratch.mit.edu/explore/projects/games/','🐱 🧱 🛠️','Игры, которые сделали школьники и энтузиасты. Можно заглянуть внутрь и переделать.','portal odd'],
+['abcya.com','https://www.abcya.com/','🔠 🧒 🎨','Развивающие игры для детей: от букв и цифр до простых головоломок. На английском.','portal mind'],
+['diep.io','https://diep.io/','🚜 💥 🔺','Танки, которые прокачиваются по ходу игры. Классика io-игр.','multi'],
+['shellshock.io','https://shellshock.io/','🥚 🔫 🍳','Шутер, где все персонажи — яйца. Звучит странно, играется отлично.','multi odd'],
+['bonk.io','https://bonk.io/','⚪ 🔵 ⚽','Физические дуэли и гонки простых шариков в мультиплеере.','multi'],
+['codenames.game','https://codenames.game/','🕵️ 🔤 ❓','Командная игра на ассоциации: капитаны дают подсказки, остальные угадывают слова.','multi mind'],
+['Minecraft Classic','https://classic.minecraft.net/','⛏️ 🧱 🌳','Официальная версия Minecraft Classic в браузере: строй вместе с друзьями.','odd multi retro'],
+['Quick, Draw!','https://quickdraw.withgoogle.com/','✏️ 🤖 ⏱️','Рисуй за 20 секунд, а нейросеть пытается угадать, что это.','odd mind'],
+['Chrome Music Lab','https://musiclab.chromeexperiments.com/','🎹 🎵 🥁','Музыкальные игрушки от Google: сочиняй мелодии прямо в браузере.','odd'],
+['pointerpointer.com','https://pointerpointer.com/','👆 📸 🤨','Двигай курсор, и на фото человек покажет пальцем ровно в это место.','odd'],
+['boredbutton.com','https://www.boredbutton.com/','🔘 😴 🎲','Кнопка для скучающих: отправляет на случайные игры и забавные сайты.','odd'],
+['sandspiel.club','https://sandspiel.club/','⏳ 🔥 💧','Песочница из падающих частиц: рисуй песок, воду и огонь и смотри, что будет.','odd'],
+['A Dark Room','https://adarkroom.doublespeakgames.com/','🔥 🏚️ 🧣','Текстовая игра на выживание, которая начинается с одной кнопки: разжечь огонь.','odd horror'],
+['Universal Paperclips','https://www.decisionproblem.com/paperclips/','📎 🤖 ♾️','Кликер про бумажные скрепки, который неожиданно становится очень странным.','odd'],
+['Candy Box 2','https://candybox2.github.io/','🍬 🗡️ 🧙','Текстовая игра про конфеты, которая быстро превращается в настоящее приключение.','odd'],
+['Absurd Trolley Problems','https://neal.fun/absurd-trolley-problems/','🚃 😱 ⚖️','Моральные дилеммы с вагонеткой, которые быстро становятся абсурдными.','odd'],
+['Stimulation Clicker','https://neal.fun/stimulation-clicker/','📱 🌀 🧠','Кликер для тех, кому одного экрана мало: всё мигает, звенит и отвлекает.','odd'],
+['Perfect Circle','https://neal.fun/perfect-circle/','⭕ ✍️ 🎯','Нарисуй идеальный круг от руки. Оказывается, это очень трудно.','odd mind'],
+['monkeytype.com','https://monkeytype.com/','⌨️ 🐵 ⏱️','Минималистичный тест скорости печати с подробной статистикой.','mind'],
+['NYT Connections','https://www.nytimes.com/games/connections','🔗 🟨 🟩','Раздели 16 слов на четыре группы по смыслу. Загадка новая каждый день, на английском.','mind'],
+['Worldle','https://worldle.teuteuf.fr/','🗺️ 🌍 🧭','Угадай страну по контуру. Новая загадка каждый день.','mind'],
+['sporcle.com','https://www.sporcle.com/','📝 ⏱️ 🧠','Тысячи викторин на время: география, кино, история. На английском.','mind'],
+['hextris.io','https://hextris.io/','🔶 🔷 🌀','Тетрис в шестиугольнике: вращай и собирай блоки одного цвета.','mind retro'],
+['shapez.io','https://shapez.io/','🏭 🔷 🔴','Фабрики из геометрических фигур: спокойная головоломка про конвейеры.','mind odd'],
+['Interland','https://beinternetawesome.withgoogle.com/','🛡️ 🌐 🧠','Игра от Google, которая учит безопасному поведению в интернете.','mind'],
+['flappybird.io','https://flappybird.io/','🐤 🟩 💢','Тот самый Flappy Bird в браузере: простая, но очень злая игра.','retro'],
+['DOS-игры в Интернет-архиве','https://archive.org/details/softwarelibrary_msdos_games','🖥️ 💾 👾','Старые игры для MS-DOS, которые запускаются прямо в браузере.','retro'],
+['Хоррор на CrazyGames','https://www.crazygames.com/t/horror','👻 🕯️ 🏚️','Страшные игры от первого лица, побеги из заброшенных мест и прятки от монстров. Внутри их очень много.','horror portal'],
+['Хоррор на itch.io','https://itch.io/games/html5/tag-horror','🕷️ 🌙 🔦','Короткие авторские страшилки, которые запускаются в браузере. Бывают очень жуткие, так что читай описания.','horror portal'],
+['Бэкрумс на itch.io','https://itch.io/games/html5/tag-backrooms','🚪 💡 🟨','Игры про бесконечные пустые жёлтые коридоры. Страшно от тишины и одиночества.','horror'],
+['Хоррор на Newgrounds','https://www.newgrounds.com/games/browse/tag/horror','🧟 🪦 🦇','Страшные игры от независимых авторов. У каждой есть возрастная метка, смотри её перед игрой.','horror portal'],
+['Хоррор на Y8','https://www.y8.com/tags/horror','🎃 💀 🕸️','Подборка страшных игр: зомби, привидения, побеги и выживание.','horror portal'],
+['Хоррор на Poki','https://poki.com/en/horror','🦇 🌑 😨','Жуткие игры в браузере без регистрации. Часть на английском.','horror portal'],
+['Зомби на CrazyGames','https://www.crazygames.com/t/zombie','🧟 🧠 🏃','Игры про зомби: отстреливайся, строй баррикады или просто убегай.','horror'],
+['Страшилки на Scratch','https://scratch.mit.edu/search/projects?q=horror','🐱 🕯️ 😱','Страшные игры от школьников и энтузиастов: у каждой свой стиль и свои сюрпризы.','horror portal odd'],
+['chess.com','https://www.chess.com/play/online','♟️ 🏆 🧠','Самые популярные шахматы онлайн: партии, задачи и уроки. Часть функций платная.','mind multi'],
+['globle-game.com','https://globle-game.com/','🌐 🌡️ 🧭','Угадай загаданную страну: чем ближе ответ, тем «горячее» цвет на глобусе.','mind'],
+['NYT Spelling Bee','https://www.nytimes.com/puzzles/spelling-bee','🐝 🔤 🍯','Составляй слова из семи букв, обязательно используя центральную. На английском.','mind'],
+['NYT Mini Crossword','https://www.nytimes.com/crosswords/game/mini','🧩 ✏️ ⏱️','Мини-кроссворд на пару минут. Новый каждый день, на английском.','mind'],
+['Pac-Man от Google','https://www.google.com/logos/2010/pacman10-i.html','🟡 👻 🍒','Тот самый Pac-Man из юбилейного дудла Google.','retro'],
+['playtictactoe.org','https://playtictactoe.org/','❌ ⭕ 🤖','Крестики-нолики против компьютера. Выиграть непросто, если он не ошибается.','retro mind'],
+['Четыре в ряд','https://connect4.gamesolver.org/','🔴 🟡 🧠','Четыре в ряд против программы, которая просчитывает партию до конца.','mind'],
+['ruwix.com','https://ruwix.com/online-puzzle/','🧊 🔄 🧠','Кубик Рубика онлайн, а на сайте ещё есть уроки, как его собрать.','mind'],
+['nitrotype.com','https://www.nitrotype.com/','🏎️ ⌨️ 🏁','Гонки на машинах, где скорость зависит от скорости печати.','multi mind'],
+['zty.pe','https://zty.pe/','🚀 ⌨️ 💥','Сбивай вражеские корабли, печатая слова на клавиатуре.','mind retro'],
+['Pokémon Showdown','https://play.pokemonshowdown.com/','⚡ 🔴 ⚔️','Бои покемонов онлайн: собери команду и сразись с другими игроками. На английском.','multi mind'],
+['boardgamearena.com','https://boardgamearena.com/','🎲 🃏 ♟️','Сотни настольных игр онлайн, чтобы играть с друзьями. Есть бесплатный доступ.','multi mind'],
+['cardgames.io','https://cardgames.io/','🃏 ♠️ ♥️','Карточные игры против компьютера: от классических до новых.','retro mind'],
+['Kittens Game','https://kittensgame.com/web/','🐱 🏗️ ⏳','Кликер про котят, которые строят цивилизацию. Затягивает надолго, на английском.','odd'],
+['seterra.com','https://www.seterra.com/','🗺️ 📍 🧠','Викторины по географии: страны, столицы, флаги и реки.','mind'],
+['Chrome Experiments','https://experiments.withgoogle.com/','🧪 🔬 🎨','Сборник интерактивных экспериментов от Google: от музыки до искусственного интеллекта.','odd'],
+['PICO-8','https://www.lexaloffle.com/bbs/?cat=7','🕹️ 👾 💾','Крошечные ретро-игры для фантазийной консоли PICO-8, играть можно в браузере.','retro odd'],
+['tetr.io','https://tetr.io/','🧱 🏆 ⚡','Тетрис с мультиплеером и рейтингом: гонки на скорость и дуэли.','retro multi'],
+['online-go.com','https://online-go.com/','⚫ ⚪ 🧠','Го онлайн: древняя настольная игра с простыми правилами и огромной глубиной.','mind multi'],
+['Incredibox','https://www.incredibox.com/','🎤 🎶 🥁','Собирай музыкальный микс из голосов и ритмов, перетаскивая значки на персонажей.','odd'],
+['brainbashers.com','https://www.brainbashers.com/','🧠 🧩 ✏️','Старый добрый сайт с логическими задачами и головоломками на каждый день. На английском.','mind'],
+['The Deep Sea','https://neal.fun/deep-sea/','🌊 🐙 🤿','Спускайся всё глубже в океан и смотри, кто там живёт.','odd'],
+['The Size of Space','https://neal.fun/size-of-space/','🪐 🚀 🌌','Прокрутка по Вселенной: от Земли до самых дальних масштабов. Очень наглядно.','odd'],
+['smashkarts.io','https://smashkarts.io/','🏎️ 🍌 💣','Картинг с ловушками и оружием: гоняйся и взрывай соперников.','multi'],
+['kizi.com','https://kizi.com/','🧸 🎈 🎮','Портал игр для детей и подростков: простые аркады, головоломки и творчество.','portal'],
+['miniclip.com','https://www.miniclip.com/','🎯 🎱 🏁','Один из старейших игровых порталов: аркады, спорт и гонки.','portal'],
+['addictinggames.com','https://www.addictinggames.com/','🎲 🔥 🕹️','Портал с большим выбором коротких игр на пару минут.','portal'],
+['arkadium.com','https://www.arkadium.com/games/','🀄 🃏 🔤','Классические карточные и словесные игры, пасьянсы и головоломки.','portal mind'],
+['The Cat in Yellow','https://www.crazygames.com/game/the-ragdoll-cat-bgr','🐱 🏠 🌙','Хоррор от первого лица и симулятор кота: ухаживаешь за странным жёлтым котом, а он ведёт себя всё подозрительнее.','horror'],
+['Exhibit of Sorrows','https://www.crazygames.com/game/exhibit-of-sorrows','🤡 🏛️ 🗝️','Короткий хоррор в странном цирковом музее: решай загадки, ищи ключи и не зли клоуна.','horror'],
+['House of Celestina','https://www.crazygames.com/game/house-of-celestina','🏚️ 🗝️ 👻','Тебя похитила Селестина. Исследуй дом, ищи ключи и подсказки и сбеги, пока она не подкралась.','horror'],
+['House of Celestina: Chapter Two','https://www.crazygames.com/game/celestina-chapter-two','🕯️ 👥 🤫','Продолжение: Селестина держит твоих друзей в доме под землёй. Спасай их, но тихо, она слышит всё.','horror'],
+['Iron Friend','https://www.crazygames.com/game/iron-friend','🔦 ⚡ 🤖','Ночная смена и отключившееся электричество. Исследуй территорию, собирай улики и выясни, что здесь происходит.','horror'],
+['Exmortis 2','https://www.crazygames.com/game/exmortis-2','💀 🕯️ 🚪','Продолжение серии страшных игр: играть лучше в наушниках.','horror'],
+['Slendrina Must Die: The Asylum','https://www.crazygames.com/game/slendrina-must-die-the-asylum','👻 🏥 🔦','Хоррор из серии про Слендрину: мрачная лечебница и существо, которое охотится на тебя.','horror'],
+['Forsake the Rake','https://www.crazygames.com/game/forsake-the-rake','🌲 🌑 👁️','Страшная игра о встрече с Рейком, героем интернет-страшилок.','horror'],
+['Bear Haven 2','https://www.crazygames.com/game/bear-haven-2','🐻 🌲 🔦','Продолжение страшной игры Bear Haven. Лучше оставить свет включённым.','horror'],
+['Five Nights at Old Toy Factory 2020','https://www.crazygames.com/game/five-nights-at-old-toy-factory-2020','🧸 🏭 🔦','Фанатская игра в духе Five Nights at Freddy’s: ночь на старой фабрике игрушек.','horror'],
+['Five Nights at Freddy’s 5','https://www.crazygames.com/game/five-nights-at-freddy-s-5','🐻 🎪 📹','Фанатская игра по мотивам Five Nights at Freddy’s.','horror'],
+['Portrait of an Obsession','https://www.crazygames.com/game/portrait-of-an-obsession','🖼️ 🕯️ 😨','Психологический хоррор: напряжение растёт с каждым шагом, а мурашки бегут с первых минут.','horror'],
+['Wendigo: The Evil That Devours','https://www.crazygames.com/game/wendigo-the-evil-that-devours','🦌 🌲 💀','Хоррор про вендиго, легендарное существо, от которого нужно спасаться.','horror'],
+['Dr Psycho Hospital Escape 2','https://www.crazygames.com/game/dr-psycho-hospital-escape-2','🏥 🗝️ 🏃','Побег из страшной больницы: ищи предметы, решай задачки и выбирайся.','horror'],
+['Window Horror Game','https://www.crazygames.com/game/window-horror-game','🪟 🌙 👀','Короткая страшилка с CrazyGames. Лучше играть, когда в комнате не слишком темно.','horror'],
+['Horror Nights Story','https://poki.com/en/g/horror-nights-story','⛏️ 🕯️ 👹','Выкапывайся из старой шахты, отбивайся от монстров и переживи пять ночей, следя за временем и топливом.','horror'],
+['Kogama: Haunted Hospital','https://poki.com/en/g/kogama-haunted-hospital','🏥 👻 🔦','Побег из жуткой заброшенной больницы в мире Kogama.','horror'],
+['Forgotten Hill: The Wardrobe 2','https://poki.com/en/g/forgotten-hill-the-wardrobe-2','🧥 🎃 🔍','Хэллоуинский квест: собирай предметы, применяй их и разгадывай загадки, от которых мурашки по коже.','horror'],
+['Forgotten Hill Disillusion: The Library','https://poki.com/en/g/forgotten-hill-disillusion-the-library','📚 🏛️ 🕯️','Страшный квест в музее и библиотеке: собирай предметы и узнавай историю Forgotten Hill.','horror'],
+['Forgotten Hill: Puppeteer','https://poki.com/en/g/forgotten-hill-puppeteer','🎭 🧵 🕯️','Ещё один страшный квест из серии Forgotten Hill, с предметами и загадками.','horror'],
+['Forgotten Hill: Fall','https://poki.com/en/g/forgotten-hill-fall','🍂 🕯️ 🏚️','Ещё одна история из серии Forgotten Hill: жуткая атмосфера и загадки.','horror'],
+['Little Cabin in the Woods','https://poki.com/en/g/little-cabin-in-the-woods','🏕️ 🌲 🕯️','Страшный квест от создателей Forgotten Hill: маленькая хижина в лесу хранит свои секреты.','horror'],
+['Scary Maze','https://poki.com/en/g/scary-maze','🟥 🧩 😱','Классика: тихий лабиринт, в котором в какой-то момент что-то внезапно появляется на весь экран.','horror'],
+['Horror Dungeon 3D','https://poki.com/en/g/horror-dungeon-3d','🏰 👹 🔦','Блуждай по тёмным коридорам, прячься от монстров и ищи выход, пока не поздно.','horror'],
+['Stupidella Horror','https://poki.com/en/g/stupidella-horror','🤪 👻 😂','Хоррор с абсурдным юмором: страшно и смешно одновременно, особенно в компании.','horror multi'],
+['Scary Hill','https://poki.com/en/g/scary-hill','🎃 🍬 🧊','Хэллоуинская головоломка: прыгай с кубика на кубик, обходи ловушки и собирай конфеты.','horror odd'],
+['HOLLOW','https://wingcreator.itch.io/hollow','🕯️ 🚪 🏠','Короткая атмосферная страшилка в браузере: тёмный дом, запертая дверь и свеча, которая скоро погаснет.','horror'],
+['Ghost Haunt','https://luisomarti.itch.io/ghost-haunt','👻 🦇 🏚️','Тёмный пиксельный платформер: очищай комнаты дома с привидениями от теней и летучих мышей.','horror'],
+['Страшилки на Poki','https://poki.com/en/scary','😱 🎃 🕸️','Подборка страшных игр: от лабиринта со скримером до жутких квестов. Без скачивания.','horror portal'],
+['Страшные игры на CrazyGames','https://www.crazygames.com/t/scary','🦇 😨 🌑','Ещё одна большая подборка страшилок: от лёгких до по-настоящему жутких.','horror portal'],
+['Snow Rider 3D','https://www.crazygames.com/game/snow-rider-3d','🛷 🎁 🌲','Мчись на санях по снежной трассе: уворачивайся от препятствий и собирай подарки, чтобы открывать новые сани.','winter'],
+['Snow Farm Happy New Year','https://www.crazygames.com/game/snow-farm-happy-new-year','🚜 ❄️ 🎄','Новогодняя ферма: развивай хозяйство, строй здания, торгуй и участвуй в сезонных событиях.','winter odd'],
+['WinterSmash.io','https://www.crazygames.com/game/wintersmash-io','⛄ 💥 🧊','Зимняя io-игра с CrazyGames.','winter multi'],
+['Santa Parkour','https://www.crazygames.com/game/santa-parkour','🎅 🏃 🎁','Паркур за Санта-Клауса: бегай, прыгай и не падай.','winter'],
+['Snowball Destroyer','https://www.crazygames.com/game/snowball-destroyer','⛄ ❄️ 💥','Зимняя игра со снежками.','winter'],
+['Christmas Tree 2023','https://www.crazygames.com/game/christmas-tree-2023','🎄 ✨ 🎁','Новогодняя игра про ёлку.','winter'],
+['Click the Tree!','https://www.crazygames.com/game/click-the-tree','🎄 👆 ⭐','Кликер про новогоднюю ёлку: жми и смотри, что будет.','winter odd'],
+['Advent Mahjong','https://www.crazygames.com/game/advent-mahjong','🀄 🎅 🎁','Маджонг в новогоднем стиле.','winter mind'],
+['Christmas Sorting','https://www.crazygames.com/game/christmas-sorting','🧦 🎁 🎄','Новогодняя сортировка: головоломка, в которой нужно разложить всё по местам.','winter mind'],
+['Pixels for Christmas','https://www.crazygames.com/game/pixels-for-christmas','🟥 🟩 🎄','Новогодняя пиксельная раскраска.','winter mind'],
+['Winter Clash 3D','https://poki.com/en/g/winter-clash-3d','🎅 🧝 🔫','Новогодний шутер: играй за Санту или эльфа в командном бою и ищи оружие, спрятанное на карте.','winter multi'],
+['Winter Dodge','https://poki.com/en/g/winter-dodge','⚪ 🌲 ⛷️','Спускайся шариком по ледяному склону: зажми, чтобы повернуть влево, отпусти, чтобы вправо, и не врезайся в деревья.','winter'],
+['Snow Tale','https://poki.com/en/g/snow-tale','🐧 ❄️ 🍦','Платформер про пингвина: бегай по заснеженным холмам, кидай снежки во врагов и собирай мороженое.','winter'],
+['Moto X3M Winter','https://poki.com/en/g/moto-x3m-winter','🏍️ ❄️ 🏁','Мотогонки с трюками и препятствиями на зимних трассах.','winter'],
+['Jigsaw Photo Puzzle: Winter','https://poki.com/en/g/jigsaw-photo-puzzle-winter','🧩 ☕ 🏔️','Расслабляющий зимний пазл: собирай фото из кусочков, укрывшись пледом с чашкой какао.','winter mind'],
+['Tired to Fall: Winter','https://poki.com/en/g/tired-to-fall-winter','😴 ❄️ 🛏️','Зимняя версия игры Tired to Fall от студии Havana24.','winter'],
+['Thumb Fighter Christmas','https://poki.com/en/g/thumb-fighter-christmas','👍 🎅 🥊','Рождественская версия игры Thumb Fighter.','winter'],
+['Blob Opera','https://artsandculture.google.com/experiment/blob-opera/AAHWrq360NcGbw','🎤 🎶 🎅','Четыре поющих «капли» исполняют оперу под твоим управлением: двигай их и создавай мелодии. Есть новогодний режим.','winter odd'],
+['SkiFree.js','https://basicallydan.github.io/skifree.js/','⛷️ 🌲 ❄️','Браузерная версия классической игры SkiFree: уворачивайся от деревьев и убегай от снежного человека.','winter retro']
+];
+const T={odd:'необычное',mind:'для ума',multi:'мультиплеер',portal:'портал',retro:'классика',horror:'хоррор',winter:'зима'};
+const P={odd:['#FFB35C','#FF8A3D'],mind:['#7FB2FF','#4F8BFF'],multi:['#7CE3A1','#3CC57A'],portal:['#FF9EC0','#FF6FA3'],retro:['#FFE066','#FFC400'],horror:['#C3A6FF','#9B7BEA'],winter:['#BFE3FF','#8CCBFF']};
+const chips=[['all','Все'],['mind','Для ума'],['odd','Необычное'],['multi','Мультиплеер'],['retro','Классика'],['horror','Хоррор'],['winter','Зима']];
+const SKIP=['crazygames.com/t/','itch.io/games/html5/tag-','newgrounds.com/games/browse/tag','y8.com/tags/','poki.com/en/horror','poki.com/en/scary','search/projects?q=horror'];
+const HUB=new Set(['https://poki.com/','https://www.crazygames.com/','https://www.y8.com/','https://www.coolmathgames.com/','https://itch.io/games/html5','https://www.newgrounds.com/','https://archive.org/details/internetarcade','https://doodles.google/','https://yandex.ru/games/','https://www.silvergames.com/','https://armorgames.com/','https://gamejolt.com/','https://scratch.mit.edu/explore/projects/games/','https://www.abcya.com/','https://www.sporcle.com/','https://archive.org/details/softwarelibrary_msdos_games','https://boardgamearena.com/','https://cardgames.io/','https://www.seterra.com/','https://experiments.withgoogle.com/','https://www.lexaloffle.com/bbs/?cat=7','https://www.brainbashers.com/','https://kizi.com/','https://www.miniclip.com/','https://www.addictinggames.com/','https://www.arkadium.com/games/']);
+const FIX={'https://musiclab.chromeexperiments.com/':'https://musiclab.chromeexperiments.com/Song-Maker/','https://beinternetawesome.withgoogle.com/':'https://beinternetawesome.withgoogle.com/en_us/interland'};
+const D=S.filter(s=>!SKIP.some(k=>s[1].includes(k))&&!HUB.has(s[1])).map(s=>FIX[s[1]]?[s[0],FIX[s[1]],...s.slice(2)]:s).map((s,i)=>({n:s[0],u:s[1],a:s[2].split(' '),d:s[3],t:s[4].split(' '),i}));
+let f='all',list=D,last=-1;
+function render(){
+  list=D.filter(s=>f==='all'||s.t.includes(f));
+  $('#chips').innerHTML=chips.map(c=>'<button class="chip" data-f="'+c[0]+'" aria-pressed="'+(c[0]===f)+'">'+c[1]+'</button>').join('');
+  $('#list').innerHTML=list.map(s=>{
+    const c=P[s.t[0]];
+    return '<a class="site" href="'+s.u+'" target="_blank" rel="noopener noreferrer"><span class="cover p'+s.i%5+'" style="--a:'+c[0]+';--b:'+c[1]+'"><i class="e1">'+s.a[0]+'</i><i class="e2">'+s.a[1]+'</i><i class="e3">'+s.a[2]+'</i></span><span class="txt"><b>'+s.n+'</b><span class="d">'+s.d+'</span><span class="foot"><small>'+s.t.map(k=>T[k]).join(', ')+'</small><span class="go">Открыть</span></span></span></a>';
+  }).join('');
+}
+$('#chips').onclick=e=>{const c=e.target.closest('.chip');if(c){f=c.dataset.f;render()}};
+$('#rnd').onclick=()=>{
+  let i;
+  do i=Math.random()*list.length|0;while(list.length>1&&i===last);
+  last=i;
+  const s=list[i];
+  $('#pick').hidden=false;
+  $('#pick').innerHTML='Выпало: <a href="'+s.u+'" target="_blank" rel="noopener noreferrer">'+s.n+'</a>. Если вкладка не открылась, нажми на ссылку.';
+  window.open(s.u,'_blank','noopener,noreferrer');
+};
+console.log('Привет, любопытный! Тебе передают привет 213rty785 и Claude.');
+let AC=null,on=true;
+function tone(f,t,d,type){
+  if(!on)return;
+  try{
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended')AC.resume();
+    const o=AC.createOscillator(),g=AC.createGain(),s=AC.currentTime+t;
+    o.type=type||'square';o.frequency.setValueAtTime(f,s);
+    g.gain.setValueAtTime(.06,s);g.gain.exponentialRampToValueAtTime(.0001,s+d);
+    o.connect(g);g.connect(AC.destination);o.start(s);o.stop(s+d);
+  }catch(e){}
+}
+const SND={coin:[988,1319],tick:[660],up:[523,659,784,1047],down:[392,330,262,196],win:[523,523,523,659,784,1047,1319]};
+const play=(k,type)=>SND[k].forEach((f,i)=>tone(f,i*.09,.14,type));
+function toast(t){const el=document.createElement('div');el.className='toast';el.textContent=t;document.body.appendChild(el);setTimeout(()=>el.remove(),2600)}
+function party(t){
+  play('win');toast(t);
+  for(let i=0;i<32;i++){
+    const s=document.createElement('span');
+    s.className='fall';s.textContent=['🎮','🕹️','👾','⭐','🍪','🎉'][i%6];
+    s.style.cssText='left:'+Math.random()*100+'vw;animation-duration:'+(1.8+Math.random()*1.8)+'s;animation-delay:'+Math.random()*.8+'s';
+    document.body.appendChild(s);setTimeout(()=>s.remove(),4200);
+  }
+}
+function tab(t){
+  $('#g').hidden=t!=='g';$('#tips').hidden=t!=='t';
+  document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===t));
+  scrollTo(0,0);
+}
+$('#tabs').onclick=e=>{const b=e.target.closest('.tab');if(b){play('tick');tab(b.dataset.t)}};
+$('#snd').onclick=e=>{on=!on;e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'Звук: вкл':'Звук: выкл';play('coin')};
+$('#chips').addEventListener('click',e=>{if(e.target.closest('.chip'))play('tick')});
+$('#rnd').addEventListener('click',()=>play('up'));
+$('#list').addEventListener('click',e=>{if(e.target.closest('.site'))play('coin')});
+const dg=D[Math.floor(Date.now()/864e5)%D.length];
+$('#dd').innerHTML='Игра дня: <a href="'+dg.u+'" target="_blank" rel="noopener noreferrer">'+dg.n+'</a>. Завтра будет другая.';
+const M=[['mind','🧠 Подумать','#7FB2FF'],['odd','🤪 Удивиться','#FFB35C'],['multi','👥 С друзьями','#7CE3A1'],['retro','🕹️ Ностальгия','#FFE066'],['all','🎲 Мне всё равно','#FF9EC0']];
+$('#moods').innerHTML=M.map(m=>'<button class="mood" data-m="'+m[0]+'" style="background:'+m[2]+'">'+m[1]+'</button>').join('');
+$('#moods').onclick=e=>{
+  const b=e.target.closest('.mood');if(!b)return;
+  const l=b.dataset.m==='all'?D:D.filter(s=>s.t.includes(b.dataset.m)),s=l[Math.random()*l.length|0];
+  play('coin');
+  $('#rec').innerHTML='Попробуй: <a href="'+s.u+'" target="_blank" rel="noopener noreferrer">'+s.n+'</a>. '+s.d;
+};
+$('#dn').onclick=()=>{
+  const w=$('.w');w.classList.add('shake');setTimeout(()=>w.classList.remove('shake'),450);
+  play('down','sawtooth');toast('Ну вот, ты нажал. Теперь придётся играть.');
+  setTimeout(()=>tab('g'),1600);
+};
+let lc=0,lt;
+$('#logo').onclick=()=>{
+  clearTimeout(lt);lt=setTimeout(()=>lc=0,1200);
+  if(false){lc=0;const d=document.body.classList.toggle('disco');play(d?'up':'down');toast(d?'Дискотека! Ещё пять нажатий на лого выключат её.':'Дискотека закончилась.')}
+};
+$('#au').onclick=()=>party('Привет от автора 213rty785!');
+const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;
+addEventListener('keydown',e=>{
+  const k=e.key.length>1?e.key:e.key.toLowerCase();
+  ki=k===K[ki]?ki+1:(k===K[0]?1:0);
+  if(ki===K.length){ki=0;party('Читы включены: +30 жизней')}
+});
+function rain(em,t,snd){
+  play(snd||'win');toast(t);
+  for(let i=0;i<30;i++){
+    const s=document.createElement('span');
+    s.className='fall';s.textContent=em[i%em.length];
+    s.style.cssText='left:'+Math.random()*100+'vw;animation-duration:'+(1.8+Math.random()*1.8)+'s;animation-delay:'+Math.random()*.8+'s';
+    document.body.appendChild(s);setTimeout(()=>s.remove(),4200);
+  }
+}
+SND.creak=[110,98,87,78];
+let dc=0;
+const PS=['Ну чё ты сюда вошёл? Иди в Роблокс, я там не знаю, в брейнротов поиграй там, балбес. Иди вон, вонючка.','Опять ты? Я же сказал: иди вон.','Ладно, ладно. Заходи. Но играть всё равно придётся.'];
+function openDoor(){
+  $('#door').classList.add('open');play('creak','sawtooth');
+  $('#pst').textContent=dc===0?PS[0]:dc===1?pick(PS2):pick(PS3);dc++;
+  setTimeout(()=>{$('#psbox').hidden=false},450);
+}
+function shut(){
+  $('#psbox').hidden=true;$('#door').classList.remove('open');play('down');
+  if(dc>=3){dc=0;tab('g')}
+}
+$('#door').onclick=openDoor;
+$('#psx').onclick=shut;
+$('#psbox').onclick=e=>{if(e.target.id==='psbox')shut()};
+const BR=()=>rain(['🧠','💀','🗿'],'Мозг вытек, но сайт ещё работает','down'),PZ=()=>rain(['🍕'],'Пицца уже в пути','coin'),CL=()=>{play('coin');toast('Привет! Это я, Claude. Рад, что ты меня нашёл.')};
+const W={roblox:openDoor,роблокс:openDoor,brainrot:BR,брейнрот:BR,pizza:PZ,пицца:PZ,claude:CL,клод:CL};
+let B='';
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&!$('#psbox').hidden)shut();
+  if(e.key.length===1){B=(B+e.key.toLowerCase()).slice(-12);for(const w in W)if(B.endsWith(w)){B='';W[w]();break}}
+});
+$('#cl').onclick=CL;
+let tc=0,tt;
+document.querySelectorAll('h1').forEach(h=>h.onclick=()=>{
+  clearTimeout(tt);tt=setTimeout(()=>tc=0,1500);
+  if(++tc===7){tc=0;const w=$('.w');w.classList.add('flip');play('down');toast('Упс, всё перевернулось');setTimeout(()=>w.classList.remove('flip'),2500)}
+});
+let rc=0,ac=0;
+$('#rnd').addEventListener('click',()=>{if(++rc===10)rain(['🎲','🎮','⭐'],'Десять кликов! Теперь иди играй')});
+$('#moods').addEventListener('click',e=>{const b=e.target.closest('.mood');if(b&&b.dataset.m==='all'&&++ac===5){toast('Ну определись уже!');play('down','sawtooth')}});
+if(new Date().getHours()<5)$('#dd').insertAdjacentText('beforeend',' Уже поздно, может, пора спать?');
+SND.spooky=[262,247,233,220,196,185];
+SND.bat=[1760,2093,1760];
+function halloween(){
+  const h=document.body.classList.toggle('hw'),old=$('#hwx');
+  if(old)old.remove();
+  if(!h){play('down');toast(pick(HW_OFF));return}
+  play('spooky','triangle');setTimeout(()=>play('bat','sine'),500);
+  toast(pick(HW_ON)+' Выключить: ещё 5 нажатий на «Хоррор».');
+  const r=(a,b)=>a+Math.random()*(b-a);
+  let x='';
+  for(let i=0;i<7;i++)x+='<div class="sk" style="top:'+r(8,86)+'vh;animation-duration:'+r(6,14)+'s;animation-delay:-'+r(0,12)+'s;'+(i%2?'animation-direction:reverse':'')+'"><span>'+(i%3?'💀':'☠️')+'</span></div>';
+  for(let i=0;i<7;i++)x+='<div class="bt" style="top:'+r(2,70)+'vh;animation-duration:'+r(7,15)+'s;animation-delay:-'+r(0,12)+'s"><span>🦇</span></div>';
+  for(let i=0;i<9;i++)x+='<div class="pm" style="left:'+(i*11+r(-2,3))+'vw;font-size:'+r(34,64)+'px">🎃</div>';
+  const d=document.createElement('div');d.className='hwx';d.id='hwx';d.innerHTML=x;document.body.appendChild(d);
+}
+function scream(){
+  const s=document.createElement('div');s.className='scr';s.innerHTML='<span>'+pick(FACES)+'</span><b class="cap">'+pick(CAPS)+'</b>';
+  document.body.appendChild(s);
+  if(on){try{
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended')AC.resume();
+    const t=AC.currentTime,o=AC.createOscillator(),g=AC.createGain();
+    o.type='sawtooth';o.frequency.setValueAtTime(700,t);o.frequency.exponentialRampToValueAtTime(2200,t+.5);
+    g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.0001,t+.9);
+    o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+.9);
+    const b=AC.createBuffer(1,AC.sampleRate*.9,AC.sampleRate),d=b.getChannelData(0);
+    for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+    const n=AC.createBufferSource(),ng=AC.createGain();n.buffer=b;ng.gain.value=.15;n.connect(ng);ng.connect(AC.destination);n.start(t);
+  }catch(e){}}
+  const end=()=>{if(s.isConnected){s.remove();toast(pick(SC_AFTER))}};
+  setTimeout(end,2500);
+}
+let hc=0,ht,sl=false;
+$('#chips').addEventListener('click',e=>{
+  const c=e.target.closest('.chip');
+  if(!c||c.dataset.f!=='horror'||sl)return;
+  clearTimeout(ht);ht=setTimeout(()=>hc=0,2000);
+  if(++hc===5)halloween();
+  else if(hc===10){hc=0;sl=true;setTimeout(()=>sl=false,6000);scream()}
+});
+SND.chime=[1319,1568,2093,2637];
+function winter(on){
+  document.body.classList.toggle('wt',on);
+  let s=$('#snow');
+  if(!on){if(s)s.remove();const w=$('#wscene');if(w)w.remove();return}
+  if(s)return;
+  s=document.createElement('div');s.id='snow';s.className='snow';
+  let x='';
+  for(let i=0;i<46;i++)x+='<span style="left:'+Math.random()*100+'vw;font-size:'+(12+Math.random()*18)+'px;opacity:'+(.5+Math.random()*.5)+';animation-duration:'+(7+Math.random()*9)+'s;animation-delay:-'+Math.random()*14+'s">'+'❄❅❆'[i%3]+'</span>';
+  s.innerHTML=x;document.body.appendChild(s);
+  drifts();play('chime','sine');toast(pick(WIN));
+}
+$('#chips').addEventListener('click',e=>{if(e.target.closest('.chip'))winter(f==='winter')});
+function drifts(){
+  const r=(a,b)=>a+Math.random()*(b-a);
+  let x='';
+  const m=(c,n,h0,h1)=>{for(let i=0;i<n;i++)x+=`<i class='dr' style='left:${i*100/n-12+r(-4,4)}vw;width:${r(34,52)}vw;height:${r(h0,h1)}px;background:${c}'></i>`};
+  m('#E4EEFF',4,64,96);
+  for(let i=0;i<6;i++){const h=r(70,130);x+=`<svg class='fir' viewBox='0 0 60 100' style='left:${i*17+r(0,6)}vw;height:${h}px;width:${h*.6}px'><g stroke='#14123A' stroke-width='2.5' stroke-linejoin='round'><rect x='25' y='92' width='10' height='8' fill='#6B4423'/><polygon points='30,44 60,94 0,94' fill='#1F6A41'/><polygon points='30,20 55,62 5,62' fill='#27794D'/><polygon points='30,2 50,36 10,36' fill='#2E8B57'/></g></svg>`}
+  m('#D2E4FF',5,36,62);
+  const d=document.createElement('div');d.id='wscene';d.className='ws';d.innerHTML=x;document.body.appendChild(d);
+}
+const pick=a=>a[Math.random()*a.length|0];
+const HW_ON=[
+'Хеллоуин настал раньше времени. Скелеты уже вышли на пробежку.',
+'Тыквы расставлены, летучие мыши выпущены. Дальше сам.',
+'Кто-то нажал «Хоррор» пять раз и разбудил весь кладбищенский район.',
+'Скелеты сбежали из шкафа. Я, Claude, их не выпускал, честно.',
+'Добро пожаловать в хеллоуинский режим. Конфет не раздаём, зато тыквы стоят красиво.',
+'Тыквы заняли оборону. Конфеты только по паролю.',
+'Летучие мыши вылетели из кэша.',
+'На сайте обнаружена праздничная нечисть. Это не баг, это фича.',
+'Свет приглушён, скелеты в строю. Играть стало на 40% страшнее.',
+'Хеллоуин в ноябре? Мы не опаздываем, мы держим интригу.',
+'Скелеты бегают, мыши летают, тыквы стоят. Идеальный распорядок дня.',
+'Пять нажатий, и в доме завелась нечисть. Прописка оформлена.'
+];
+const HW_OFF=[
+'Хеллоуин закончился. Скелеты ушли в шкаф до следующего раза.',
+'Тыквы убраны, мыши улетели. Свет включён.',
+'Нечисть отправлена в отпуск. Вернётся по пяти нажатиям.',
+'Праздник окончен. Конфеты кончились ещё раньше.',
+'Скелеты сделали вид, что их тут не было.',
+'Всё, вернул обычный сайт. Страшно было весёло.'
+];
+const WIN=[
+'Зима пришла! Шапку не забудь, снег на экране не растает.',
+'Сайт побелел от холода. Это не баг, это сугробы.',
+'Снег пошёл. Я, Claude, проверил: лопату брать не нужно.',
+'На сайте ниже нуля, а игры горячие.',
+'Новый год не за горами. Ёлки уже вышли, украшать будешь сам.',
+'Включён режим «Зима»: сугробы по колено, ёлки без гирлянд, настроение отличное.',
+'Пушистый снег, голые ёлки и ни одного будильника.',
+'Снежинки падают строго по расписанию. Опоздавшие тают.',
+'Ёлки стоят без игрушек: коробки с украшениями ещё на антресолях.',
+'Мороз и солнце, день чудесный. Ну ладно, просто мороз и сайт.',
+'Тут холодно, зато играть тепло.',
+'Первый снег на экране, сугробы внизу. Осталось выбрать игру.'
+];
+const PS2=[
+'Опять ты? Я же сказал: иди вон.',
+'Дверь — это не игра. Хотя… ладно, не уходи.',
+'Ты что, тут живёшь? Иди играй, балбес.',
+'Стучать не надо. Тут никого нет. И брейнротов тоже нет.',
+'Если ты за секретом, его нет. Если за Роблоксом, это не сюда.',
+'Ещё раз зайдёшь, и я скажу, что ты вонючка. Ой, уже сказал.',
+'Ты тут уже был. Ничего не изменилось. Я проверял.',
+'Иди в Роблокс. Там тебя ждёт толпа брейнротов и твоя судьба.',
+'Скрип-скрип. Это дверь вздыхает от твоей настойчивости.',
+'У тебя на экране сотня игр, а ты в дверь ломишься. Тормоз.'
+];
+const PS3=[
+'Ладно, ладно. Заходи. Но играть всё равно придётся.',
+'Ты победил. Дверь сдаётся. Теперь иди выбирай игру.',
+'Хорошо, я устал спорить. Выбери уже игру, пожалуйста.',
+'Три раза подряд — это уже традиция. Традиция говорит: иди играть.',
+'Окей, ты упрямый. Это даже уважаю. Выбирай игру.',
+'Дверь капитулирует. Ну что, во что играем?'
+];
+const SC_AFTER=[
+'Хе-хе. Ты сам нажал 10 раз.',
+'Сердце на месте? Проверь, не убежало ли.',
+'Это был я. Извиняться не буду.',
+'Ты думал, десять нажатий — это просто так?',
+'Дыши. Всё закончилось. Пока что.',
+'Рекорд по прыжку на стуле зафиксирован.',
+'Надеюсь, ты не пил чай в этот момент.',
+'Не бойся, это всего лишь пиксели. Злые пиксели.',
+'Пятью нажатиями ты вызвал скелетов, десятью — меня.',
+'Скример выдан. Расписку не нужно.'
+];
+const FACES=['👹','💀','🤡','👻','😈','🧟','👺'];
+const CAPS=['БУ!','Я ЗДЕСЬ','ОБЕРНИСЬ','ПОПАЛСЯ','СЮРПРИЗ!','НЕ МОРГАЙ','ТЫ САМ НАЖАЛ','ХА-ХА-ХА','ПРИВЕТ','ДАВАЙ ЕЩЁ РАЗ'];
+SND.glitch=[1760,110,1568,98,2093,82];
+const D9T=[
+'Реальность дала трещину. Заходи, если не боишься.',
+'Ты нашёл то, что искали не все. Дальше жёлтые коридоры.',
+'Сигнал потерян. Новый сигнал: Dimension 9.',
+'Ты провалился сквозь стену. Удачи найти выход.',
+'Жёлтые обои, гудящий свет. Добро пожаловать в Backrooms.',
+'Баг в матрице? Нет, это приглашение.',
+'Секретная дверь без ручки. Но ты как-то её открыл.',
+'20 июля 1969 года, 20:17 по UTC. Что-то пошло не так.',
+'Тебя здесь не ждали. Но свет уже включили.',
+'Играй с друзьями: в одиночку там слишком тихо.'
+];
+$('#d9g').addEventListener('click',()=>{play('glitch','square');toast(pick(D9T))});
+$('#chips').addEventListener('click',e=>{if(e.target.closest('.chip'))$('#d9').hidden=f!=='horror'});
+$('#chips').addEventListener('click',e=>{if(e.target.closest('.chip')&&f==='horror'){const g=$('#d9g');g.style.left=(6+Math.random()*82)+'%';g.style.bottom=(6+Math.random()*64)+'px'}});
+const MV=.55,mu={mood:'n',step:0,next:0,id:0,on:true,ready:false,g:null,nb:null,mi:3};
+const fq=n=>440*Math.pow(2,(n-69)/12);
+function mn(n,t,d,type,v,a){
+  const o=AC.createOscillator(),g=AC.createGain();
+  o.type=type;o.frequency.value=fq(n);
+  g.gain.setValueAtTime(.0001,t);
+  g.gain.exponentialRampToValueAtTime(v,t+(a||.01));
+  g.gain.exponentialRampToValueAtTime(.0001,t+d);
+  o.connect(g);g.connect(mu.g);o.start(t);o.stop(t+d+.05);
+}
+function mk(t,v){const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(130,t);o.frequency.exponentialRampToValueAtTime(45,t+.12);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.connect(g);g.connect(mu.g);o.start(t);o.stop(t+.2)}
+function mz(t,d,v,hp){const s=AC.createBufferSource(),g=AC.createGain(),f=AC.createBiquadFilter();s.buffer=mu.nb;f.type='highpass';f.frequency.value=hp;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(mu.g);s.start(t);s.stop(t+d+.02)}
+function chirp(t){const o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.setValueAtTime(3400,t);o.frequency.exponentialRampToValueAtTime(2100,t+.09);g.gain.setValueAtTime(.02,t);g.gain.exponentialRampToValueAtTime(.0001,t+.1);o.connect(g);g.connect(mu.g);o.start(t);o.stop(t+.12)}
+const CN=[[48,60,64,67],[45,57,60,64],[41,57,60,65],[43,55,59,62]],P1=[72,74,76,79,81,84,86];
+const CH=[[45,57,60,64],[41,57,60,65],[40,56,59,64],[45,57,60,64]],SH=[69,71,72,75,76,77,80,81];
+const CW=[[43,67,71,74],[40,64,67,71],[48,64,67,72],[50,62,66,69]],PW=[79,81,83,86,88,91];
+const rw=(a,k)=>{mu.mi=Math.max(0,Math.min(a.length-1,mu.mi+(Math.random()*(2*k+1)|0)-k));return a[mu.mi]};
+const MOODS={
+  n:{d:.15,s:(s,t)=>{
+    const c=CN[(s>>4)&3],k=s&15;
+    if(k===0)mn(c[0],t,.7,'triangle',.1);
+    if(k===8)mn(c[0]+7,t,.35,'triangle',.07);
+    if(k%2===0)mn(c[[1,2,3,2][(k>>1)&3]]+12,t,.2,'square',.016);
+    if([0,3,6,8,11,14].includes(k)&&Math.random()<.6)mn(rw(P1,2),t,.32,'triangle',.05);
+    if(k===0||k===8)mk(t,.1);
+    if(k===4||k===12)mz(t,.09,.04,1800);
+    if(k%2)mz(t,.03,.015,6500);
+  }},
+  hw:{d:.2,s:(s,t)=>{
+    const c=CH[(s>>4)&3],k=s&15;
+    if(k===0){[c[1],c[2],c[3]].forEach(n=>mn(n,t,3.2,'triangle',.022,.7));mn(c[0],t,3.2,'sine',.07,.5)}
+    if(k===0||k===3)mk(t,k?.09:.14);
+    if([2,6,10,13].includes(k)&&Math.random()<.5){const n=rw(SH,2);mn(n,t,1,'sine',.045,.02);mn(n+12,t,.4,'sine',.012,.02)}
+    if(Math.random()<.04)chirp(t);
+  }},
+  wt:{d:.16,s:(s,t)=>{
+    const c=CW[(s>>4)&3],k=s&15;
+    if(k===0){mn(c[0],t,2.6,'triangle',.05,.3);[c[1],c[2],c[3]].forEach(n=>mn(n,t,2.6,'sine',.02,.8))}
+    if(k%2===0){const n=c[[1,2,3,2,3,2,1,2][k>>1]]+12;mn(n,t,.5,'sine',.045);mn(n+12,t,.2,'sine',.012)}
+    if([0,4,8,10,14].includes(k)&&Math.random()<.5)mn(rw(PW,1),t,.8,'sine',.03);
+    if(k%4===0){mz(t,.07,.025,7000);mz(t+.045,.05,.015,8000)}
+  }}
+};
+function mtick(){
+  if(!mu.ready)return;
+  const q=MOODS[mu.mood];
+  if(mu.next<AC.currentTime-.1)mu.next=AC.currentTime+.05;
+  while(mu.next<AC.currentTime+.2){q.s(mu.step,mu.next);mu.next+=q.d;mu.step++}
+}
+function mfade(v,tc){if(mu.g)mu.g.gain.setTargetAtTime(v,AC.currentTime,tc)}
+function msync(){
+  if(!mu.ready)return;
+  if(mu.on&&on){if(!mu.id){mu.next=AC.currentTime+.1;mu.id=setInterval(mtick,25)}mfade(MV,.3)}
+  else{mfade(0,.1);clearInterval(mu.id);mu.id=0}
+}
+function mboot(){
+  if(mu.ready)return;
+  try{
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended')AC.resume();
+    mu.g=AC.createGain();mu.g.gain.value=0;mu.g.connect(AC.destination);
+    const d=AC.createDelay(1),fb=AC.createGain(),wet=AC.createGain();
+    d.delayTime.value=.32;fb.gain.value=.35;wet.gain.value=.3;
+    mu.g.connect(d);d.connect(fb);fb.connect(d);d.connect(wet);wet.connect(AC.destination);
+    const b=AC.createBuffer(1,AC.sampleRate,AC.sampleRate),a=b.getChannelData(0);
+    for(let i=0;i<a.length;i++)a[i]=Math.random()*2-1;
+    mu.nb=b;mu.ready=true;msync();
+  }catch(e){}
+}
+function mmood(m){
+  if(mu.mood===m)return;
+  if(mu.ready&&mu.id){mfade(0,.12);setTimeout(()=>{mu.mood=m;mu.step=0;msync()},400)}
+  else mu.mood=m;
+}
+let pri='';
+new MutationObserver(l=>{
+  const c=document.body.classList,o=(l[l.length-1].oldValue||'').split(' ');
+  if(c.contains('hw')&&!o.includes('hw'))pri='hw';
+  if(c.contains('wt')&&!o.includes('wt'))pri='wt';
+  ['ds','br'].forEach(k=>{if(c.contains(k)&&!o.includes(k))pri=k});
+  const act=['ds','br','hw','wt'].filter(k=>c.contains(k));
+  mmood(act.length?(act.includes(pri)?pri:act[0]):'n');
+}).observe(document.body,{attributes:true,attributeFilter:['class'],attributeOldValue:true});
+['pointerdown','keydown'].forEach(ev=>addEventListener(ev,mboot,{once:true,capture:true}));
+addEventListener('pointerdown',()=>{if(AC&&AC.state==='suspended')AC.resume()},true);
+document.addEventListener('visibilitychange',()=>{if(AC){document.hidden?AC.suspend():AC.resume()}});
+$('#mus').onclick=e=>{mu.on=!mu.on;e.currentTarget.setAttribute('aria-pressed',mu.on);e.currentTarget.textContent=mu.on?'♪ вкл':'♪ выкл';mboot();msync()};
+$('#snd').addEventListener('click',()=>msync());
+const DS_ON=[
+'ДИСКОТЕКА! Диско-шар включён, ритм на максимуме.',
+'Десять нажатий на лого: рейв-режим разблокирован.',
+'Свет, музыка, радуга. Танцуй, пока кэш не остыл.',
+'Я, Claude, ставлю на то, что ты не удержишься от пары па.',
+'Зеркальный шар спущен с потолка. Пол — это лава, танцуй на месте.',
+'Сайт ушёл в отрыв. Радуга включена до следующих десяти нажатий.',
+'Зеркальный шар, бас и немного безумия. Классика жанра.',
+'Тут стало слишком красиво. Включаю бит.',
+'Лого нажато десять раз, и танцпол открыт.',
+'Игры подождут. Сначала потанцуем.'
+],DS_OFF=[
+'Дискотека окончена. Шар уехал под потолок.',
+'Свет включили, все делают вид, что не танцевали.',
+'Музыка стихла. Радуга ушла в отпуск.',
+'Всё, вернули обычный сайт. Танцы были огонь.',
+'Диджей ушёл за кулисы.'
+],BR_ON=[
+'Ты не должен был подходить к нему. Обои уже заметили.',
+'Жёлтые стены, гудящий свет, и никого рядом. Почти никого.',
+'Исследователь шагнул в стену. Ты — следом. Удачи.',
+'Нулевой уровень. Здесь всегда пахнет сырым ковром.',
+'Если слышишь гул, это нормально. Если слышишь шаги, оглянись. Шутка. Наверное.',
+'Всё чуть-чуть неправильное. Тебе не кажется.',
+'Добро пожаловать в Backrooms. Выход мы сейчас поищем.',
+'Лампы мерцают, обои липнут, а музыка играет сама по себе.',
+'Он не двигался. Но ты точно видел, что он стоял иначе.',
+'Не смотри слишком долго на обои. Они смотрят в ответ.'
+],BR_OFF=[
+'Ты выбрался. Обои остались позади, но запах ковра ещё с тобой.',
+'Выход найден. Больше так не рискуй. Хотя…',
+'Свет перестал гудеть. Стало даже слишком тихо.',
+'Исследователь остался внизу. Он, кажется, не против.',
+'Реальность вернулась на место. Почти вся.',
+'Нулевой уровень закрыт. До следующего раза.'
+];
+const CD=[[45,57,60,64],[38,62,65,69],[43,59,62,67],[48,60,64,67]],RF=[76,0,79,76,0,0,74,0,72,0,74,76,0,0,72,0],SB=[69,72,74,76,79,81];
+MOODS.ds={d:.125,s:(s,t)=>{
+  const c=CD[(s>>4)&3],k=s&15;
+  if(k%4===0)mk(t,.15);
+  if(k%4===2)mz(t,.09,.03,7000);
+  if(k%2)mz(t,.02,.012,9000);
+  if(k===4||k===12){mz(t,.1,.06,1500);mz(t+.012,.08,.04,2500)}
+  if(k%2===0)mn(c[0]+(k%4===2?12:0),t,.13,'sawtooth',.03);
+  if([3,6,11,14].includes(k))[c[1],c[2],c[3]].forEach(n=>mn(n,t,.09,'square',.011));
+  if(k===0)[c[1],c[2],c[3]].forEach(n=>mn(n,t,.9,'triangle',.014,.05));
+  if(RF[k])mn(RF[k],t,.11,'square',.02);
+}};
+MOODS.br={d:.25,s:(s,t)=>{
+  const k=s&15,b=(s>>4)&3;
+  if(k===0){mn(35,t,4.3,'sawtooth',.02,.8);mn(47.2,t,4.3,'sawtooth',.008,1);mn(35.15,t,4.3,'sine',.03,.8);if(b===0){mn(57,t,8.5,'triangle',.012,2.5);mn(58,t,8.5,'triangle',.01,3)}}
+  if([0,4,8,12].includes(k)&&Math.random()<.4){const n=rw(SB,2)+(Math.random()<.15?1:0);mn(n,t,1.6,'sine',.03,.01);mn(n+.22,t,1.6,'sine',.025,.01)}
+  if(Math.random()<.05){mn(47,t,.06,'square',.012);mn(59,t,.06,'square',.008)}
+}};
+function disco(){
+  const d=document.body.classList.toggle('ds');
+  ['dsx','dsl'].forEach(i=>{const e=$('#'+i);if(e)e.remove()});
+  if(!d){play('down');toast(pick(DS_OFF));return}
+  const r=Math.random;
+  let h=`<div class='ball'><i></i></div>`;
+  for(let i=0;i<16;i++)h+=`<b class='sp' style='left:${r()*100}vw;top:${r()*100}vh;width:${12+r()*26}px;height:${12+r()*26}px;animation-duration:${3+r()*4}s;animation-delay:-${r()*6}s'></b>`;
+  const x=document.createElement('div');x.id='dsx';x.className='dsx';x.innerHTML=h;
+  const l=document.createElement('div');l.id='dsl';l.className='dsl';
+  document.body.append(l,x);
+  play('win');toast(pick(DS_ON)+' Выключить: ещё 10 нажатий на лого.');
+}
+function backrooms(){
+  const b=document.body.classList.toggle('br'),x=$('#brx');
+  if(x)x.remove();
+  if(!b){play('down','sawtooth');toast(pick(BR_OFF));return}
+  play('creak','sawtooth');toast(pick(BR_ON));
+  const e=document.createElement('button');e.id='brx';e.className='brx';e.textContent='ВЫХОД';e.onclick=backrooms;document.body.appendChild(e);
+}
+let dc2=0,dt2;
+$('#logo').addEventListener('click',()=>{clearTimeout(dt2);dt2=setTimeout(()=>dc2=0,1500);if(++dc2===10){dc2=0;disco()}});
+$('#exp').onclick=backrooms;
+render();
+</script>
+</body>
+</html>
