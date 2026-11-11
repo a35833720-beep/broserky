@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Браузерки — сайты с играми, которые открываются сразу</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&display=swap">
+<style>
+:root{--bg:#EDEBFF;--ink:#14123A;--card:#fff;--mut:#4C4880;--ac:#5B3DF5;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14123A;--ink:#F4F2FF;--card:#1F1C52;--mut:#B7B2E8;--ac:#8B6CFF;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14123A;--ink:#F4F2FF;--card:#1F1C52;--mut:#B7B2E8;--ac:#8B6CFF;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.w{max-width:1040px;margin:0 auto;padding:0 18px}
+.logo,h1,.rnd,.site b{font-family:Unbounded,"Arial Black",system-ui,sans-serif}
+header{padding:20px 0 4px}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.5px}
+h1{font-weight:800;font-size:clamp(32px,8.5vw,58px);line-height:1.08;letter-spacing:-1.5px;margin:28px 0 16px;max-width:13em}
+.lead{color:var(--mut);max-width:32em;margin:0 0 30px}
+.rnd{font-weight:800;font-size:18px;color:#fff;background:var(--ac);border:3px solid var(--ink);border-radius:18px;padding:18px 26px;box-shadow:6px 6px 0 var(--ink);cursor:pointer;transition:transform .1s,box-shadow .1s}
+.rnd:active,.site:active{transform:translate(5px,5px);box-shadow:1px 1px 0 var(--ink)}
+.rnd:focus-visible,.chip:focus-visible,.site:focus-visible,#pick a:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+#pick{margin:20px 0 0;color:var(--mut);max-width:32em}
+#pick a{color:var(--ink);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:40px 0 22px}
+.chip{font:600 15px system-ui,sans-serif;color:var(--ink);background:transparent;border:3px solid var(--ink);border-radius:99px;padding:6px 16px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.list{display:grid;gap:26px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-bottom:52px}
+.site{display:flex;flex-direction:column;color:var(--ink);background:var(--card);text-decoration:none;border:3px solid var(--ink);border-radius:22px;box-shadow:6px 6px 0 var(--ink);overflow:hidden;transition:transform .1s,box-shadow .1s}
+.cover{position:relative;display:grid;place-items:center;height:170px;background-color:var(--a);border-bottom:3px solid var(--ink);overflow:hidden}
+.cover i{font-style:normal;line-height:1}
+.e1{font-size:80px;filter:drop-shadow(4px 5px 0 #14123A);transition:transform .15s}
+.e2,.e3{position:absolute;filter:drop-shadow(2px 3px 0 #14123A)}
+.e2{left:16px;top:14px;font-size:32px;transform:rotate(-14deg)}
+.e3{right:18px;bottom:12px;font-size:36px;transform:rotate(12deg)}
+.p0{background-image:radial-gradient(var(--b) 22%,transparent 24%);background-size:20px 20px}
+.p1{background-image:repeating-linear-gradient(45deg,var(--b) 0 8px,transparent 8px 18px)}
+.p2{background-image:linear-gradient(var(--b) 2px,transparent 2px),linear-gradient(90deg,var(--b) 2px,transparent 2px);background-size:22px 22px}
+.p3{background-image:repeating-conic-gradient(from 0deg at 50% 62%,var(--b) 0 8deg,transparent 8deg 24deg)}
+.p4{background-image:conic-gradient(var(--b) 25%,transparent 0 50%,var(--b) 0 75%,transparent 0);background-size:44px 44px}
+.txt{display:flex;flex-direction:column;gap:6px;flex:1;padding:16px 18px 18px}
+.txt b{font-weight:800;font-size:17px;overflow-wrap:anywhere}
+.d{font-size:15px;line-height:1.45;color:var(--mut)}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:auto;padding-top:12px}
+.foot small{font-size:13px;font-weight:600;color:var(--mut)}
+.go{font-weight:700;font-size:14px;background:var(--ink);color:var(--bg);padding:7px 18px;border-radius:99px}
+@media(hover:hover){.site:hover .e1{transform:scale(1.12) rotate(-6deg)}}
+footer{border-top:3px solid var(--ink);padding:22px 0 32px;color:var(--mut);font-size:14px}
+h2{font:800 22px/1.2 Unbounded,"Arial Black",system-ui,sans-serif;margin:38px 0 12px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#logo{user-select:none;-webkit-user-select:none;cursor:pointer}
+.snd,.tab{font:600 15px system-ui,sans-serif;color:var(--ink);background:transparent;border:3px solid var(--ink);border-radius:99px;padding:6px 16px;cursor:pointer}
+.snd[aria-pressed="false"]{opacity:.55}
+.tabs{display:flex;align-items:flex-end;gap:10px;margin-top:18px}
+.tab{font:800 15px Unbounded,"Arial Black",system-ui,sans-serif;border-radius:14px;padding:10px 22px}
+.tab[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.snd:focus-visible,.tab:focus-visible,.mood:focus-visible,.au:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.dd{margin:0 0 22px;color:var(--mut)}
+.dd a,.rec a{color:var(--ink);font-weight:700}
+.moods{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px}
+.mood{font:700 15px system-ui,sans-serif;color:#14123A;border:3px solid var(--ink);border-radius:14px;padding:11px 18px;box-shadow:3px 3px 0 var(--ink);cursor:pointer}
+.mood:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.rec{margin:0 0 28px;max-width:34em;color:var(--mut)}
+.pick2{max-width:40em;background:#FFE066;color:#14123A;border:3px solid var(--ink);border-radius:20px;box-shadow:6px 6px 0 var(--ink);padding:18px 20px}
+.tipsg{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.tip{background:var(--card);border:3px solid var(--ink);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:16px 18px}
+.tip b{display:block;margin-bottom:4px}
+.tip span{color:var(--mut);font-size:15px}
+footer p{margin:0 0 6px}
+.au{all:unset;font-weight:800;color:var(--ink);cursor:pointer}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);font-weight:700;padding:12px 20px;border-radius:14px;z-index:20;width:max-content;max-width:90vw;text-align:center}
+.fall{position:fixed;top:-48px;font-size:28px;pointer-events:none;z-index:30;animation:fall 2.4s linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(360deg)}}
+@keyframes shake{25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+.shake{animation:shake .4s}
+body.disco .list{animation:hue 3s linear infinite}
+@media(prefers-reduced-motion:reduce){.fall{display:none}.shake,body.disco .list{animation:none}}
+.w{transition:transform .8s}
+.flip{transform:rotate(180deg);transform-origin:50% 300px}
+.door{position:relative;flex:none;width:38px;height:52px;margin-left:auto;padding:0;background:#14123A;border:3px solid var(--ink);border-radius:18px 18px 0 0;cursor:pointer;perspective:240px}
+.leaf{position:absolute;inset:0;display:grid;place-items:end center;padding-bottom:6px;background:#C98A4B;border-radius:15px 15px 0 0;color:#14123A;font:800 11px Unbounded,'Arial Black',system-ui,sans-serif;transform-origin:left;transition:transform .5s}
+.knob{position:absolute;right:5px;top:56%;width:6px;height:6px;border-radius:50%;background:#FFE066;border:1px solid #14123A}
+.door.open .leaf{transform:rotateY(-72deg)}
+.door:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.psbox{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:calc(18px + env(safe-area-inset-top,0px)) 18px calc(18px + env(safe-area-inset-bottom,0px));background:rgba(20,18,58,.75)}
+.psc{max-width:420px;background:#FFE066;color:#14123A;border:3px solid var(--ink);border-radius:20px;box-shadow:6px 6px 0 var(--ink);padding:22px;text-align:center}
+.psc p{font-weight:700;font-size:18px;margin:10px 0 18px}
+body.hw{--bg:#1B0B2E;--ink:#FF9A3C;--card:#2B1447;--mut:#CDB4F5;--ac:#C85400}
+.hwx{position:fixed;inset:0;z-index:15;pointer-events:none;overflow:hidden}
+.hwx>*{position:absolute}
+.sk,.bt{left:0;animation:linear infinite}
+.sk{animation-name:run}
+.bt{animation-name:fly}
+.sk span,.bt span{display:block;animation:ease-in-out infinite alternate}
+.sk span{font-size:34px;animation-name:bob;animation-duration:.35s}
+.bt span{font-size:30px;animation-name:flap;animation-duration:.25s}
+.pm{bottom:-4px;line-height:1;filter:drop-shadow(0 0 10px #FF8A1F)}
+@keyframes run{from{transform:translateX(-15vw)}to{transform:translateX(115vw)}}
+@keyframes bob{to{transform:translateY(-10px) rotate(8deg)}}
+@keyframes fly{0%{transform:translate(-12vw,0)}25%{transform:translate(25vw,-6vh)}50%{transform:translate(58vw,5vh)}75%{transform:translate(88vw,-5vh)}100%{transform:translate(115vw,2vh)}}
+@keyframes flap{to{transform:scaleY(.5)}}
+.scr{position:fixed;inset:0;z-index:60;display:grid;place-items:center;background:#000;cursor:pointer}
+.scr span{font-size:70vmin;line-height:1;filter:drop-shadow(0 0 40px #f00);animation:zoom .25s ease-out}
+@keyframes zoom{from{transform:scale(.15)}to{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.scr span{animation:none}.sk,.bt{display:none}}
+body{transition:background-color .6s}
+body.wt{--bg:#fff;--ink:#14123A;--card:#F1F6FF;--mut:#4A5A85;--ac:#2F6BFF;color-scheme:light}
+.snow{position:fixed;inset:0;z-index:12;pointer-events:none;overflow:hidden}
+.snow span{position:absolute;top:0;color:#8EC5FF;animation:snowfall linear infinite}
+@keyframes snowfall{0%{transform:translate(0,-10vh)}25%{transform:translate(16px,22vh)}50%{transform:translate(-12px,50vh)}75%{transform:translate(14px,78vh)}100%{transform:translate(0,112vh)}}
+@media(prefers-reduced-motion:reduce){.snow{display:none}}
+.ws{position:fixed;left:0;right:0;bottom:0;height:200px;overflow:hidden;pointer-events:none;z-index:11;animation:rise .9s ease-out}
+.dr{position:absolute;bottom:-6px;box-sizing:border-box;border:3px solid #14123A;border-radius:50% 50% 0 0/100% 100% 0 0}
+.fir{position:absolute;bottom:14px}
+@keyframes rise{from{transform:translateY(100%)}}
+@media(prefers-reduced-motion:reduce){.ws{animation:none}}
+.scr{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.scr span{font-size:52vmin}
+.cap{margin-top:2vmin;padding:0 16px;text-align:center;color:#fff;text-shadow:0 0 24px #f00;font:800 clamp(24px,9vw,64px)/1.1 Unbounded,'Arial Black',system-ui,sans-serif}
+.d9{position:relative;height:130px;margin:0 0 52px;border:3px solid var(--ink);border-radius:20px;overflow:hidden;background-color:#C9B75A;background-image:repeating-linear-gradient(90deg,rgba(104,82,14,.28) 0 5px,transparent 5px 26px),linear-gradient(rgba(255,255,210,.2),rgba(30,20,0,.35));animation:flick 5s steps(1) infinite}
+.d9::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.12) 0 1px,transparent 1px 3px)}
+.d9g{all:unset;position:absolute;right:16%;bottom:16px;width:74px;height:48px;display:grid;place-items:center;cursor:pointer;color:#fff;background:#14123A;font:700 13px ui-monospace,Menlo,monospace;letter-spacing:1px;opacity:.5;text-shadow:-2px 0 #ff2d6f,2px 0 #19e5ff;box-shadow:-3px 0 #ff2d6f,3px 0 #19e5ff;animation:glt 2.8s steps(1) infinite}
+.d9g:hover,.d9g:focus-visible{opacity:1}
+.d9g:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@keyframes flick{0%,90%,100%{filter:none}91%{filter:brightness(.55)}93%{filter:brightness(1.15)}95%{filter:brightness(.4)}97%{filter:brightness(.9)}}
+@keyframes glt{0%{transform:translate(0);clip-path:inset(0)}8%{transform:translate(-4px,1px);clip-path:inset(18% 0 52% 0)}16%{transform:translate(5px,-2px);clip-path:inset(62% 0 8% 0)}24%{transform:translate(0);clip-path:inset(0)}60%{transform:translate(2px,0);clip-path:inset(40% 0 30% 0)}66%{transform:translate(0);clip-path:inset(0)}}
+@media(prefers-reduced-motion:reduce){.d9,.d9g{animation:none}}
+.d9{margin-top:16px}
+
+
+.d9g{all:unset;position:absolute;left:50%;bottom:60px;width:60px;height:46px;display:grid;place-items:center;cursor:pointer}
+.d9g i{display:block;padding:2px 5px;background:#14123A;color:#fff;font:700 10px ui-monospace,Menlo,monospace;letter-spacing:1px;text-shadow:-1px 0 #ff2d6f,1px 0 #19e5ff;box-shadow:-2px 0 #ff2d6f,2px 0 #19e5ff;opacity:.09;animation:glt2 7s steps(1) infinite}
+.d9g:hover i,.d9g:focus-visible i{opacity:.9!important}
+@keyframes glt2{0%,38%,50%,100%{opacity:.09;transform:none;clip-path:inset(0)}40%{opacity:.75;transform:translate(-4px,1px);clip-path:inset(15% 0 50% 0)}42%{opacity:.9;transform:translate(5px,-2px);clip-path:inset(60% 0 10% 0)}44%{opacity:.4;transform:none;clip-path:inset(0)}46%{opacity:.8;transform:translate(2px,0);clip-path:inset(35% 0 30% 0)}}
+@media(prefers-reduced-motion:reduce){.d9::before{animation:none}.d9g i{animation:none;opacity:.2}}
+.top{flex-wrap:wrap}
+.ctl{display:flex;gap:8px}
+body.ds{--bg:#1A0B3A;--ink:#fff;--card:rgba(32,12,76,.78);--mut:#F0DDFF;--ac:#FF2BD6;color-scheme:dark}
+body.ds .w{animation:hue 6s linear infinite}
+body.ds .site{box-shadow:0 0 22px 3px #ff4df0}
+body.ds h1,body.ds .logo{text-shadow:0 0 14px #fff,0 0 28px #ff4df0}
+.dsx{position:fixed;inset:0;z-index:13;pointer-events:none;overflow:hidden}
+.dsl{position:fixed;left:50%;top:50%;width:170vmax;height:170vmax;margin:-85vmax 0 0 -85vmax;z-index:-1;pointer-events:none;background:conic-gradient(#ff1744,#ff9100,#ffee00,#00e676,#00b0ff,#651fff,#f50057,#ff1744);-webkit-mask-image:repeating-conic-gradient(#000 0 12deg,transparent 12deg 30deg);mask-image:repeating-conic-gradient(#000 0 12deg,transparent 12deg 30deg);opacity:.4;animation:spin 14s linear infinite}
+.ball{position:absolute;left:50%;top:70px;width:96px;height:96px;margin-left:-48px;border-radius:50%;transform-origin:50% -70px;animation:swing 3.2s ease-in-out infinite alternate;background:radial-gradient(circle at 35% 30%,#fff 0,#dfe3f5 22%,#8a8fb0 70%,#3b3e66 100%);box-shadow:0 0 40px 10px rgba(255,255,255,.5)}
+.ball::before{content:'';position:absolute;left:50%;bottom:100%;width:2px;height:70px;background:#c8c8d8}
+.ball i{position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(0deg,rgba(0,0,0,.32) 0 2px,transparent 2px 10px),repeating-linear-gradient(90deg,rgba(0,0,0,.32) 0 2px,transparent 2px 10px);animation:facet 1.6s linear infinite}
+.sp{position:absolute;border-radius:50%;background:radial-gradient(circle,#fff,rgba(255,255,255,0) 70%);mix-blend-mode:screen;animation:spot ease-in-out infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes swing{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+@keyframes facet{to{background-position:0 0,40px 0}}
+@keyframes spot{0%{transform:translate(0,0) scale(.5);opacity:0}30%{opacity:.9}60%{transform:translate(16vw,-9vh) scale(1.3);opacity:.9}100%{transform:translate(-12vw,11vh) scale(.5);opacity:0}}
+body.br{--bg:#D6C560;--ink:#3A3110;--card:#E7DA8C;--mut:#6B5A18;--ac:#7A6A12;color-scheme:light;background-image:repeating-linear-gradient(90deg,rgba(104,82,14,.22) 0 6px,transparent 6px 30px),linear-gradient(rgba(255,255,210,.12),rgba(40,30,0,.22));background-attachment:fixed}
+body.br .w{animation:flick 7s steps(1) infinite}
+body.br .cover{filter:sepia(.7) saturate(.75)}
+/* Backrooms: каждый переход между вкладками переносит на новый уровень */
+body.br[data-brlevel="1"]{--bg:#b9a66b;--card:#d3c18a;--ink:#302817;--mut:#675735;background-image:repeating-linear-gradient(0deg,rgba(55,42,17,.13) 0 2px,transparent 2px 34px),linear-gradient(110deg,#c9b77e,#9f8d5c)}
+body.br[data-brlevel="2"]{--bg:#8eb8b5;--card:#b6d6d0;--ink:#153b3b;--mut:#315f5a;background-image:repeating-linear-gradient(90deg,rgba(15,80,78,.16) 0 3px,transparent 3px 44px),linear-gradient(#9dcac3,#507f7c)}
+body.br[data-brlevel="3"]{--bg:#403b35;--card:#5a5148;--ink:#eee0c5;--mut:#c1ad8b;background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.3) 0 8px,transparent 8px 58px),linear-gradient(120deg,#494139,#171716)}
+body.br[data-brlevel="4"]{--bg:#c7c2a5;--card:#e1dcc0;--ink:#343528;--mut:#68684f;background-image:repeating-linear-gradient(0deg,rgba(50,50,30,.12) 0 2px,transparent 2px 42px),linear-gradient(90deg,#d6d0b4,#aaa58b)}
+body.br[data-brlevel="5"]{--bg:#777d8c;--card:#9da4b5;--ink:#171d2b;--mut:#424d63;background-image:radial-gradient(ellipse at 50% 20%,rgba(180,210,255,.35),transparent 55%),linear-gradient(#778ca2,#343c51)}
+.brhud{position:fixed;z-index:52;top:12px;left:12px;padding:8px 12px;border:1px solid rgba(255,255,255,.55);background:rgba(12,12,10,.78);color:#f5edc8;font:700 12px/1.4 'Courier New',monospace;letter-spacing:.08em;box-shadow:0 2px 14px #0006;pointer-events:none}
+.brhud small{display:block;color:#c9c39d;font-size:10px;font-weight:400;letter-spacing:.04em}
+body.br[data-brlevel="2"] .brhud{background:rgba(9,43,48,.82)}
+body.br[data-brlevel="3"] .brhud{background:rgba(0,0,0,.88)}
+.brflash{position:fixed;inset:0;z-index:51;background:#eee6bd;pointer-events:none;animation:brflash .65s ease-out forwards}
+@keyframes brflash{0%{opacity:0}12%{opacity:.8}100%{opacity:0}}
+body.br h1,body.br h2,body.br .logo,body.br .tab,body.br .rnd,body.br .site b{font-family:'Courier New',Courier,ui-monospace,monospace}
+body.br::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:50;background:radial-gradient(ellipse at center,transparent 40%,rgba(30,20,0,.5)),repeating-linear-gradient(0deg,rgba(0,0,0,.06) 0 1px,transparent 1px 3px)}
+.exp{all:unset;position:absolute;left:9%;bottom:4px;width:36px;height:72px;cursor:pointer;animation:twitch 9s steps(1) infinite}
+.exp svg{display:block}
+.exp:focus-visible{outline:2px solid #3A3110;outline-offset:4px}
+.brx{all:unset;position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:14;padding:6px 12px;background:#0B7A3B;color:#fff;font:800 13px 'Courier New',monospace;border:2px solid #fff;box-shadow:0 0 14px #19d16a;cursor:pointer}
+@keyframes twitch{0%,92%,100%{transform:none}93%{transform:translateX(-1px) skewX(2deg)}95%{transform:translateX(1px) skewX(-2deg)}97%{transform:none}}
+@media(prefers-reduced-motion:reduce){body.ds .w,body.br .w,.dsl,.ball,.ball i,.sp,.exp{animation:none}}
+.kqw{position:fixed;inset:0;z-index:70;display:grid;place-items:center;overflow:hidden;background:rgba(10,0,20,.55)}
+.kqs{width:170px;height:200px;transform-origin:37% 41%;will-change:transform}
+.kqs svg{display:block;width:100%;height:100%}
+.kqg{position:absolute;font:900 44px 'Arial Black',system-ui,sans-serif;color:#b44cff;text-shadow:0 0 12px #ff4df0;animation:gow 1.1s ease-in-out infinite alternate}
+.kqt{position:absolute;left:0;right:0;bottom:12%;padding:0 18px;text-align:center;color:#fff;font:800 clamp(20px,6vw,40px)/1.2 Unbounded,'Arial Black',system-ui,sans-serif;text-shadow:0 0 6px #000,0 0 18px #ff4df0,2px 2px 0 #000}
+.kqf{position:fixed;inset:0;z-index:80;background:#fff;opacity:0;pointer-events:none;display:grid;place-items:center;font-size:30vmin}
+@keyframes gow{to{transform:translateY(-8px) rotate(4deg)}}
+@media(prefers-reduced-motion:reduce){.kqg{animation:none}}
+.kqs{width:130px;height:216px;transform-origin:41% 16.5%}
+.kqs svg{animation:kqj .12s steps(2) infinite}
+.kqs .pl{animation:kqp .09s steps(2) infinite alternate}
+.kqa{position:absolute;left:50%;top:50%;width:150vmax;height:150vmax;margin:-75vmax 0 0 -75vmax;z-index:-1;pointer-events:none;background:repeating-conic-gradient(rgba(255,77,240,.55) 0 5deg,transparent 5deg 15deg);-webkit-mask-image:radial-gradient(circle,#000 4%,transparent 45%);mask-image:radial-gradient(circle,#000 4%,transparent 45%);animation:spin 6s linear infinite,kqpulse 1.1s ease-in-out infinite alternate}
+@keyframes kqj{to{transform:translate(1px,-1px)}}
+@keyframes kqp{to{transform:translate(1.4px,.8px)}}
+@keyframes kqpulse{from{opacity:.3}to{opacity:.85}}
+@media(prefers-reduced-motion:reduce){.kqa,.kqs svg,.kqs .pl{animation:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+
+/* Backrooms: полноценные декорации, а не только смена оттенка */
+.brscene{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.98;perspective:900px;isolation:isolate}
+body.br .w{position:relative;z-index:1}
+.brscene .brsky{position:absolute;inset:0 0 43%;background:var(--br-ceiling,#b9a66b)}
+.brscene .brfloor{position:absolute;left:-15%;right:-15%;bottom:-18%;height:62%;transform:rotateX(58deg);transform-origin:top;background:var(--br-floor,#786744);box-shadow:inset 0 18px 35px #0005}
+.brscene .brback{position:absolute;left:12%;right:12%;top:17%;height:54%;background:var(--br-wall,#c5b77b);box-shadow:0 12px 35px #0005;transform:translateZ(-100px)}
+.brscene .brside{position:absolute;top:0;bottom:0;width:22%;background:var(--br-side,#99895c);box-shadow:inset 0 0 35px #0005}
+.brscene .brside.left{left:0;clip-path:polygon(0 0,100% 18%,100% 80%,0 100%)}
+.brscene .brside.right{right:0;clip-path:polygon(0 18%,100% 0,100% 100%,0 80%)}
+.brscene .brprops{position:absolute;inset:0;overflow:hidden}
+/* У каждого уровня есть собственная визуальная визитная карточка */
+.brscene .landmark{position:absolute;right:9%;top:24%;width:clamp(76px,11vw,142px);height:clamp(92px,17vh,164px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;z-index:3;filter:drop-shadow(0 9px 12px #0009);}
+.brscene .landmark b{font-size:clamp(38px,6vw,72px);line-height:1;text-shadow:0 0 18px var(--mark-glow,#fff8),0 5px 8px #0009;animation:brMarkFloat 4s ease-in-out infinite;}
+.brscene .landmark span{padding:4px 7px;background:#080b0dcc;color:#fff;border:1px solid var(--mark-glow,#ffffff66);border-radius:4px;font: bold 9px/1.2 monospace;letter-spacing:1px;text-align:center;max-width:100%;}
+@keyframes brMarkFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-9px) rotate(2deg)}}
+@media(max-width:600px){.brscene .landmark{right:3%;top:30%;opacity:.9}.brscene .landmark span{font-size:7px}}
+
+.brscene .prop{position:absolute;display:block}
+.brscene .pipe{height:22px;border-radius:20px;background:linear-gradient(#d7d2c3 0 15%,#77766e 35%,#454641 75%,#b7b2a4);border:2px solid #34332f;box-shadow:0 8px 12px #0006}
+.brscene .pipe:after{content:'';position:absolute;right:12%;top:-4px;width:9px;height:27px;background:#c4c0b2;border:1px solid #45433d}
+.brscene .rock{background:linear-gradient(135deg,#8a8175,#393630);clip-path:polygon(12% 100%,0 45%,22% 5%,54% 18%,76% 0,100% 62%,83% 100%);filter:drop-shadow(5px 7px 5px #0008)}
+.brscene .tree{width:22px;background:linear-gradient(90deg,#30251d,#77513a,#291e18);border-radius:8px;box-shadow:0 5px 12px #0008}
+.brscene .tree:before{content:'';position:absolute;width:100px;height:110px;left:-39px;top:-75px;border-radius:48% 52% 45% 55%;background:var(--br-leaves,#244b32);box-shadow:-28px 22px 0 -8px var(--br-leaves,#244b32),28px 25px 0 -7px var(--br-leaves,#244b32)}
+.brscene .door{width:78px;height:170px;background:linear-gradient(90deg,#342a25,#8c7662 12%,#514137 88%,#201b18);border:5px solid #2b231f;box-shadow:0 5px 15px #0008}
+.brscene .door:after{content:'';position:absolute;right:10px;top:55%;width:7px;height:7px;border-radius:50%;background:#d6bd76}
+.brscene .window{background:linear-gradient(135deg,#182b35,#8da2a2 48%,#263c47);border:8px solid #353b3c;box-shadow:0 0 18px #c9efff55}
+.brscene .shelf{background:repeating-linear-gradient(0deg,#49382a 0 8px,#a08056 8px 13px,#33271f 13px 18px);border:5px solid #33271f;box-shadow:0 5px 16px #0008}
+.brscene .screen{background:linear-gradient(135deg,#7bc6c8,#172b39 60%);border:7px solid #20252b;box-shadow:0 0 15px #7be7ff66}
+.brscene .tile{background:repeating-linear-gradient(0deg,transparent 0 38px,#fff8 39px 42px),repeating-linear-gradient(90deg,transparent 0 38px,#fff8 39px 42px)}
+.brscene .water{position:absolute;left:0;right:0;bottom:0;height:34%;background:repeating-linear-gradient(0deg,#8bc9cb55 0 2px,transparent 2px 28px),linear-gradient(#62a8ad,#174b61);box-shadow:inset 0 12px 22px #d4ffff66}
+.brscene[data-kind="yellow"]{--br-ceiling:#c9bc83;--br-wall:#d5c77e;--br-side:#aa985f;--br-floor:#796b43}
+.brscene[data-kind="warehouse"]{--br-ceiling:#6e716d;--br-wall:#8e9189;--br-side:#555a58;--br-floor:#414644}
+.brscene[data-kind="pipes"]{--br-ceiling:#51443a;--br-wall:#75604c;--br-side:#493a32;--br-floor:#292522}
+.brscene[data-kind="power"]{--br-ceiling:#17191b;--br-wall:#343536;--br-side:#17191b;--br-floor:#090b0d}
+.brscene[data-kind="office"]{--br-ceiling:#c6c2ad;--br-wall:#d5d1bc;--br-side:#a8a48f;--br-floor:#777463}
+.brscene[data-kind="hotel"]{--br-ceiling:#4b3834;--br-wall:#80675b;--br-side:#4c3833;--br-floor:#322521}
+.brscene[data-kind="dark"]{--br-ceiling:#090b13;--br-wall:#171a24;--br-side:#07080e;--br-floor:#030408}
+.brscene[data-kind="sea"]{--br-ceiling:#526d7b;--br-wall:#547d8c;--br-side:#345464;--br-floor:#164254}
+.brscene[data-kind="cave"]{--br-ceiling:#28231e;--br-wall:#554b40;--br-side:#302923;--br-floor:#171512}
+.brscene[data-kind="suburb"]{--br-ceiling:#202a39;--br-wall:#37424d;--br-side:#252d36;--br-floor:#161c24}
+.brscene[data-kind="wheat"]{--br-ceiling:#b8a86a;--br-wall:#9d945d;--br-side:#777047;--br-floor:#625b2e}
+.brscene[data-kind="city"]{--br-ceiling:#82969b;--br-wall:#8a9b9e;--br-side:#586c73;--br-floor:#3f5158}
+.brscene[data-kind="void"]{--br-ceiling:#eeeeea;--br-wall:#f8f8f3;--br-side:#d0d0ca;--br-floor:#aaa9a1}
+.brscene[data-kind="garden"]{--br-ceiling:#6c8c61;--br-wall:#83a477;--br-side:#486b4d;--br-floor:#344b34}
+.brscene[data-kind="factory"]{--br-ceiling:#45535a;--br-wall:#65747a;--br-side:#35444b;--br-floor:#222d32}
+.brscene[data-kind="subway"]{--br-ceiling:#343a40;--br-wall:#777c7e;--br-side:#454b50;--br-floor:#24282c}
+.brscene[data-kind="library"]{--br-ceiling:#594532;--br-wall:#8a704e;--br-side:#4d3c2c;--br-floor:#2c2119}
+.brscene[data-kind="attic"]{--br-ceiling:#574936;--br-wall:#9b8464;--br-side:#6c573f;--br-floor:#3b3022}
+.brscene[data-kind="fun"]{--br-ceiling:#b27c7d;--br-wall:#d1a18e;--br-side:#8b5e64;--br-floor:#65464d}
+.brscene[data-kind="mall"]{--br-ceiling:#777282;--br-wall:#a8a1b1;--br-side:#676170;--br-floor:#3e3948}
+.brscene[data-kind="pool"]{--br-ceiling:#8ebfc0;--br-wall:#a9d5cf;--br-side:#579397;--br-floor:#286b75}
+.brscene[data-kind="hospital"]{--br-ceiling:#aab3a4;--br-wall:#d1d8ca;--br-side:#849181;--br-floor:#555f55}
+.brscene[data-kind="forest"]{--br-ceiling:#492f3b;--br-wall:#75464e;--br-side:#402d38;--br-floor:#261e29;--br-leaves:#762e42}
+.brscene[data-kind="computer"]{--br-ceiling:#303947;--br-wall:#586777;--br-side:#303c4a;--br-floor:#171e28}
+.brscene[data-kind="pool37"]{--br-ceiling:#a9d6d0;--br-wall:#c0e5dc;--br-side:#76b6b6;--br-floor:#397b80}
+.brscene .redlamp{background:#ff263d;box-shadow:0 0 28px 12px #ff183c99;border-radius:50%}
+.brscene .hill{background:linear-gradient(#91b76d,#426b3c);border-radius:55% 55% 0 0;box-shadow:inset 0 8px 15px #d4ef9c55}
+.brscene .castle{background:linear-gradient(90deg,#d4d0bb,#77766d);clip-path:polygon(0 100%,0 45%,18% 45%,18% 20%,30% 20%,30% 45%,42% 45%,42% 0,58% 0,58% 45%,76% 45%,76% 25%,88% 25%,88% 45%,100% 45%,100% 100%);filter:drop-shadow(4px 6px 5px #0007)}
+.brscene .arcade{background:linear-gradient(90deg,#25213a,#62528a 18%,#211d37 82%,#100e20);border:4px solid #161226;border-radius:8px 8px 3px 3px;box-shadow:0 0 18px #d85cff99}
+.brscene .arcade:before{content:'';position:absolute;left:12%;right:12%;top:12%;height:42%;background:linear-gradient(135deg,#52f4ff,#f45cff);border:3px solid #171226}
+.brscene[data-kind="run"]{--br-ceiling:#321019;--br-wall:#791d2b;--br-side:#430f1b;--br-floor:#210810}
+.brscene[data-kind="motion"]{--br-ceiling:#a8cbd4;--br-wall:#9dc17e;--br-side:#7fa768;--br-floor:#496f42}
+.brscene[data-kind="courtyard"]{--br-ceiling:#777d82;--br-wall:#aeb2b4;--br-side:#656b70;--br-floor:#41464b}
+.brscene[data-kind="arcade"]{--br-ceiling:#211637;--br-wall:#392454;--br-side:#1c1730;--br-floor:#0d1020}
+.brscene[data-kind="hub"]{--br-ceiling:#77796e;--br-wall:#b6b5a6;--br-side:#66685e;--br-floor:#34372f}
+.brscene[data-kind="infinite"]{--br-ceiling:#090d1d;--br-wall:#151b33;--br-side:#070a17;--br-floor:#03040b}
+.brscene[data-kind="remodel"]{--br-ceiling:#81765b;--br-wall:#b4a27a;--br-side:#6c6048;--br-floor:#393226}
+.brscene[data-kind="snack"]{--br-ceiling:#9c8bb7;--br-wall:#cbb9df;--br-side:#78668e;--br-floor:#493b5e}
+.brscene[data-kind="darkpool"]{--br-ceiling:#263c4a;--br-wall:#3c5c6a;--br-side:#1b303d;--br-floor:#06151d}
+.brscene[data-kind="kitty"]{--br-ceiling:#b7a7c2;--br-wall:#d4c7d9;--br-side:#96859e;--br-floor:#5e5068}
+.brhud{max-width:min(340px,calc(100vw - 24px));pointer-events:auto}
+.brartifactbtn,.brtravelbtn{display:inline-block;margin-top:7px;padding:6px 9px;border:1px solid #f3e8ad;border-radius:5px;background:#514622;color:#fff8d2;font:700 10px 'Courier New',monospace;letter-spacing:.04em;cursor:pointer}
+.brtravelbtn{margin-left:5px;background:#174e48}
+.brmodal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:18px;background:#05070bd9;color:#f4f0d8;font-family:'Courier New',monospace}
+.brmodalbox{width:min(440px,100%);max-height:min(80vh,650px);overflow:auto;padding:20px;background:#20241f;border:2px solid #c4c89b;box-shadow:0 15px 60px #000b}
+.brmodalbox h2{margin:0 0 8px;font-size:20px;color:#e6dc9c}
+.brmodalbox p{font-size:13px;color:#c4c7ad}
+.brmodalbox select{width:100%;padding:12px;background:#101510;color:#f4f0d8;border:1px solid #929b7b;font:14px 'Courier New',monospace}
+.brmodalactions{display:flex;gap:8px;margin-top:12px}
+.brmodalactions button{flex:1;padding:10px;border:1px solid #e0d99d;background:#5c603c;color:#fff;font:700 12px 'Courier New',monospace;cursor:pointer}
+.brmodalactions button:last-child{background:#333a37}
+@media(max-width:600px){.brhud{font-size:10px;max-width:calc(100vw - 24px)}.brartifactbtn,.brtravelbtn{font-size:9px;padding:5px 6px}.brscene .brside{width:28%}}
+
+/* Улучшения интерфейса */
+:root{--line:color-mix(in srgb,var(--ink) 82%,transparent);--soft:color-mix(in srgb,var(--card) 78%,var(--bg));--shadow:0 12px 30px rgba(20,18,58,.10)}
+body{letter-spacing:-.01em}
+.w{max-width:1120px;padding-inline:clamp(16px,3vw,30px)}
+header{padding-top:clamp(16px,3vw,28px)}
+.logo{font-size:clamp(21px,3vw,27px)}
+.top{gap:14px}
+.ctl{flex-wrap:wrap;justify-content:flex-end}
+.snd,.tab,.chip,.mood,.favfilter,#sort{transition:background .18s,color .18s,border-color .18s,transform .18s,box-shadow .18s}
+.snd:hover,.tab:hover,.chip:hover,.mood:hover,.favfilter:hover{transform:translateY(-2px)}
+h1{max-width:15em;font-size:clamp(34px,7vw,66px);letter-spacing:-2px}
+.lead{font-size:clamp(16px,2vw,19px);max-width:42em}
+.toolbar{display:grid;grid-template-columns:minmax(180px,1fr) auto auto;gap:10px;max-width:850px;margin:24px 0 0}
+.searchbox{min-width:0;display:flex;align-items:center;gap:10px;padding:0 14px;background:var(--card);border:2px solid var(--ink);border-radius:15px;box-shadow:3px 3px 0 var(--ink);color:var(--mut)}
+.searchbox>span{font-size:25px;line-height:1}
+.searchbox input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:600 15px system-ui;padding:13px 0}
+.searchbox input::placeholder{color:var(--mut);opacity:.8}
+kbd{border:1px solid var(--mut);border-radius:5px;padding:1px 6px;font:12px ui-monospace,monospace;opacity:.7}
+#sort,.favfilter{border:2px solid var(--ink);border-radius:14px;background:var(--card);color:var(--ink);padding:0 13px;font:700 14px system-ui;box-shadow:3px 3px 0 var(--ink)}
+.favfilter[aria-pressed="true"]{background:#ffcfdf;color:#51152d}
+.resultline{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:850px;min-height:30px;margin:10px 0 4px;color:var(--mut);font-size:13px;font-weight:650}
+.textbtn{border:0;background:transparent;color:var(--ink);font:700 13px system-ui;text-decoration:underline;cursor:pointer}
+.chips{margin:26px 0 18px;gap:9px}
+.chip{padding:8px 15px;border-width:2px;background:var(--card)}
+.list{gap:20px;grid-template-columns:repeat(auto-fill,minmax(min(100%,255px),1fr));margin-bottom:58px}
+.site{position:relative;border-width:2px;border-radius:20px;box-shadow:4px 5px 0 var(--ink);min-height:320px}
+.site:hover{transform:translateY(-4px);box-shadow:7px 9px 0 var(--ink)}
+.site:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
+.cover{height:clamp(145px,17vw,185px);border-bottom-width:2px}
+.txt{padding:17px}
+.txt b{font-size:16px;line-height:1.35}
+.d{font-size:14px}
+.foot{align-items:flex-end}
+.go{white-space:nowrap}
+.favbtn{position:absolute;z-index:2;top:12px;right:12px;width:40px;height:40px;display:grid;place-items:center;border:2px solid #14123A;border-radius:50%;background:rgba(255,255,255,.94);color:#6b647c;font-size:21px;cursor:pointer;box-shadow:2px 2px 0 #14123A}
+.favbtn[aria-pressed="true"]{color:#e32969;background:#fff0f5}
+.favbtn:hover{transform:scale(1.08)}
+.empty{grid-column:1/-1;padding:34px 20px;text-align:center;border:2px dashed var(--mut);border-radius:20px;color:var(--mut);background:var(--soft)}
+.empty strong{display:block;color:var(--ink);font-size:20px;margin-bottom:6px}
+.rnd{margin-top:5px}
+.tip{box-shadow:3px 4px 0 var(--ink);transition:transform .18s}
+.tip:hover{transform:translateY(-3px)}
+footer{margin-top:18px}
+@media(max-width:650px){.toolbar{grid-template-columns:1fr 1fr}.searchbox{grid-column:1/-1}.toolbar #sort,.toolbar .favfilter{min-height:46px}.ctl{gap:6px}.snd{padding:6px 10px;font-size:13px}.tabs{gap:7px}.tab{padding:9px 15px}.list{grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:15px}}
+@media(max-width:390px){.list{grid-template-columns:1fr}.site{min-height:0}.cover{height:155px}.logo{font-size:19px}.top{align-items:flex-start}.ctl{max-width:65%}}
+@media(prefers-reduced-motion:reduce){.site,.tip,.snd,.tab,.chip,.mood,.favfilter{transition:none}}
+
+
+.brhud{max-width:min(310px,calc(100vw - 24px));padding:9px 12px;line-height:1.35}
+.brhud .brartifact{display:block;margin-top:5px;color:#fff4b0;font-size:12px;font-weight:700;letter-spacing:.02em}
+.brhud .brlore{display:block;margin-top:3px;max-width:285px;color:#d6d0b3;font-size:10px;line-height:1.35;letter-spacing:0}
+/* Максимально разные архитектура, фактуры и силуэты для каждого уровня */
+.brscene .arch{position:absolute;border:12px solid #766b5c;border-bottom:0;border-radius:90px 90px 0 0;background:transparent;box-shadow:0 8px 18px #0006}
+.brscene .column{position:absolute;background:linear-gradient(90deg,#34363a,#b2aaa0 35%,#5b5a56 70%,#252629);border-radius:8px;box-shadow:8px 8px 16px #0007}
+.brscene .stalactite{position:absolute;background:linear-gradient(90deg,#282723,#8a8173,#3b3831);clip-path:polygon(0 0,100% 0,60% 100%,42% 75%);filter:drop-shadow(3px 5px 4px #0008)}
+.brscene .lamp{position:absolute;height:12px;background:#fff3b0;border-radius:50%;box-shadow:0 0 18px 8px #fff6,0 0 55px 18px #ffe89a55}
+.brscene .rail{position:absolute;height:8px;background:linear-gradient(#bbb,#343434 45%,#777);border:2px solid #222;box-shadow:0 5px 8px #0008}
+.brscene .crate{position:absolute;background:repeating-linear-gradient(90deg,#684a2e 0 8px,#98714a 8px 13px);border:5px solid #3b291c;box-shadow:5px 8px 12px #0008}
+.brscene .locker{position:absolute;background:repeating-linear-gradient(90deg,#283b42 0 48%,#18252b 49% 52%,#46606a 53% 100%);border:4px solid #17252b;box-shadow:4px 7px 14px #0008}
+.brscene .machine{position:absolute;background:linear-gradient(90deg,#252337,#71608d 45%,#211d30);border:5px solid #171321;border-radius:8px 8px 2px 2px;box-shadow:0 0 18px #d78cff55}
+.brscene .machine:before{content:'';position:absolute;left:12%;right:12%;top:10%;height:42%;background:linear-gradient(135deg,#ff8bd8,#6deaff 45%,#28234b);border:3px solid #111;box-shadow:0 0 12px #8ceaff}
+.brscene .machine:after{content:'●  ●';position:absolute;bottom:9%;left:12%;color:#ffdf79;font-size:17px;letter-spacing:8px}
+.brscene .bench{position:absolute;height:16px;background:linear-gradient(#8c6544 0 40%,#30251d 42%);border:3px solid #34271d;box-shadow:0 7px 8px #0007}
+.brscene .curtain{position:absolute;background:repeating-linear-gradient(90deg,#6d2535 0 13px,#9a4050 14px 24px,#56202c 25px 33px);box-shadow:0 8px 18px #0008}
+.brscene .sign{position:absolute;background:#18252a;color:#e8f6d6;border:3px solid #b6b9a7;display:grid;place-items:center;font:bold 12px monospace;letter-spacing:2px;box-shadow:0 0 12px #dfffb755}
+.brscene .waterfall{position:absolute;top:0;bottom:18%;width:18%;background:repeating-linear-gradient(90deg,#c7f7ff55 0 3px,#5bc2d255 4px 8px),linear-gradient(#d8ffffaa,#268da7aa);filter:blur(1px);box-shadow:0 0 22px #8deaff66}
+.brscene .grass{position:absolute;height:25%;background:repeating-linear-gradient(82deg,transparent 0 9px,#667a3a 10px 12px,#a4a65b 13px 15px);clip-path:polygon(0 100%,5% 40%,10% 100%,16% 15%,21% 100%,28% 45%,33% 100%,40% 8%,46% 100%,52% 35%,58% 100%,66% 12%,72% 100%,80% 38%,86% 100%,94% 18%,100% 100%)}
+.brscene[data-kind="yellow"] .brback{background:repeating-linear-gradient(90deg,#d8ca80 0 70px,#c8b96c 71px 74px)}
+.brscene[data-kind="warehouse"] .brback{background:repeating-linear-gradient(90deg,#777d7b 0 90px,#454d4c 91px 98px)}
+.brscene[data-kind="pipes"] .brback{background:repeating-linear-gradient(0deg,#6c5949 0 55px,#322c28 56px 62px)}
+.brscene[data-kind="power"] .brback{background:repeating-linear-gradient(90deg,#292c30 0 65px,#111416 66px 74px)}
+.brscene[data-kind="office"] .brback{background:repeating-linear-gradient(90deg,#d7d2bb 0 110px,#8c8b7b 111px 116px)}
+.brscene[data-kind="hotel"] .brback{background:repeating-linear-gradient(90deg,#765b50 0 82px,#3c2c2a 83px 91px)}
+.brscene[data-kind="dark"] .brback{background:radial-gradient(circle at 50% 40%,#252b3c,#07080e 70%)}
+.brscene[data-kind="sea"] .brback{background:linear-gradient(#294e63 0 52%,#6da6ae 53% 57%,#173a50)}
+.brscene[data-kind="cave"] .brback{background:radial-gradient(ellipse at 50% 10%,#8b7a65,#29231e 70%)}
+.brscene[data-kind="suburb"] .brback{background:repeating-linear-gradient(90deg,#28323c 0 80px,#111922 81px 90px)}
+.brscene[data-kind="wheat"] .brback{background:linear-gradient(#c5b978 0 48%,#8e864b 49% 100%)}
+.brscene[data-kind="city"] .brback{background:repeating-linear-gradient(90deg,#778c91 0 70px,#354b56 71px 78px)}
+.brscene[data-kind="void"] .brback{background:radial-gradient(ellipse,#f5f5ef 0,#bcbdb8 42%,#55595c 100%)}
+.brscene[data-kind="garden"] .brback{background:linear-gradient(#a9c89b 0 45%,#547c50 46% 100%)}
+.brscene[data-kind="factory"] .brback{background:repeating-linear-gradient(90deg,#6b7b80 0 55px,#28363c 56px 64px)}
+.brscene[data-kind="subway"] .brback{background:repeating-linear-gradient(90deg,#555d65 0 90px,#242b32 91px 100px)}
+.brscene[data-kind="library"] .brback{background:repeating-linear-gradient(90deg,#64472e 0 58px,#281d17 59px 66px)}
+.brscene[data-kind="attic"] .brback{background:repeating-linear-gradient(135deg,#927b5b 0 45px,#51432f 46px 52px)}
+.brscene[data-kind="fun"] .brback{background:repeating-linear-gradient(45deg,#edb7a8 0 45px,#8e6d9b 46px 90px,#e8d27b 91px 135px)}
+.brscene[data-kind="mall"] .brback{background:repeating-linear-gradient(90deg,#9b91a5 0 95px,#4b4558 96px 104px)}
+.brscene[data-kind="pool"] .brback{background:repeating-linear-gradient(90deg,#9ed2cc 0 65px,#d7f0e8 66px 70px)}
+.brscene[data-kind="hospital"] .brback{background:repeating-linear-gradient(90deg,#d0d7c9 0 85px,#758273 86px 91px)}
+.brscene[data-kind="forest"] .brback{background:linear-gradient(#874f57 0 40%,#33252d 41% 100%)}
+.brscene[data-kind="computer"] .brback{background:repeating-linear-gradient(90deg,#28394a 0 60px,#101a28 61px 69px)}
+.brscene[data-kind="pool37"] .brback{background:repeating-linear-gradient(90deg,#b5e0d5 0 80px,#e3f8ed 81px 86px)}
+.brscene[data-kind="run"] .brback{background:repeating-linear-gradient(90deg,#6b171d 0 55px,#21090d 56px 64px)}
+.brscene[data-kind="motion"] .brback{background:linear-gradient(#83b66d 0 45%,#477c48 46% 100%)}
+.brscene[data-kind="courtyard"] .brback{background:repeating-linear-gradient(90deg,#a8aaa1 0 70px,#4b5557 71px 78px)}
+.brscene[data-kind="arcade"] .brback{background:repeating-linear-gradient(90deg,#251d3d 0 70px,#6a397b 71px 78px,#172d49 79px 140px)}
+.brscene[data-kind="hub"] .brback{background:radial-gradient(ellipse at center,#8a7964,#28231f 75%)}
+.brscene[data-kind="infinite"] .brback{background:repeating-linear-gradient(90deg,#111b27 0 60px,#27394a 61px 64px)}
+.brscene[data-kind="remodel"] .brback{background:repeating-linear-gradient(0deg,#b6a78a 0 42px,#75674f 43px 49px)}
+.brscene[data-kind="snack"] .brback{background:repeating-linear-gradient(90deg,#d8a36a 0 70px,#734a36 71px 78px)}
+.brscene[data-kind="darkpool"] .brback{background:linear-gradient(#151b2b 0 40%,#23485a 41% 100%)}
+.brscene[data-kind="kitty"] .brback{background:repeating-linear-gradient(90deg,#d8d2bd 0 90px,#7f776b 91px 98px)}
+.brscene[data-kind="run"] .brside{background:repeating-linear-gradient(0deg,#53151a 0 35px,#211014 36px 43px)}
+.brscene[data-kind="motion"] .brfloor{background:repeating-linear-gradient(90deg,#658f48 0 55px,#8caf61 56px 60px)}
+.brscene[data-kind="arcade"] .brside{background:linear-gradient(90deg,#100d24,#5e2870,#11152c)}
+.brscene[data-kind="darkpool"] .brfloor{background:repeating-linear-gradient(0deg,#143d50 0 28px,#4e8c98 29px 32px)}
+
+</style>
+</head>
+<body>
+<div class="w">
+<header><div class="top"><div class="logo" id="logo">браузерки</div><div class="ctl"><button class="snd" id="mus" aria-pressed="true">♪ вкл</button><button class="snd" id="snd" aria-pressed="true">Звук: вкл</button><button class="snd" id="theme" aria-label="Переключить тему">◐ Тема</button></div></div><nav class="tabs" id="tabs"><button class="tab" data-t="g" aria-pressed="true">Игры</button><button class="tab" data-t="t" aria-pressed="false">Советы</button><button class="door" id="door" aria-label="ps"><span class="leaf">ps<i class="knob"></i></span></button></nav></header>
+<main id="g">
+<h1>Нажми — и тебя перекинет в игру</h1>
+<p class="lead">Подборка сайтов вроде neal.fun: открываешь страницу и играешь, без установки и регистрации. Выбери сам или доверься случаю.</p>
+<p class="dd" id="dd"></p>
+<div class="toolbar" aria-label="Поиск и сортировка">
+  <label class="searchbox"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Найти игру или сайт…" autocomplete="off" aria-label="Поиск игр"><kbd>/</kbd></label>
+  <select id="sort" aria-label="Сортировка"><option value="default">По подборке</option><option value="az">По алфавиту</option><option value="za">С конца алфавита</option></select>
+  <button class="favfilter" id="favfilter" aria-pressed="false">♥ Избранное <span id="favcount">0</span></button>
+</div>
+<div class="resultline"><span id="resultcount" aria-live="polite"></span><button id="clearsearch" class="textbtn" hidden>Сбросить</button></div>
+<button class="rnd" id="rnd">Открыть случайный сайт</button>
+<p id="pick" hidden></p>
+<div class="chips" id="chips"></div>
+<div class="list" id="list"></div>
+</main>
+<main id="tips" hidden>
+<h1>Советы и рекомендации</h1>
+<p class="lead">Во что сыграть, как не нарваться на неприятности и что делать, если всё тормозит.</p>
+<h2>Во что поиграть сейчас</h2>
+<div class="moods" id="moods"></div>
+<p class="rec" id="rec">Выбери настроение, и мы подскажем, во что сыграть.</p>
+<div class="pick2"><b>Выбор Claude: Infinite Craft.</b> Здесь нет правил и целей, только любопытство. Соединяешь два слова и смотришь, что получится. Хороший способ провести вечер, не думая о счёте.</div>
+<h2>Советы</h2>
+<div class="tipsg">
+<div class="tip"><b>Начни с коротких партий</b><span>Нет настроения вникать? Открой Wordle, 2048 или «Сапёра»: раунд занимает пару минут.</span></div>
+<div class="tip"><b>Поверни телефон</b><span>Во многих играх горизонтальный экран даёт больше места и точнее управление.</span></div>
+<div class="tip"><b>Не вводи личные данные</b><span>Не пиши в играх и чатах пароли, адрес, школу и номер телефона. Ник лучше придумать новый.</span></div>
+<div class="tip"><b>Ничего не скачивай</b><span>Если сайт просит поставить расширение или файл, чтобы начать играть, закрой вкладку. Настоящие браузерные игры запускаются сразу.</span></div>
+<div class="tip"><b>Береги глаза</b><span>Каждые полчаса отрывайся от экрана хотя бы на минуту и посмотри вдаль.</span></div>
+<div class="tip"><b>Новичкам в io-играх</b><span>В slither.io и agar.io первые минуты самые опасные. Держись подальше от самых крупных и учись на проигрышах.</span></div>
+<div class="tip"><b>Играй с друзьями</b><span>skribbl.io и Gartic Phone веселее всего в компании: создай комнату и отправь друзьям ссылку.</span></div>
+<div class="tip"><b>Если всё тормозит</b><span>Закрой лишние вкладки, отключи тяжёлые расширения или попробуй другой браузер.</span></div>
+<div class="tip"><b>Про страшные игры</b><span>Хоррор нравится не всем. Смотри возрастные метки на сайтах, а если после страшилки трудно уснуть, лучше выбрать что-то спокойное.</span></div>
+</div>
+<h2>Тут ничего нет</h2>
+<p class="rec">Совсем ничего. Серьёзно.</p>
+<button class="mood" id="dn" style="background:#FF8A8A">Не нажимай</button>
+</main>
+<footer><p>Автор проекта: <button class="au" id="au">213rty785</button>. Над проектом помогал <button class="au" id="cl">Claude</button> от Anthropic.</p><p>Все игры живут на сторонних сайтах и принадлежат их авторам. Ссылки открываются в новой вкладке, часть сайтов на английском.</p></footer>
+<div class="d9" id="d9" hidden><a class="d9g" id="d9g" href="https://dimension9.space/" target="_blank" rel="noopener noreferrer" aria-label="Странный глюк в стене"><i>▒D9▒</i></a><button class="exp" id="exp" aria-label="Исследователь в жёлтом костюме"><svg viewBox='0 0 40 80' width='36' height='72'><g stroke='#14123A' stroke-width='2' stroke-linejoin='round'><rect x='11' y='34' width='7' height='36' rx='3' fill='#F2C500'/><rect x='22' y='34' width='7' height='36' rx='3' fill='#F2C500'/><rect x='9' y='68' width='10' height='9' rx='2' fill='#2B2B2B'/><rect x='21' y='68' width='10' height='9' rx='2' fill='#2B2B2B'/><rect x='6' y='16' width='28' height='28' rx='8' fill='#F2C500'/><rect x='0' y='20' width='8' height='22' rx='4' fill='#F2C500'/><rect x='32' y='20' width='8' height='22' rx='4' fill='#F2C500'/><circle cx='20' cy='11' r='10' fill='#F2C500'/><ellipse cx='20' cy='11' rx='6.5' ry='5.5' fill='#1D2A36'/><circle cx='29' cy='15' r='2.6' fill='#555'/></g><ellipse cx='17.5' cy='9' rx='2' ry='1.2' fill='#8FB8D8' opacity='.7'/></svg></button></div>
+</div>
+<div class="psbox" id="psbox" hidden><div class="psc"><div style="font-size:44px">🚪</div><p id="pst"></p><button class="mood" id="psx" style="background:#7CE3A1">Выйти</button></div></div>
+<script>
+const $=s=>document.querySelector(s);
+const S=[
+['The Password Game','https://neal.fun/password-game/','🔑 😈 🥚','Придумай пароль, а правила становятся всё абсурднее.','odd mind'],
+['Infinite Craft','https://neal.fun/infinite-craft/','♾️ 💧 🔥','Сочетай элементы и создавай вообще всё, что придёт в голову.','odd mind'],
+['Spend Bill Gates’ Money','https://neal.fun/spend/','💸 🤑 🏠','Попробуй потратить состояние Билла Гейтса. Это сложнее, чем кажется.','odd'],
+['poki.com','https://poki.com/','🎪 🕹️ 🎈','Огромный портал бесплатных игр: от аркад до io-игр, без регистрации.','portal'],
+['crazygames.com','https://www.crazygames.com/','🤪 🏎️ 🧩','Тысячи игр в браузере: гонки, головоломки и игры с друзьями.','portal multi'],
+['y8.com','https://www.y8.com/','🎲 🚀 🏀','Давний портал с огромной библиотекой простых игр на любой вкус.','portal'],
+['coolmathgames.com','https://www.coolmathgames.com/','🧮 ➕ 🎯','Головоломки, стратегии и логические игры, которые тренируют мозг.','portal mind'],
+['itch.io','https://itch.io/games/html5','👾 🧩 ⭐','Инди-игры, которые запускаются в браузере: экспериментальные и авторские.','portal odd'],
+['newgrounds.com','https://www.newgrounds.com/','🧨 📼 🕹️','Культовый портал с 1995 года: игры и анимации от независимых авторов.','portal odd retro'],
+['Internet Arcade','https://archive.org/details/internetarcade','🕹️ 👻 🪙','Классические аркадные автоматы прямо в браузере, от Интернет-архива.','retro'],
+['Tetris','https://tetris.com/play-tetris','🧱 🟦 🟨','Официальная бесплатная версия той самой игры с падающими фигурами.','retro mind'],
+['Сапёр','https://minesweeperonline.com/','💣 🚩 🔢','Сапёр, как в старой Windows: открывай клетки и не взорвись.','retro mind'],
+['sudoku.com','https://sudoku.com/','✏️ 🔢 🧠','Бесплатное судоку с разными уровнями сложности.','mind'],
+['play2048.co','https://play2048.co/','🔢 ➕ 🟧','Двигай плитки и собери 2048. От этой головоломки трудно оторваться.','mind'],
+['littlealchemy2.com','https://littlealchemy2.com/','⚗️ 💧 🌍','Соединяй базовые элементы и открывай сотни новых предметов.','mind'],
+['Wordle','https://www.nytimes.com/games/wordle/index.html','🔤 🟩 🟨','Угадай слово из пяти букв за шесть попыток. Загадка новая каждый день, на английском.','mind'],
+['thewikigame.com','https://www.thewikigame.com/','📚 🧭 🏁','Добирайся от одной статьи Википедии до другой, кликая только по ссылкам.','mind multi'],
+['Акинатор','https://ru.akinator.com/','🧞 🔮 ❓','Джинн угадывает загаданного тобой персонажа по ответам на вопросы.','mind'],
+['geoguessr.com','https://www.geoguessr.com/','🌍 📍 🧭','Тебя выбрасывает в случайную точку мира, а ты угадываешь, где оказался. Бесплатно играть можно ограниченно.','mind multi'],
+['lichess.org','https://lichess.org/','♟️ 👑 ⏱️','Шахматы онлайн: партии с игроками со всего мира, бесплатно и без рекламы.','mind multi'],
+['Cookie Clicker','https://orteil.dashnet.org/cookieclicker/','🍪 👵 🏭','Кликай по печенью, покупай бабушек и фабрики. Отличный способ потерять вечер.','odd'],
+['slither.io','https://slither.io/','🐍 ✨ 🟣','Змейка в мультиплеере: расти, собирая светящиеся точки, и не врезайся в чужих змей.','multi'],
+['agar.io','https://agar.io/','🦠 🟢 🔴','Ты клетка: поглощай тех, кто мельче, и берегись тех, кто крупнее.','multi'],
+['skribbl.io','https://skribbl.io/','🖍️ 🎨 ❓','Рисуй и угадывай слова вместе с друзьями или случайными игроками.','multi'],
+['garticphone.com','https://garticphone.com/','📞 🎨 😂','Испорченный телефон с рисунками: смешные искажения гарантированы.','multi odd'],
+['play.typeracer.com','https://play.typeracer.com/','⌨️ 🏎️ 💨','Гонки на скорость печати против живых игроков.','multi'],
+['Google Doodles','https://doodles.google/','🎨 🔍 🎮','Архив интерактивных дудлов Google, среди них много мини-игр.','odd'],
+['theuselessweb.com','https://theuselessweb.com/','🎰 🌐 🤷','Одна кнопка — и тебя перекидывает на случайный странный сайт. Дальний родственник этой подборки.','odd'],
+['Яндекс Игры','https://yandex.ru/games/','🎮 ⭐ 🚀','Большой каталог бесплатных игр на русском языке от Яндекса.','portal'],
+['silvergames.com','https://www.silvergames.com/','🥈 🎮 🧠','Каталог бесплатных браузерных игр, в котором удобно искать по жанрам.','portal'],
+['armorgames.com','https://armorgames.com/','🛡️ ⚔️ 🏰','Приключения, стратегии и защита башен от независимых разработчиков.','portal'],
+['gamejolt.com','https://gamejolt.com/','🕹️ 🆕 🎲','Площадка инди-разработчиков: много экспериментальных и необычных игр.','portal odd'],
+['Scratch','https://scratch.mit.edu/explore/projects/games/','🐱 🧱 🛠️','Игры, которые сделали школьники и энтузиасты. Можно заглянуть внутрь и переделать.','portal odd'],
+['abcya.com','https://www.abcya.com/','🔠 🧒 🎨','Развивающие игры для детей: от букв и цифр до простых головоломок. На английском.','portal mind'],
+['diep.io','https://diep.io/','🚜 💥 🔺','Танки, которые прокачиваются по ходу игры. Классика io-игр.','multi'],
+['shellshock.io','https://shellshock.io/','🥚 🔫 🍳','Шутер, где все персонажи — яйца. Звучит странно, играется отлично.','multi odd'],
+['bonk.io','https://bonk.io/','⚪ 🔵 ⚽','Физические дуэли и гонки простых шариков в мультиплеере.','multi'],
+['codenames.game','https://codenames.game/','🕵️ 🔤 ❓','Командная игра на ассоциации: капитаны дают подсказки, остальные угадывают слова.','multi mind'],
+['Minecraft Classic','https://classic.minecraft.net/','⛏️ 🧱 🌳','Официальная версия Minecraft Classic в браузере: строй вместе с друзьями.','odd multi retro'],
+['Quick, Draw!','https://quickdraw.withgoogle.com/','✏️ 🤖 ⏱️','Рисуй за 20 секунд, а нейросеть пытается угадать, что это.','odd mind'],
+['Chrome Music Lab','https://musiclab.chromeexperiments.com/','🎹 🎵 🥁','Музыкальные игрушки от Google: сочиняй мелодии прямо в браузере.','odd'],
+['pointerpointer.com','https://pointerpointer.com/','👆 📸 🤨','Двигай курсор, и на фото человек покажет пальцем ровно в это место.','odd'],
+['boredbutton.com','https://www.boredbutton.com/','🔘 😴 🎲','Кнопка для скучающих: отправляет на случайные игры и забавные сайты.','odd'],
+['sandspiel.club','https://sandspiel.club/','⏳ 🔥 💧','Песочница из падающих частиц: рисуй песок, воду и огонь и смотри, что будет.','odd'],
+['A Dark Room','https://adarkroom.doublespeakgames.com/','🔥 🏚️ 🧣','Текстовая игра на выживание, которая начинается с одной кнопки: разжечь огонь.','odd horror'],
+['Universal Paperclips','https://www.decisionproblem.com/paperclips/','📎 🤖 ♾️','Кликер про бумажные скрепки, который неожиданно становится очень странным.','odd'],
+['Candy Box 2','https://candybox2.github.io/','🍬 🗡️ 🧙','Текстовая игра про конфеты, которая быстро превращается в настоящее приключение.','odd'],
+['Absurd Trolley Problems','https://neal.fun/absurd-trolley-problems/','🚃 😱 ⚖️','Моральные дилеммы с вагонеткой, которые быстро становятся абсурдными.','odd'],
+['Stimulation Clicker','https://neal.fun/stimulation-clicker/','📱 🌀 🧠','Кликер для тех, кому одного экрана мало: всё мигает, звенит и отвлекает.','odd'],
+['Perfect Circle','https://neal.fun/perfect-circle/','⭕ ✍️ 🎯','Нарисуй идеальный круг от руки. Оказывается, это очень трудно.','odd mind'],
+['monkeytype.com','https://monkeytype.com/','⌨️ 🐵 ⏱️','Минималистичный тест скорости печати с подробной статистикой.','mind'],
+['NYT Connections','https://www.nytimes.com/games/connections','🔗 🟨 🟩','Раздели 16 слов на четыре группы по смыслу. Загадка новая каждый день, на английском.','mind'],
+['Worldle','https://worldle.teuteuf.fr/','🗺️ 🌍 🧭','Угадай страну по контуру. Новая загадка каждый день.','mind'],
+['sporcle.com','https://www.sporcle.com/','📝 ⏱️ 🧠','Тысячи викторин на время: география, кино, история. На английском.','mind'],
+['hextris.io','https://hextris.io/','🔶 🔷 🌀','Тетрис в шестиугольнике: вращай и собирай блоки одного цвета.','mind retro'],
+['shapez.io','https://shapez.io/','🏭 🔷 🔴','Фабрики из геометрических фигур: спокойная головоломка про конвейеры.','mind odd'],
+['Interland','https://beinternetawesome.withgoogle.com/','🛡️ 🌐 🧠','Игра от Google, которая учит безопасному поведению в интернете.','mind'],
+['flappybird.io','https://flappybird.io/','🐤 🟩 💢','Тот самый Flappy Bird в браузере: простая, но очень злая игра.','retro'],
+['DOS-игры в Интернет-архиве','https://archive.org/details/softwarelibrary_msdos_games','🖥️ 💾 👾','Старые игры для MS-DOS, которые запускаются прямо в браузере.','retro'],
+['Хоррор на CrazyGames','https://www.crazygames.com/t/horror','👻 🕯️ 🏚️','Страшные игры от первого лица, побеги из заброшенных мест и прятки от монстров. Внутри их очень много.','horror portal'],
+['Хоррор на itch.io','https://itch.io/games/html5/tag-horror','🕷️ 🌙 🔦','Короткие авторские страшилки, которые запускаются в браузере. Бывают очень жуткие, так что читай описания.','horror portal'],
+['Бэкрумс на itch.io','https://itch.io/games/html5/tag-backrooms','🚪 💡 🟨','Игры про бесконечные пустые жёлтые коридоры. Страшно от тишины и одиночества.','horror'],
+['Хоррор на Newgrounds','https://www.newgrounds.com/games/browse/tag/horror','🧟 🪦 🦇','Страшные игры от независимых авторов. У каждой есть возрастная метка, смотри её перед игрой.','horror portal'],
+['Хоррор на Y8','https://www.y8.com/tags/horror','🎃 💀 🕸️','Подборка страшных игр: зомби, привидения, побеги и выживание.','horror portal'],
+['Хоррор на Poki','https://poki.com/en/horror','🦇 🌑 😨','Жуткие игры в браузере без регистрации. Часть на английском.','horror portal'],
+['Зомби на CrazyGames','https://www.crazygames.com/t/zombie','🧟 🧠 🏃','Игры про зомби: отстреливайся, строй баррикады или просто убегай.','horror'],
+['Страшилки на Scratch','https://scratch.mit.edu/search/projects?q=horror','🐱 🕯️ 😱','Страшные игры от школьников и энтузиастов: у каждой свой стиль и свои сюрпризы.','horror portal odd'],
+['chess.com','https://www.chess.com/play/online','♟️ 🏆 🧠','Самые популярные шахматы онлайн: партии, задачи и уроки. Часть функций платная.','mind multi'],
+['globle-game.com','https://globle-game.com/','🌐 🌡️ 🧭','Угадай загаданную страну: чем ближе ответ, тем «горячее» цвет на глобусе.','mind'],
+['NYT Spelling Bee','https://www.nytimes.com/puzzles/spelling-bee','🐝 🔤 🍯','Составляй слова из семи букв, обязательно используя центральную. На английском.','mind'],
+['NYT Mini Crossword','https://www.nytimes.com/crosswords/game/mini','🧩 ✏️ ⏱️','Мини-кроссворд на пару минут. Новый каждый день, на английском.','mind'],
+['Pac-Man от Google','https://www.google.com/logos/2010/pacman10-i.html','🟡 👻 🍒','Тот самый Pac-Man из юбилейного дудла Google.','retro'],
+['playtictactoe.org','https://playtictactoe.org/','❌ ⭕ 🤖','Крестики-нолики против компьютера. Выиграть непросто, если он не ошибается.','retro mind'],
+['Четыре в ряд','https://connect4.gamesolver.org/','🔴 🟡 🧠','Четыре в ряд против программы, которая просчитывает партию до конца.','mind'],
+['ruwix.com','https://ruwix.com/online-puzzle/','🧊 🔄 🧠','Кубик Рубика онлайн, а на сайте ещё есть уроки, как его собрать.','mind'],
+['nitrotype.com','https://www.nitrotype.com/','🏎️ ⌨️ 🏁','Гонки на машинах, где скорость зависит от скорости печати.','multi mind'],
+['zty.pe','https://zty.pe/','🚀 ⌨️ 💥','Сбивай вражеские корабли, печатая слова на клавиатуре.','mind retro'],
+['Pokémon Showdown','https://play.pokemonshowdown.com/','⚡ 🔴 ⚔️','Бои покемонов онлайн: собери команду и сразись с другими игроками. На английском.','multi mind'],
+['boardgamearena.com','https://boardgamearena.com/','🎲 🃏 ♟️','Сотни настольных игр онлайн, чтобы играть с друзьями. Есть бесплатный доступ.','multi mind'],
+['cardgames.io','https://cardgames.io/','🃏 ♠️ ♥️','Карточные игры против компьютера: от классических до новых.','retro mind'],
+['Kittens Game','https://kittensgame.com/web/','🐱 🏗️ ⏳','Кликер про котят, которые строят цивилизацию. Затягивает надолго, на английском.','odd'],
+['seterra.com','https://www.seterra.com/','🗺️ 📍 🧠','Викторины по географии: страны, столицы, флаги и реки.','mind'],
+['Chrome Experiments','https://experiments.withgoogle.com/','🧪 🔬 🎨','Сборник интерактивных экспериментов от Google: от музыки до искусственного интеллекта.','odd'],
+['PICO-8','https://www.lexaloffle.com/bbs/?cat=7','🕹️ 👾 💾','Крошечные ретро-игры для фантазийной консоли PICO-8, играть можно в браузере.','retro odd'],
+['tetr.io','https://tetr.io/','🧱 🏆 ⚡','Тетрис с мультиплеером и рейтингом: гонки на скорость и дуэли.','retro multi'],
+['online-go.com','https://online-go.com/','⚫ ⚪ 🧠','Го онлайн: древняя настольная игра с простыми правилами и огромной глубиной.','mind multi'],
+['Incredibox','https://www.incredibox.com/','🎤 🎶 🥁','Собирай музыкальный микс из голосов и ритмов, перетаскивая значки на персонажей.','odd'],
+['brainbashers.com','https://www.brainbashers.com/','🧠 🧩 ✏️','Старый добрый сайт с логическими задачами и головоломками на каждый день. На английском.','mind'],
+['The Deep Sea','https://neal.fun/deep-sea/','🌊 🐙 🤿','Спускайся всё глубже в океан и смотри, кто там живёт.','odd'],
+['The Size of Space','https://neal.fun/size-of-space/','🪐 🚀 🌌','Прокрутка по Вселенной: от Земли до самых дальних масштабов. Очень наглядно.','odd'],
+['smashkarts.io','https://smashkarts.io/','🏎️ 🍌 💣','Картинг с ловушками и оружием: гоняйся и взрывай соперников.','multi'],
+['kizi.com','https://kizi.com/','🧸 🎈 🎮','Портал игр для детей и подростков: простые аркады, головоломки и творчество.','portal'],
+['miniclip.com','https://www.miniclip.com/','🎯 🎱 🏁','Один из старейших игровых порталов: аркады, спорт и гонки.','portal'],
+['addictinggames.com','https://www.addictinggames.com/','🎲 🔥 🕹️','Портал с большим выбором коротких игр на пару минут.','portal'],
+['arkadium.com','https://www.arkadium.com/games/','🀄 🃏 🔤','Классические карточные и словесные игры, пасьянсы и головоломки.','portal mind'],
+['The Cat in Yellow','https://www.crazygames.com/game/the-ragdoll-cat-bgr','🐱 🏠 🌙','Хоррор от первого лица и симулятор кота: ухаживаешь за странным жёлтым котом, а он ведёт себя всё подозрительнее.','horror'],
+['Exhibit of Sorrows','https://www.crazygames.com/game/exhibit-of-sorrows','🤡 🏛️ 🗝️','Короткий хоррор в странном цирковом музее: решай загадки, ищи ключи и не зли клоуна.','horror'],
+['House of Celestina','https://www.crazygames.com/game/house-of-celestina','🏚️ 🗝️ 👻','Тебя похитила Селестина. Исследуй дом, ищи ключи и подсказки и сбеги, пока она не подкралась.','horror'],
+['House of Celestina: Chapter Two','https://www.crazygames.com/game/celestina-chapter-two','🕯️ 👥 🤫','Продолжение: Селестина держит твоих друзей в доме под землёй. Спасай их, но тихо, она слышит всё.','horror'],
+['Iron Friend','https://www.crazygames.com/game/iron-friend','🔦 ⚡ 🤖','Ночная смена и отключившееся электричество. Исследуй территорию, собирай улики и выясни, что здесь происходит.','horror'],
+['Exmortis 2','https://www.crazygames.com/game/exmortis-2','💀 🕯️ 🚪','Продолжение серии страшных игр: играть лучше в наушниках.','horror'],
+['Slendrina Must Die: The Asylum','https://www.crazygames.com/game/slendrina-must-die-the-asylum','👻 🏥 🔦','Хоррор из серии про Слендрину: мрачная лечебница и существо, которое охотится на тебя.','horror'],
+['Forsake the Rake','https://www.crazygames.com/game/forsake-the-rake','🌲 🌑 👁️','Страшная игра о встрече с Рейком, героем интернет-страшилок.','horror'],
+['Bear Haven 2','https://www.crazygames.com/game/bear-haven-2','🐻 🌲 🔦','Продолжение страшной игры Bear Haven. Лучше оставить свет включённым.','horror'],
+['Five Nights at Old Toy Factory 2020','https://www.crazygames.com/game/five-nights-at-old-toy-factory-2020','🧸 🏭 🔦','Фанатская игра в духе Five Nights at Freddy’s: ночь на старой фабрике игрушек.','horror'],
+['Five Nights at Freddy’s 5','https://www.crazygames.com/game/five-nights-at-freddy-s-5','🐻 🎪 📹','Фанатская игра по мотивам Five Nights at Freddy’s.','horror'],
+['Portrait of an Obsession','https://www.crazygames.com/game/portrait-of-an-obsession','🖼️ 🕯️ 😨','Психологический хоррор: напряжение растёт с каждым шагом, а мурашки бегут с первых минут.','horror'],
+['Wendigo: The Evil That Devours','https://www.crazygames.com/game/wendigo-the-evil-that-devours','🦌 🌲 💀','Хоррор про вендиго, легендарное существо, от которого нужно спасаться.','horror'],
+['Dr Psycho Hospital Escape 2','https://www.crazygames.com/game/dr-psycho-hospital-escape-2','🏥 🗝️ 🏃','Побег из страшной больницы: ищи предметы, решай задачки и выбирайся.','horror'],
+['Window Horror Game','https://www.crazygames.com/game/window-horror-game','🪟 🌙 👀','Короткая страшилка с CrazyGames. Лучше играть, когда в комнате не слишком темно.','horror'],
+['Horror Nights Story','https://poki.com/en/g/horror-nights-story','⛏️ 🕯️ 👹','Выкапывайся из старой шахты, отбивайся от монстров и переживи пять ночей, следя за временем и топливом.','horror'],
+['Kogama: Haunted Hospital','https://poki.com/en/g/kogama-haunted-hospital','🏥 👻 🔦','Побег из жуткой заброшенной больницы в мире Kogama.','horror'],
+['Forgotten Hill: The Wardrobe 2','https://poki.com/en/g/forgotten-hill-the-wardrobe-2','🧥 🎃 🔍','Хэллоуинский квест: собирай предметы, применяй их и разгадывай загадки, от которых мурашки по коже.','horror'],
+['Forgotten Hill Disillusion: The Library','https://poki.com/en/g/forgotten-hill-disillusion-the-library','📚 🏛️ 🕯️','Страшный квест в музее и библиотеке: собирай предметы и узнавай историю Forgotten Hill.','horror'],
+['Forgotten Hill: Puppeteer','https://poki.com/en/g/forgotten-hill-puppeteer','🎭 🧵 🕯️','Ещё один страшный квест из серии Forgotten Hill, с предметами и загадками.','horror'],
+['Forgotten Hill: Fall','https://poki.com/en/g/forgotten-hill-fall','🍂 🕯️ 🏚️','Ещё одна история из серии Forgotten Hill: жуткая атмосфера и загадки.','horror'],
+['Little Cabin in the Woods','https://poki.com/en/g/little-cabin-in-the-woods','🏕️ 🌲 🕯️','Страшный квест от создателей Forgotten Hill: маленькая хижина в лесу хранит свои секреты.','horror'],
+['Scary Maze','https://poki.com/en/g/scary-maze','🟥 🧩 😱','Классика: тихий лабиринт, в котором в какой-то момент что-то внезапно появляется на весь экран.','horror'],
+['Horror Dungeon 3D','https://poki.com/en/g/horror-dungeon-3d','🏰 👹 🔦','Блуждай по тёмным коридорам, прячься от монстров и ищи выход, пока не поздно.','horror'],
+['Stupidella Horror','https://poki.com/en/g/stupidella-horror','🤪 👻 😂','Хоррор с абсурдным юмором: страшно и смешно одновременно, особенно в компании.','horror multi'],
+['Scary Hill','https://poki.com/en/g/scary-hill','🎃 🍬 🧊','Хэллоуинская головоломка: прыгай с кубика на кубик, обходи ловушки и собирай конфеты.','horror odd'],
+['HOLLOW','https://wingcreator.itch.io/hollow','🕯️ 🚪 🏠','Короткая атмосферная страшилка в браузере: тёмный дом, запертая дверь и свеча, которая скоро погаснет.','horror'],
+['Ghost Haunt','https://luisomarti.itch.io/ghost-haunt','👻 🦇 🏚️','Тёмный пиксельный платформер: очищай комнаты дома с привидениями от теней и летучих мышей.','horror'],
+['Страшилки на Poki','https://poki.com/en/scary','😱 🎃 🕸️','Подборка страшных игр: от лабиринта со скримером до жутких квестов. Без скачивания.','horror portal'],
+['Страшные игры на CrazyGames','https://www.crazygames.com/t/scary','🦇 😨 🌑','Ещё одна большая подборка страшилок: от лёгких до по-настоящему жутких.','horror portal'],
+['Snow Rider 3D','https://www.crazygames.com/game/snow-rider-3d','🛷 🎁 🌲','Мчись на санях по снежной трассе: уворачивайся от препятствий и собирай подарки, чтобы открывать новые сани.','winter'],
+['Snow Farm Happy New Year','https://www.crazygames.com/game/snow-farm-happy-new-year','🚜 ❄️ 🎄','Новогодняя ферма: развивай хозяйство, строй здания, торгуй и участвуй в сезонных событиях.','winter odd'],
+['WinterSmash.io','https://www.crazygames.com/game/wintersmash-io','⛄ 💥 🧊','Зимняя io-игра с CrazyGames.','winter multi'],
+['Santa Parkour','https://www.crazygames.com/game/santa-parkour','🎅 🏃 🎁','Паркур за Санта-Клауса: бегай, прыгай и не падай.','winter'],
+['Snowball Destroyer','https://www.crazygames.com/game/snowball-destroyer','⛄ ❄️ 💥','Зимняя игра со снежками.','winter'],
+['Christmas Tree 2023','https://www.crazygames.com/game/christmas-tree-2023','🎄 ✨ 🎁','Новогодняя игра про ёлку.','winter'],
+['Click the Tree!','https://www.crazygames.com/game/click-the-tree','🎄 👆 ⭐','Кликер про новогоднюю ёлку: жми и смотри, что будет.','winter odd'],
+['Advent Mahjong','https://www.crazygames.com/game/advent-mahjong','🀄 🎅 🎁','Маджонг в новогоднем стиле.','winter mind'],
+['Christmas Sorting','https://www.crazygames.com/game/christmas-sorting','🧦 🎁 🎄','Новогодняя сортировка: головоломка, в которой нужно разложить всё по местам.','winter mind'],
+['Pixels for Christmas','https://www.crazygames.com/game/pixels-for-christmas','🟥 🟩 🎄','Новогодняя пиксельная раскраска.','winter mind'],
+['Winter Clash 3D','https://poki.com/en/g/winter-clash-3d','🎅 🧝 🔫','Новогодний шутер: играй за Санту или эльфа в командном бою и ищи оружие, спрятанное на карте.','winter multi'],
+['Winter Dodge','https://poki.com/en/g/winter-dodge','⚪ 🌲 ⛷️','Спускайся шариком по ледяному склону: зажми, чтобы повернуть влево, отпусти, чтобы вправо, и не врезайся в деревья.','winter'],
+['Snow Tale','https://poki.com/en/g/snow-tale','🐧 ❄️ 🍦','Платформер про пингвина: бегай по заснеженным холмам, кидай снежки во врагов и собирай мороженое.','winter'],
+['Moto X3M Winter','https://poki.com/en/g/moto-x3m-winter','🏍️ ❄️ 🏁','Мотогонки с трюками и препятствиями на зимних трассах.','winter'],
+['Jigsaw Photo Puzzle: Winter','https://poki.com/en/g/jigsaw-photo-puzzle-winter','🧩 ☕ 🏔️','Расслабляющий зимний пазл: собирай фото из кусочков, укрывшись пледом с чашкой какао.','winter mind'],
+['Tired to Fall: Winter','https://poki.com/en/g/tired-to-fall-winter','😴 ❄️ 🛏️','Зимняя версия игры Tired to Fall от студии Havana24.','winter'],
+['Thumb Fighter Christmas','https://poki.com/en/g/thumb-fighter-christmas','👍 🎅 🥊','Рождественская версия игры Thumb Fighter.','winter'],
+['Blob Opera','https://artsandculture.google.com/experiment/blob-opera/AAHWrq360NcGbw','🎤 🎶 🎅','Четыре поющих «капли» исполняют оперу под твоим управлением: двигай их и создавай мелодии. Есть новогодний режим.','winter odd'],
+['SkiFree.js','https://basicallydan.github.io/skifree.js/','⛷️ 🌲 ❄️','Браузерная версия классической игры SkiFree: уворачивайся от деревьев и убегай от снежного человека.','winter retro']
+];
+const T={odd:'необычное',mind:'для ума',multi:'мультиплеер',portal:'портал',retro:'классика',horror:'хоррор',winter:'зима'};
+const P={odd:['#FFB35C','#FF8A3D'],mind:['#7FB2FF','#4F8BFF'],multi:['#7CE3A1','#3CC57A'],portal:['#FF9EC0','#FF6FA3'],retro:['#FFE066','#FFC400'],horror:['#C3A6FF','#9B7BEA'],winter:['#BFE3FF','#8CCBFF']};
+const chips=[['all','Все'],['mind','Для ума'],['odd','Необычное'],['multi','Мультиплеер'],['retro','Классика'],['horror','Хоррор'],['winter','Зима']];
+const SKIP=['crazygames.com/t/','itch.io/games/html5/tag-','newgrounds.com/games/browse/tag','y8.com/tags/','poki.com/en/horror','poki.com/en/scary','search/projects?q=horror'];
+const HUB=new Set(['https://poki.com/','https://www.crazygames.com/','https://www.y8.com/','https://www.coolmathgames.com/','https://itch.io/games/html5','https://www.newgrounds.com/','https://archive.org/details/internetarcade','https://doodles.google/','https://yandex.ru/games/','https://www.silvergames.com/','https://armorgames.com/','https://gamejolt.com/','https://scratch.mit.edu/explore/projects/games/','https://www.abcya.com/','https://www.sporcle.com/','https://archive.org/details/softwarelibrary_msdos_games','https://boardgamearena.com/','https://cardgames.io/','https://www.seterra.com/','https://experiments.withgoogle.com/','https://www.lexaloffle.com/bbs/?cat=7','https://www.brainbashers.com/','https://kizi.com/','https://www.miniclip.com/','https://www.addictinggames.com/','https://www.arkadium.com/games/']);
+const FIX={'https://musiclab.chromeexperiments.com/':'https://musiclab.chromeexperiments.com/Song-Maker/','https://beinternetawesome.withgoogle.com/':'https://beinternetawesome.withgoogle.com/en_us/interland'};
+const D=S.filter(s=>!SKIP.some(k=>s[1].includes(k))&&!HUB.has(s[1])).map(s=>FIX[s[1]]?[s[0],FIX[s[1]],...s.slice(2)]:s).map((s,i)=>({n:s[0],u:s[1],a:s[2].split(' '),d:s[3],t:s[4].split(' '),i}));
+let f='all',list=D,last=-1;
+let query='',favOnly=false,sortMode='default';
+const favorites=new Set((()=>{try{return JSON.parse(localStorage.getItem('browserki-favorites')||'[]')}catch(e){return []}})());
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function saveFavorites(){try{localStorage.setItem('browserki-favorites',JSON.stringify([...favorites]))}catch(e){};$('#favcount').textContent=favorites.size}
+function render(){
+  list=D.filter(s=>(f==='all'||s.t.includes(f))&&(!favOnly||favorites.has(s.u))&&(!query||(s.n+' '+s.d+' '+s.t.map(k=>T[k]).join(' ')).toLocaleLowerCase('ru').includes(query)));
+  if(sortMode==='az')list.sort((a,b)=>a.n.localeCompare(b.n,'ru'));
+  if(sortMode==='za')list.sort((a,b)=>b.n.localeCompare(a.n,'ru'));
+  $('#chips').innerHTML=chips.map(c=>'<button class="chip" data-f="'+c[0]+'" aria-pressed="'+(c[0]===f)+'">'+c[1]+'</button>').join('');
+  $('#list').innerHTML=list.length?list.map(s=>{
+    const c=P[s.t[0]]||P.odd, saved=favorites.has(s.u);
+    return '<article class="site"><button class="favbtn" data-fav="'+esc(s.u)+'" aria-label="'+(saved?'Убрать из избранного':'Добавить в избранное')+'" aria-pressed="'+saved+'">♥</button><a href="'+esc(s.u)+'" target="_blank" rel="noopener noreferrer" style="display:flex;flex:1;flex-direction:column;color:inherit;text-decoration:none"><span class="cover p'+s.i%5+'" style="--a:'+c[0]+';--b:'+c[1]+'"><i class="e1">'+esc(s.a[0])+'</i><i class="e2">'+esc(s.a[1])+'</i><i class="e3">'+esc(s.a[2])+'</i></span><span class="txt"><b>'+esc(s.n)+'</b><span class="d">'+esc(s.d)+'</span><span class="foot"><small>'+esc(s.t.map(k=>T[k]||k).join(', '))+'</small><span class="go">Открыть ↗</span></span></span></a></article>';
+  }).join(''):'<div class="empty"><strong>Ничего не нашлось</strong>Попробуй изменить запрос или выбрать другую категорию.</div>';
+  $('#resultcount').textContent='Показано: '+list.length+' из '+D.length;
+  $('#clearsearch').hidden=!(query||favOnly||f!=='all');
+  $('#favfilter').setAttribute('aria-pressed',favOnly);
+  saveFavorites();
+}
+$('#chips').onclick=e=>{const c=e.target.closest('.chip');if(c){f=c.dataset.f;render()}};
+$('#search').addEventListener('input',e=>{query=e.target.value.trim().toLocaleLowerCase('ru');render()});
+$('#sort').addEventListener('change',e=>{sortMode=e.target.value;render()});
+$('#favfilter').onclick=()=>{favOnly=!favOnly;render()};
+$('#clearsearch').onclick=()=>{query='';favOnly=false;f='all';$('#search').value='';render()};
+$('#list').addEventListener('click',e=>{const b=e.target.closest('[data-fav]');if(!b)return;e.preventDefault();e.stopPropagation();const u=b.dataset.fav;if(favorites.has(u))favorites.delete(u);else favorites.add(u);play('coin');render()});
+$('#theme').onclick=()=>{const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';try{localStorage.setItem('browserki-theme',dark?'dark':'light')}catch(e){};$('#theme').textContent=dark?'☀ Светлая':'◐ Тёмная'};
+try{const savedTheme=localStorage.getItem('browserki-theme');if(savedTheme){document.documentElement.dataset.theme=savedTheme;$('#theme').textContent=savedTheme==='dark'?'☀ Светлая':'◐ Тёмная'}}catch(e){}
+$('#search').addEventListener('keydown',e=>{if(e.key==='Escape'){e.target.value='';query='';render()}});
+addEventListener('keydown',e=>{if(e.key==='/'&&!/input|textarea|select/i.test(document.activeElement.tagName)){e.preventDefault();$('#search').focus()}});
+$('#rnd').onclick=()=>{
+  if(!list.length){toast('Сначала найди игру или сбрось фильтры.');return}
+  let i;
+  do i=Math.random()*list.length|0;while(list.length>1&&i===last);
+  last=i;
+  const s=list[i];
+  $('#pick').hidden=false;
+  $('#pick').innerHTML='Выпало: <a href="'+s.u+'" target="_blank" rel="noopener noreferrer">'+s.n+'</a>. Если вкладка не открылась, нажми на ссылку.';
+  window.open(s.u,'_blank','noopener,noreferrer');
+};
+console.log('Привет, любопытный! Тебе передают привет 213rty785 и Claude.');
+let AC=null,on=true;
+function tone(f,t,d,type){
+  if(!on)return;
+  try{
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended')AC.resume();
+    const o=AC.createOscillator(),g=AC.createGain(),s=AC.currentTime+t;
+    o.type=type||'square';o.frequency.setValueAtTime(f,s);
+    g.gain.setValueAtTime(.06,s);g.gain.exponentialRampToValueAtTime(.0001,s+d);
+    o.connect(g);g.connect(AC.destination);o.start(s);o.stop(s+d);
+  }catch(e){}
+}
+const SND={coin:[988,1319],tick:[660],up:[523,659,784,1047],down:[392,330,262,196],win:[523,523,523,659,784,1047,1319]};
+const play=(k,type)=>SND[k].forEach((f,i)=>tone(f,i*.09,.14,type));
+function toast(t){const el=document.createElement('div');el.className='toast';el.textContent=t;document.body.appendChild(el);setTimeout(()=>el.remove(),2600)}
+function party(t){
+  play('win');toast(t);
+  for(let i=0;i<32;i++){
+    const s=document.createElement('span');
+    s.className='fall';s.textContent=['🎮','🕹️','👾','⭐','🍪','🎉'][i%6];
+    s.style.cssText='left:'+Math.random()*100+'vw;animation-duration:'+(1.8+Math.random()*1.8)+'s;animation-delay:'+Math.random()*.8+'s';
+    document.body.appendChild(s);setTimeout(()=>s.remove(),4200);
+  }
+}
+let brLevel=0;
+const BR_LEVELS=[
+  ['LEVEL 0','THE LOBBY','Жёлтые коридоры. Кажется, ты уже здесь проходил.','#D6C560','#E7DA8C','#3A3110','#6B5A18','repeating-linear-gradient(90deg,rgba(104,82,14,.22) 0 6px,transparent 6px 30px),linear-gradient(110deg,#e0d47b,#a9974b)'],
+  ['LEVEL 1','HABITABLE ZONE','Складские помещения. Где-то капает вода.','#b9a66b','#d3c18a','#302817','#675735','repeating-linear-gradient(0deg,rgba(55,42,17,.13) 0 2px,transparent 2px 34px),linear-gradient(110deg,#c9b77e,#9f8d5c)'],
+  ['LEVEL 2','PIPE DREAMS','Трубы, пар и бесконечные технические тоннели.','#8b7461','#aa9278','#241d18','#5c493b','repeating-linear-gradient(90deg,rgba(20,10,0,.25) 0 5px,transparent 5px 38px),linear-gradient(120deg,#9c8066,#342b27)'],
+  ['LEVEL 3','ELECTRICAL STATION','Свет почти погас. Не стой на месте.','#403b35','#5a5148','#eee0c5','#c1ad8b','repeating-linear-gradient(90deg,rgba(0,0,0,.3) 0 8px,transparent 8px 58px),linear-gradient(120deg,#494139,#171716)'],
+  ['LEVEL 4','ABANDONED OFFICE','Пустой офис. Компьютеры всё ещё включены.','#c7c2a5','#e1dcc0','#343528','#68684f','repeating-linear-gradient(0deg,rgba(50,50,30,.12) 0 2px,transparent 2px 42px),linear-gradient(90deg,#d6d0b4,#aaa58b)'],
+  ['LEVEL 5','TERROR HOTEL','Старый отель. За дверями слышны шаги.','#51433d','#756056','#f4e8d8','#c7aa91','repeating-linear-gradient(90deg,rgba(20,0,0,.2) 0 4px,transparent 4px 48px),linear-gradient(120deg,#786052,#29201f)'],
+  ['LEVEL 6','LIGHTS OUT','Абсолютная темнота. Ориентируйся по слабым огням.','#171923','#303342','#e5e8f4','#a6acc5','radial-gradient(circle at 50% 35%,#50566b 0,transparent 35%),linear-gradient(#242735,#08090e)'],
+  ['LEVEL 7','THALASSOPHOBIA','Огромная вода. Где-то под поверхностью что-то движется.','#315c70','#54869a','#e3f5fa','#b5d6df','repeating-linear-gradient(0deg,rgba(220,250,255,.08) 0 2px,transparent 2px 35px),linear-gradient(#4b8495,#102d42)'],
+  ['LEVEL 8','CAVE SYSTEM','Каменные пещеры и узкие проходы.','#51483f','#756657','#f0e4d2','#c8b59c','radial-gradient(ellipse at 30% 20%,#897b67,transparent 40%),linear-gradient(130deg,#5c5145,#211d1a)'],
+  ['LEVEL 9','DARKENED SUBURBS','Ночной пригород. Фонари горят, но улицы пусты.','#252b35','#414b58','#e6e8ed','#b0bac8','radial-gradient(circle at 70% 20%,#d8c98a 0 2%,transparent 3%),linear-gradient(#343e4c,#111720)'],
+  ['LEVEL 10','FIELDS OF WHEAT','Бесконечное поле. Ветер шевелит сухую траву.','#9b925e','#c1b77c','#302d1d','#625b35','repeating-linear-gradient(100deg,rgba(70,65,20,.16) 0 3px,transparent 3px 22px),linear-gradient(#c2b77a,#777044)'],
+  ['LEVEL 11','THE INFINITE CITY','Пустой город без людей и машин.','#82939a','#aebfc2','#202d35','#4d626b','linear-gradient(90deg,rgba(30,50,60,.15) 2px,transparent 2px 65px),linear-gradient(#b6c5c5,#657a83)'],
+  ['LEVEL 12','MATRIX','Белое пространство. Кажется, у него нет конца.','#d8d8d2','#eeeeea','#30302e','#66665f','repeating-linear-gradient(0deg,rgba(0,0,0,.05) 0 1px,transparent 1px 28px),linear-gradient(120deg,#f0f0e9,#b9b9b2)'],
+  ['LEVEL 13','THE HOTEL','Коридоры с одинаковыми дверями. Не все ведут в комнаты.','#66534a','#92796b','#f7e9d9','#d2b9a6','repeating-linear-gradient(90deg,rgba(20,0,0,.14) 0 3px,transparent 3px 42px),linear-gradient(#9c7f6c,#40332f)'],
+  ['LEVEL 14','PARADISE','Слишком тихий сад. Не доверяй красивому виду.','#6b966d','#a2c59a','#18351f','#426a48','radial-gradient(ellipse at 50% 15%,#d9e9a8,transparent 55%),linear-gradient(#9cbd8d,#45694c)'],
+  ['LEVEL 15','FUTURE FACTORY','Холодные металлические залы и гул механизмов.','#65747b','#91a3a9','#17252b','#435961','repeating-linear-gradient(90deg,rgba(0,0,0,.16) 0 4px,transparent 4px 50px),linear-gradient(120deg,#91a3a8,#35444b)'],
+  ['LEVEL 16','THE SUBWAY','Заброшенная станция метро. Поездов не должно быть.','#4a4d52','#6d747b','#e5e5e2','#b8bec1','repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 4px,transparent 4px 48px),linear-gradient(#70777c,#25282d)'],
+  ['LEVEL 17','THE LIBRARY','Бесконечные стеллажи. Здесь слишком тихо.','#705c46','#9a8060','#f8ecd5','#d2b995','repeating-linear-gradient(90deg,rgba(30,15,0,.2) 0 9px,transparent 9px 55px),linear-gradient(#a88b68,#493a2d)'],
+  ['LEVEL 18','THE attic','Пыльный чердак. Половицы скрипят сами по себе.','#88765e','#b19b7a','#34291d','#6d5a40','repeating-linear-gradient(0deg,rgba(40,20,0,.12) 0 3px,transparent 3px 36px),linear-gradient(120deg,#b19a76,#62513d)'],
+  ['LEVEL 19','THE FUN ZONE','Праздничные цвета и подозрительно пустые комнаты.','#b18a78','#d7b19a','#3a2020','#754b48','repeating-linear-gradient(45deg,rgba(255,255,255,.12) 0 8px,transparent 8px 28px),linear-gradient(120deg,#e1b89c,#98736e)'],
+  ['LEVEL 20','THE MALL','Торговый центр после закрытия. Эскалаторы всё ещё работают.','#8b8492','#b8b0c0','#282332','#5c5368','repeating-linear-gradient(90deg,rgba(30,20,40,.12) 0 3px,transparent 3px 60px),linear-gradient(#c5bacb,#62596e)'],
+  ['LEVEL 21','THE POOLROOMS','Бассейны, плитка и эхо шагов. Вода неподвижна.','#8eb8b5','#b6d6d0','#153b3b','#315f5a','repeating-linear-gradient(90deg,rgba(15,80,78,.16) 0 3px,transparent 3px 44px),linear-gradient(#9dcac3,#507f7c)'],
+  ['LEVEL 22','THE HOSPITAL','Пустая больница. Свет в конце коридора мерцает.','#a5a99e','#c9cec0','#283028','#586354','repeating-linear-gradient(0deg,rgba(20,40,20,.1) 0 2px,transparent 2px 40px),linear-gradient(#cdd3c3,#747d70)'],
+  ['LEVEL 23','THE CRIMSON FOREST','Красный лес. Между деревьями виднеются силуэты.','#75484a','#a56b6b','#f5e1dc','#d0a4a2','radial-gradient(ellipse at 50% 20%,#b77a78,transparent 60%),linear-gradient(#874e52,#30252e)'],
+  ['LEVEL 24','THE END','Компьютерный зал. На экранах написано: «Выход рядом».','#626b78','#929eae','#17202d','#455267','repeating-linear-gradient(90deg,rgba(0,0,0,.2) 0 4px,transparent 4px 52px),linear-gradient(#9aa7b8,#303744)'],
+  ['LEVEL 37','POOLROOMS','Тёплая вода и странная тишина. Ты дошёл до знакомого места.','#78aeb0','#a8d1cb','#17383b','#426c6b','radial-gradient(ellipse at 50% 10%,#d6f4e9,transparent 55%),linear-gradient(#9dd4cc,#39777c)'],
+  ['LEVEL !','RUN FOR YOUR LIFE!','Длинный красный коридор. Сирена не замолкает, а впереди мигает выход.','#641d28','#9a303b','#fff0e9','#e3a4a4','repeating-linear-gradient(90deg,#2b0b12 0 5px,transparent 5px 44px),linear-gradient(#a12b39,#260b14)'],
+  ['LEVEL FUN','FUN =)','Праздничная комната с шариками и конфетти. Слишком уж здесь тихо.','#d889b5','#f2b7d5','#381b37','#79436d','radial-gradient(circle at 20% 20%,#ffe57c 0 4%,transparent 5%),radial-gradient(circle at 75% 30%,#9ee7ff 0 5%,transparent 6%),linear-gradient(135deg,#ed9cc8,#7452a0)'],
+  ['LEVEL 94','MOTION','Мультяшные зелёные холмы, странные дома и замок на горизонте.','#9abf8a','#c8dca6','#283c2a','#58744a','radial-gradient(ellipse at 70% 48%,#e8e0ba 0 7%,transparent 8%),linear-gradient(#a9c6d0 0 42%,#86ad69 43% 70%,#527c4b 71%)'],
+  ['LEVEL 188','COURTYARD OF WINDOWS','Серый двор, окружённый бесконечными окнами. Кажется, за ними кто-то есть.','#73777b','#a7aaad','#202326','#50565b','repeating-linear-gradient(90deg,#343a40 0 5px,transparent 5px 52px),linear-gradient(#aeb3b5,#555b60)'],
+  ['LEVEL 3999','NEON ARCADE','Бесконечный зал игровых автоматов. Неоновый свет ведёт к последнему автомату.','#33245d','#6b4e9a','#f5eaff','#b8a0e8','repeating-linear-gradient(90deg,#ff4ac6 0 3px,transparent 3px 48px),linear-gradient(#32204f,#10182e)'],
+  ['THE HUB','THE HUB','Круглый зал с множеством дверей. Каждая ведёт в другой уровень.','#77766e','#b5b3a8','#262720','#5c5c50','radial-gradient(ellipse at 50% 50%,#d8d4bc 0 12%,transparent 13%),repeating-conic-gradient(from 0deg,#77776e 0 10deg,#a9a797 10deg 20deg)'],
+  ['LEVEL 9223372036854775807','THE INFINITE VOID','Почти бесконечная тёмная пустота с далёкими светящимися платформами.','#111525','#282e47','#e9edff','#929dbb','radial-gradient(circle at 20% 30%,#fff 0 1px,transparent 2px),radial-gradient(circle at 80% 20%,#9bc7ff 0 2px,transparent 3px),linear-gradient(#10152a,#03050d)'],
+  ['LEVEL 0.2','REMODELED MESS','Жёлтые комнаты на ремонте: строительная пыль, плёнка и незаконченные стены.','#9b8c67','#c7b78d','#302b20','#62563b','repeating-linear-gradient(0deg,#6f6249 0 3px,transparent 3px 36px),linear-gradient(120deg,#c7b98c,#6d6049)'],
+  ['SNACKROOMS','THE SNACKROOMS','Яркая комната с автоматами и бесконечными рядами закусок.','#a7a0c7','#d4c9e9','#302843','#685b83','repeating-linear-gradient(90deg,#6a4c87 0 4px,transparent 4px 54px),linear-gradient(#c8b9df,#6b5b83)'],
+  ['LEVEL 37.2','DARK POOLROOMS','Тёмная версия Poolrooms. Вода почти чёрная, а лампы светят через раз.','#263d4b','#496675','#e1f4f5','#8db7c1','radial-gradient(ellipse at 50% 20%,#9dcdd0 0 2%,transparent 22%),linear-gradient(#304b59,#071820)'],
+  ['LEVEL 974','KITTY’S HOUSE','Маленький уютный домик с мягким светом. Но он кажется слишком пустым.','#9c8caa','#c8b9d1','#30283b','#695c75','radial-gradient(circle at 50% 25%,#ffe6bd 0 10%,transparent 11%),linear-gradient(#b9a8c7,#62536e)']
+];
+// У каждого уровня есть собственная знаковая вещь — предмет, который помогает запомнить место.
+const BR_ARTIFACTS=[
+  ['🟨','Кусок жёлтых обоев','Обрывок обоев с пятном, похожим на карту коридоров.'],
+  ['📦','Старая картонная коробка','На боку коробки кто-то написал: «Не открывай».'],
+  ['🔧','Ржавый разводной ключ','Единственный инструмент, который не покрыт влагой.'],
+  ['🔦','Мигающий фонарик','Он включается только на несколько секунд.'],
+  ['💳','Офисная карта доступа','На карте стёрто имя владельца, но магнитная полоса цела.'],
+  ['🔔','Гостиничный колокольчик','Если нажать на него, издалека доносится звонок.'],
+  ['🟢','Зелёная светящаяся палочка','Её слабого света хватает, чтобы различить стены.'],
+  ['🛟','Старый спасательный круг','На нём выцветшая надпись неизвестного бассейна.'],
+  ['🧗','Потрёпанная верёвка','На узлах остались следы белой пыли.'],
+  ['📮','Почтовый ящик без номера','Внутри лежит письмо, адресованное тебе.'],
+  ['🌾','Сухой колос','Он остаётся неподвижным даже на сильном ветру.'],
+  ['🚦','Сломанный светофор','Он переключается на зелёный, хотя улица пуста.'],
+  ['🧩','Белая головоломка','На каждой стороне нарисован один и тот же коридор.'],
+  ['🗝️','Латунный ключ от номера','На бирке написано число, которого нет на дверях.'],
+  ['🌼','Ненастоящий цветок','Он выглядит свежим, но сделан из неизвестного материала.'],
+  ['⚙️','Металлическая шестерня','Она продолжает вращаться даже отдельно от механизма.'],
+  ['🎫','Старый билет метро','Станция отправления и станция прибытия совпадают.'],
+  ['📖','Книга без названия','Все страницы пустые, кроме последней.'],
+  ['🕰️','Карманные часы','Стрелки идут назад и иногда останавливаются.'],
+  ['🎈','Жёлтый воздушный шар','На ленте завязан маленький ключ.'],
+  ['🛍️','Пустой пакет из магазина','На нём напечатан логотип давно закрытого торгового центра.'],
+  ['🧸','Игрушечная уточка','Она каждый раз оказывается на другом краю бассейна.'],
+  ['🩺','Стетоскоп','В нём слышно не сердцебиение, а далёкий шум вентиляции.'],
+  ['🍎','Красное яблоко','Оно не портится и всегда остаётся тёплым.'],
+  ['💾','Дискета с надписью THE END','На ней один файл: «выход.txt».'],
+  ['🔑','Ключ от синей двери','На бирке нет номера — только символ волны.'],
+  ['🟥','Красный аварийный браслет','Он вибрирует каждый раз, когда сирена делает паузу.'],
+  ['🎉','Бумажный колпак','На внутренней стороне написано: «Не оставайся после праздника».'],
+  ['🏰','Игрушечный замок','Если повернуть его, на холмах меняется погода.'],
+  ['🪟','Оконная ручка','Она подходит к окну, которого здесь нет.'],
+  ['🕹️','Неоновый жетон','На нём мигает надпись INSERT COIN.'],
+  ['🗝️','Связка ключей HUB','На каждом ключе указан номер другого уровня.'],
+  ['🌌','Звёздный компас','Стрелка показывает не на север, а на ближайший выход.'],
+  ['🦺','Строительный жилет','На кармане вышито имя, которого ты не знаешь.'],
+  ['🥤','Банка газировки','Срок годности указан на вчерашний день.'],
+  ['🫧','Пузырёк из тёмного бассейна','Внутри пузырька отражается другой коридор.'],
+  ['🐱','Мягкая игрушка-кот','Она всегда повёрнута мордочкой к двери.']
+];
+const BR_SCENE_KINDS=['yellow','warehouse','pipes','power','office','hotel','dark','sea','cave','suburb','wheat','city','void','hotel','garden','factory','subway','library','attic','fun','mall','pool','hospital','forest','computer','pool37','run','fun','motion','courtyard','arcade','hub','infinite','remodel','snack','darkpool','kitty'];
+const BR_LANDMARKS=[
+ ['📺','МЕРЦАЮЩИЙ ТВ','#f5d36b'],['📦','КОРОБКА-СЮРПРИЗ','#c9a77c'],['🔩','ГЛАВНЫЙ ВЕНТИЛЬ','#c2d0d0'],['⚡','ЩИТОВАЯ 03','#ffe18a'],['🖥️','РАБОЧЕЕ МЕСТО 404','#a9e4d4'],['🛎️','СТОЙКА РЕСЕПШЕНА','#e8c89a'],['🕯️','ЕДИНСТВЕННЫЙ ОГОНЁК','#b8c9ff'],['🛟','БУЙ В ТУМАНЕ','#9beaff'],['🪨','КАМЕНЬ С РУНОЙ','#d7c5a7'],['📬','ПИСЬМО ИЗ ДОМА','#d8d9e8'],['🌻','ОДИНОКИЙ ПОДСОЛНУХ','#f4d96a'],['🚏','ОСТАНОВКА №0','#b8d5e5'],['⬜','БЕЛЫЙ МОНОЛИТ','#ffffff'],['🚪','ДВЕРЬ  room 0','#e3c0a2'],['🌳','ДЕРЕВО БЕЗ ТЕНИ','#b7e0a1'],['⚙️','СЕРДЦЕ ФАБРИКИ','#b9d4dd'],['🚇','ПОЕЗД БЕЗ МАРШРУТА','#c4d8df'],['📚','КНИГА С ЧУЖИМ ИМЕНЕМ','#e5c79b'],['🪜','ЛЕСТНИЦА В ПОТОЛОК','#d8c6a5'],['🎂','ПРАЗДНИЧНЫЙ ТОРТ','#ff9fd0'],['🛗','ЭСКАЛАТОР ВНИЗ','#d4c8ee'],['🦆','УТКА У БОРТИКА','#9de5e0'],['🛏️','ПУСТАЯ КОЙКА','#d4e3cb'],['🍎','КРАСНОЕ ЯБЛОКО','#ff9b9b'],['💻','ПОСЛЕДНИЙ ТЕРМИНАЛ','#a9caff'],['🌀','СИНЯЯ ДВЕРЬ','#8deaff'],['🚨','АВАРИЙНЫЙ МАЯК','#ff6878'],['🎈','ШАР С ЗАПИСКОЙ','#ff9acb'],['🏰','ДАЛЁКИЙ ЗАМОК','#c5e4a5'],['🪟','ОКНО С СИЛУЭТОМ','#c8d9e8'],['🕹️','АВТОМАТ №999','#ff78dc'],['🗝️','КОЛЬЦО КЛЮЧЕЙ','#e5d49b'],['🌌','ПЛАТФОРМА НА КРАЮ','#a8bfff'],['🚧','НЕДОСТРОЕННАЯ СТЕНА','#e6c783'],['🥤','АВТОМАТ С НАПИТКАМИ','#d7baff'],['🫧','ПУЗЫРЬ С ОТРАЖЕНИЕМ','#91d9f0'],['🐈','КОТ У ПОРОГА','#f4d7a8']
+];
+
+let brArtifactFound=localStorage.getItem('brArtifactFound')==='1';
+function brSceneMarkup(i){
+  const kind=BR_SCENE_KINDS[i]||'yellow';
+  let props='';
+  const add=(cls,style)=>{props+=`<i class="prop ${cls}" style="${style}"></i>`};
+  if(['pipes','power','factory'].includes(kind)){add('pipe','left:-5%;top:18%;width:110%;transform:rotate(0deg)');add('pipe','left:-8%;top:29%;width:72%;transform:rotate(8deg)');add('pipe','right:-8%;top:43%;width:65%;transform:rotate(-7deg)');}
+  if(['warehouse','library','office','attic'].includes(kind)){add('shelf','left:4%;top:24%;width:20%;height:48%');add('shelf','right:4%;top:18%;width:21%;height:54%');}
+  if(['hotel','hospital','subway'].includes(kind)){for(let j=0;j<4;j++)add('door',`left:${18+j*21}%;top:${30+(j%2)*5}%;height:${34+(j%2)*4}%;width:12%`)}
+  if(['cave'].includes(kind)){for(let j=0;j<9;j++)add('rock',`left:${(j*13)%100}%;top:${12+(j%3)*24}%;width:${15+(j%3)*7}%;height:${24+(j%2)*16}%`)}
+  if(['forest','garden','suburb','wheat'].includes(kind)){for(let j=0;j<9;j++)add('tree',`left:${j*12-3}%;top:${22+(j%3)*10}%;height:${48+(j%3)*10}%`)}
+  if(['city','suburb','mall'].includes(kind)){for(let j=0;j<7;j++)add('window',`left:${j*15}%;top:${24+(j%2)*8}%;width:13%;height:${35+(j%2)*12}%`)}
+  if(['computer','office'].includes(kind)){for(let j=0;j<5;j++)add('screen',`left:${12+j*17}%;top:${44+(j%2)*7}%;width:12%;height:14%`)}
+  if(['sea','pool','pool37'].includes(kind))props+='<i class="water"></i>';
+  if(kind==='subway'){add('window','left:5%;top:27%;width:90%;height:32%')}
+  if(kind==='fun'){for(let j=0;j<8;j++)add('prop balloon',`left:${j*13}%;top:${10+(j%3)*13}%;width:38px;height:48px;background:${['#e64f63','#f1d45b','#55a9d5','#a66ac7'][j%4]};border-radius:50% 50% 45% 45%;box-shadow:0 5px 0 -2px #fff8`)}
+  if(kind==='void'){for(let j=0;j<5;j++)add('prop pillar',`left:${j*22+5}%;top:14%;width:8%;height:72%;background:linear-gradient(90deg,#bbb,#fff,#ccc);box-shadow:0 0 18px #7775`)}
+  if(kind==='run'){for(let j=0;j<8;j++)add('redlamp',`left:${j*14}%;top:${8+(j%2)*8}%;width:8%;height:12%`);for(let j=0;j<5;j++)add('door',`left:${10+j*20}%;top:48%;width:10%;height:30%`)}
+  if(kind==='motion'){for(let j=0;j<7;j++)add('hill',`left:${j*16-8}%;bottom:${8+(j%3)*9}%;width:30%;height:${18+(j%3)*9}%`);add('castle','right:12%;top:22%;width:16%;height:28%')}
+  if(kind==='courtyard'||kind==='hub'){for(let j=0;j<8;j++)add('window',`left:${j*12}%;top:${18+(j%2)*7}%;width:10%;height:34%`)}
+  if(kind==='arcade'||kind==='snack'){for(let j=0;j<6;j++)add('arcade','left:'+`${8+j*15}%`+';top:'+`${38+(j%2)*7}%`+';width:11%;height:30%')}
+  if(kind==='hub'){for(let j=0;j<8;j++)add('door',`left:${j*12}%;top:${48+(j%2)*4}%;width:9%;height:32%`)}
+  if(kind==='remodel'){for(let j=0;j<7;j++)add('pipe',`left:${j*17-5}%;top:${18+(j%2)*13}%;width:25%;transform:rotate(${j%2?8:-8}deg)`)}
+  if(kind==='darkpool'){props+='<i class="water"></i>';for(let j=0;j<5;j++)add('window',`left:${j*20}%;top:22%;width:14%;height:30%`)}
+  if(kind==='kitty'){for(let j=0;j<4;j++)add('door',`left:${14+j*24}%;top:32%;width:13%;height:40%`)}
+  // Уникальные предметы и силуэты, чтобы локации не выглядели одним коридором.
+  if(['yellow','hotel','hub','kitty'].includes(kind)){for(let j=0;j<4;j++)add('arch',`left:${8+j*25}%;top:${18+(j%2)*5}%;width:19%;height:50%`)}
+  if(['warehouse','factory','courtyard','remodel'].includes(kind)){for(let j=0;j<5;j++)add('crate',`left:${j*19+2}%;bottom:${18+(j%2)*8}%;width:${12+(j%2)*4}%;height:${18+(j%3)*7}%`)}
+  if(['power','factory','pipes'].includes(kind)){for(let j=0;j<5;j++)add('lamp',`left:${8+j*21}%;top:${8+(j%2)*7}%;width:7%`)}
+  if(['subway','run'].includes(kind)){for(let j=0;j<2;j++)add('rail',`left:0;bottom:${18+j*8}%;width:100%`);if(kind==='subway')add('car','left:22%;bottom:23%;width:56%;height:33%')}
+  if(['suburb','motion','forest','garden'].includes(kind)){for(let j=0;j<4;j++)add('fence',`left:${j*27-3}%;bottom:${18+(j%2)*4}%;width:30%`)}
+  if(['cave','sea'].includes(kind)){for(let j=0;j<8;j++)add('stalactite',`left:${j*13}%;top:0;width:${8+(j%3)*4}%;height:${18+(j%4)*8}%`)}
+  if(['arcade','fun','snack'].includes(kind)){for(let j=0;j<5;j++)add('machine',`left:${5+j*19}%;bottom:18%;width:13%;height:${32+(j%2)*8}%`)}
+  if(['mall','hospital','subway','hub'].includes(kind)){for(let j=0;j<3;j++)add('bench',`left:${12+j*32}%;bottom:${19+(j%2)*4}%;width:20%`)}
+  if(['hospital','office','kitty'].includes(kind)){for(let j=0;j<5;j++)add('locker',`left:${j*19+3}%;top:38%;width:15%;height:30%`)}
+  if(['hotel','attic'].includes(kind)){for(let j=0;j<3;j++)add('curtain',`left:${12+j*34}%;top:22%;width:18%;height:42%`)}
+  if(['motion','wheat','garden'].includes(kind)){for(let j=0;j<5;j++)add('grass',`left:${j*21-5}%;bottom:14%;width:26%;height:25%`)}
+  if(['sea','darkpool'].includes(kind)){for(let j=0;j<3;j++)add('waterfall',`left:${15+j*34}%;height:70%`)}
+  if(['run','snack','arcade','motion','courtyard','hub','infinite','remodel','darkpool','kitty'].includes(kind)){const labels={run:'RUN',snack:'EAT',arcade:'PLAY',motion:'94',courtyard:'188',hub:'HUB',infinite:'VOID',remodel:'EXIT',darkpool:'POOL',kitty:'MEOW'};props+=`<i class="prop sign" style="left:39%;top:13%;width:22%;height:42px">${labels[kind]}</i>`}
+  if(kind==='infinite'){for(let j=0;j<9;j++)add('column',`left:${j*12}%;top:${8+(j%2)*8}%;width:5%;height:80%`)}
+  if(kind==='courtyard'){for(let j=0;j<6;j++)add('column',`left:${j*18}%;top:15%;width:7%;height:70%`)}
+  if(kind==='darkpool'){props+='<i class="water"></i>';}
+  const mark=BR_LANDMARKS[i]||BR_LANDMARKS[0];
+  props+=`<div class="landmark" style="--mark-glow:${mark[2]}"><b>${mark[0]}</b><span>${mark[1]}</span></div>`;
+  return `<div class="brscene" id="brscene" data-kind="${kind}" aria-hidden="true"><div class="brsky"></div><div class="brback"></div><div class="brside left"></div><div class="brside right"></div><div class="brfloor"></div><div class="brprops">${props}</div></div>`;
+}
+function showBrLevel(){
+  const [id,name,desc,bg,card,ink,mut,background]=BR_LEVELS[brLevel];
+  const [artifactIcon,artifactName,artifactLore]=BR_ARTIFACTS[brLevel];
+  const body=document.body;
+  body.dataset.brlevel=String(brLevel);
+  body.style.setProperty('--bg',bg);body.style.setProperty('--card',card);body.style.setProperty('--ink',ink);body.style.setProperty('--mut',mut);body.style.backgroundImage=background;
+  let scene=$('#brscene');if(scene)scene.remove();body.insertAdjacentHTML('afterbegin',brSceneMarkup(brLevel));
+  let hud=$('#brhud');if(!hud){hud=document.createElement('div');hud.id='brhud';hud.className='brhud';body.appendChild(hud)}
+  hud.innerHTML=`${id} <small>${name} · ${brLevel+1}/${BR_LEVELS.length}</small><span class="brartifact">${artifactIcon} ${artifactName}</span><small class="brlore">${artifactLore}</small><button type="button" class="brartifactbtn" id="brfind" ${brArtifactFound?'disabled':''}>${brArtifactFound?'✓ АРТЕФАКТ НАЙДЕН':'✦ НАЙТИ АРТЕФАКТ'}</button>${brArtifactFound?'<button type="button" class="brtravelbtn" id="brtravel">↗ ВЫБРАТЬ УРОВЕНЬ</button>':''}`;
+  const flash=document.createElement('div');flash.className='brflash';body.appendChild(flash);setTimeout(()=>flash.remove(),700);
+  toast(`${desc} Знаковая вещь уровня: ${artifactIcon} ${artifactName}. ${artifactLore}`);
+}
+function openBrTravel(){
+  if(!brArtifactFound)return;
+  let modal=$('#brmodal');if(modal)modal.remove();
+  modal=document.createElement('div');modal.id='brmodal';modal.className='brmodal';
+  modal.innerHTML=`<div class="brmodalbox" role="dialog" aria-modal="true" aria-labelledby="brmodaltitle"><h2 id="brmodaltitle">АРТЕФАКТ ОТКРЫЛ ПУТИ</h2><p>Теперь можно перемещаться между всеми найденными уровнями. Выбери точку назначения.</p><select id="brlevelpick">${BR_LEVELS.map((l,i)=>`<option value="${i}" ${i===brLevel?'selected':''}>${l[0]} — ${l[1]}</option>`).join('')}</select><div class="brmodalactions"><button type="button" id="brgotolevel">ПЕРЕЙТИ</button><button type="button" id="brclosemodal">ЗАКРЫТЬ</button></div></div>`;
+  document.body.appendChild(modal);
+  $('#brclosemodal').onclick=()=>modal.remove();
+  $('#brgotolevel').onclick=()=>{brLevel=Number($('#brlevelpick').value)||0;modal.remove();showBrLevel();play('creak','sawtooth')};
+  modal.addEventListener('click',e=>{if(e.target===modal)modal.remove()});
+}
+document.addEventListener('click',e=>{
+  if(e.target.closest('#brfind')){brArtifactFound=true;localStorage.setItem('brArtifactFound','1');play('win');showBrLevel();toast('Артефакт найден! Теперь доступен переход на любой уровень.');}
+  if(e.target.closest('#brtravel'))openBrTravel();
+});
+function advanceBrLevel(){
+  brLevel=(brLevel+1)%BR_LEVELS.length;
+  showBrLevel();play('creak','sawtooth');
+}
+function tab(t){
+  const previous=document.querySelector('.tab[aria-pressed="true"]')?.dataset.t;
+  $('#g').hidden=t!=='g';$('#tips').hidden=t!=='t';
+  document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t===t));
+  if(document.body.classList.contains('br')&&previous&&previous!==t)advanceBrLevel();
+  scrollTo(0,0);
+}
+$('#tabs').onclick=e=>{const b=e.target.closest('.tab');if(b){play('tick');tab(b.dataset.t)}};
+$('#snd').onclick=e=>{on=!on;e.currentTarget.setAttribute('aria-pressed',on);e.currentTarget.textContent=on?'Звук: вкл':'Звук: выкл';play('coin')};
+$('#chips').addEventListener('click',e=>{if(e.target.closest('.chip'))play('tick')});
+$('#rnd').addEventListener('click',()=>play('up'));
+$('#list').addEventListener('click',e=>{if(e.target.closest('.site'))play('coin')});
+const dg=D[Math.floor(Date.now()/864e5)%D.length];
+$('#dd').innerHTML='Игра дня: <a href="'+dg.u+'" target="_blank" rel="noopener noreferrer">'+dg.n+'</a>. Завтра будет другая.';
+const M=[['mind','🧠 Подумать','#7FB2FF'],['odd','🤪 Удивиться','#FFB35C'],['multi','👥 С друзьями','#7CE3A1'],['retro','🕹️ Ностальгия','#FFE066'],['all','🎲 Мне всё равно','#FF9EC0']];
+$('#moods').innerHTML=M.map(m=>'<button class="mood" data-m="'+m[0]+'" style="background:'+m[2]+'">'+m[1]+'</button>').join('');
+$('#moods').onclick=e=>{
+  const b=e.target.closest('.mood');if(!b)return;
+  const l=b.dataset.m==='all'?D:D.filter(s=>s.t.includes(b.dataset.m)),s=l[Math.random()*l.length|0];
+  play('coin');
+  $('#rec').innerHTML='Попробуй: <a href="'+s.u+'" target="_blank" rel="noopener noreferrer">'+s.n+'</a>. '+s.d;
+};
+$('#dn').onclick=()=>{if(Math.random()<.1){kira();return}
+  const w=$('.w');w.classList.add('shake');setTimeout(()=>w.classList.remove('shake'),450);
+  play('down','sawtooth');toast(pick(DN_T)+' Громко? Кнопка «♪» вверху выключит.');prank();
+  setTimeout(()=>tab('g'),1600);
+};
+let lc=0,lt;
+$('#logo').onclick=()=>{
+  clearTimeout(lt);lt=setTimeout(()=>lc=0,1200);
+  if(false){lc=0;const d=document.body.classList.toggle('disco');play(d?'up':'down');toast(d?'Дискотека! Ещё пять нажатий на лого выключат её.':'Дискотека закончилась.')}
+};
+$('#au').onclick=()=>party('Привет от автора 213rty785!');
+const K=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];let ki=0;
+addEventListener('keydown',e=>{
+  const k=e.key.length>1?e.key:e.key.toLowerCase();
+  ki=k===K[ki]?ki+1:(k===K[0]?1:0);
+  if(ki===K.length){ki=0;party('Читы включены: +30 жизней')}
+});
+function rain(em,t,snd){
+  play(snd||'win');toast(t);
+  for(let i=0;i<30;i++){
+    const s=document.createElement('span');
+    s.className='fall';s.textContent=em[i%em.length];
+    s.style.cssText='left:'+Math.random()*100+'vw;animation-duration:'+(1.8+Math.random()*1.8)+'s;animation-delay:'+Math.random()*.8+'s';
+    document.body.appendChild(s);setTimeout(()=>s.remove(),4200);
+  }
+}
+SND.creak=[110,98,87,78];
+let dc=0;
+const PS=['Ну чё ты сюда вошёл? Иди в Роблокс, я там не знаю, в брейнротов поиграй там, балбес. Иди вон, вонючка.','Опять ты? Я же сказал: иди вон.','Ладно, ладно. Заходи. Но играть всё равно придётся.'];
+function openDoor(){
+  $('#door').classList.add('open');play('creak','sawtooth');
+  $('#pst').textContent=dc===0?PS[0]:dc===1?pick(PS2):pick(PS3);dc++;
+  setTimeout(()=>{$('#psbox').hidden=false},450);
+}
+function shut(){
+  $('#psbox').hidden=true;$('#door').classList.remove('open');play('down');
+  if(dc>=3){dc=0;tab('g')}
+}
+$('#door').onclick=openDoor;
+$('#psx').onclick=shut;
+$('#psbox').onclick=e=>{if(e.target.id==='psbox')shut()};
+const BR=()=>rain(['🧠','💀','🗿'],'Мозг вытек, но сайт ещё работает','down'),PZ=()=>rain(['🍕'],'Пицца уже в пути','coin'),CL=()=>{play('coin');toast('Привет! Это я, Claude. Рад, что ты меня нашёл.')};
+const W={roblox:openDoor,роблокс:openDoor,brainrot:BR,брейнрот:BR,pizza:PZ,пицца:PZ,claude:CL,клод:CL};
+let B='';
+addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&!$('#psbox').hidden)shut();
+  if(e.key.length===1){B=(B+e.key.toLowerCase()).slice(-12);for(const w in W)if(B.endsWith(w)){B='';W[w]();break}}
+});
+$('#cl').onclick=CL;
+let tc=0,tt;
+document.querySelectorAll('h1').forEach(h=>h.onclick=()=>{
+  clearTimeout(tt);tt=setTimeout(()=>tc=0,1500);
+  if(++tc===7){tc=0;const w=$('.w');w.classList.add('flip');play('down');toast('Упс, всё перевернулось');setTimeout(()=>w.classList.remove('flip'),2500)}
+});
+let rc=0,ac=0;
+$('#rnd').addEventListener('click',()=>{if(++rc===10)rain(['🎲','🎮','⭐'],'Десять кликов! Теперь иди играй')});
+$('#moods').addEventListener('click',e=>{const b=e.target.closest('.mood');if(b&&b.dataset.m==='all'&&++ac===5){toast('Ну определись уже!');play('down','sawtooth')}});
+if(new Date().getHours()<5)$('#dd').insertAdjacentText('beforeend',' Уже поздно, может, пора спать?');
+SND.spooky=[262,247,233,220,196,185];
+SND.bat=[1760,2093,1760];
+function halloween(){
+  const h=document.body.classList.toggle('hw'),old=$('#hwx');
+  if(old)old.remove();
+  if(!h){play('down');toast(pick(HW_OFF));return}
+  play('spooky','triangle');setTimeout(()=>play('bat','sine'),500);
+  toast(pick(HW_ON)+' Выключить: ещё 5 нажатий на «Хоррор».');
+  const r=(a,b)=>a+Math.random()*(b-a);
+  let x='';
+  for(let i=0;i<7;i++)x+='<div class="sk" style="top:'+r(8,86)+'vh;animation-duration:'+r(6,14)+'s;animation-delay:-'+r(0,12)+'s;'+(i%2?'animation-direction:reverse':'')+'"><span>'+(i%3?'💀':'☠️')+'</span></div>';
+  for(let i=0;i<7;i++)x+='<div class="bt" style="top:'+r(2,70)+'vh;animation-duration:'+r(7,15)+'s;animation-delay:-'+r(0,12)+'s"><span>🦇</span></div>';
+  for(let i=0;i<9;i++)x+='<div class="pm" style="left:'+(i*11+r(-2,3))+'vw;font-size:'+r(34,64)+'px">🎃</div>';
+  const d=document.createElement('div');d.className='hwx';d.id='hwx';d.innerHTML=x;document.body.appendChild(d);
+}
+function scream(){
+  const s=document.createElement('div');s.className='scr';s.innerHTML='<span>'+pick(FACES)+'</span><b class="cap">'+pick(CAPS)+'</b>';
+  document.body.appendChild(s);
+  if(on){try{
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended')AC.resume();
+    const t=AC.currentTime,o=AC.createOscillator(),g=AC.createGain();
+    o.type='sawtooth';o.frequency.setValueAtTime(700,t);o.frequency.exponentialRampToValueAtTime(2200,t+.5);
+    g.gain.setValueAtTime(.18,t);g.gain.exponentialRampToValueAtTime(.0001,t+.9);
+    o.connect(g);g.connect(AC.destination);o.start(t);o.stop(t+.9);
+    const b=AC.createBuffer(1,AC.sampleRate*.9,AC.sampleRate),d=b.getChannelData(0);
+    for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);
+    const n=AC.createBufferSource(),ng=AC.createGain();n.buffer=b;ng.gain.value=.15;n.connect(ng);ng.connect(AC.destination);n.start(t);
+  }catch(e){}}
+  const end=()=>{if(s.isConnected){s.remove();toast(pick(SC_AFTER))}};
+  setTimeout(end,2500);
+}
+let hc=0,ht,sl=false;
+$('#chips').addEventListener('click',e=>{
+  const c=e.target.closest('.chip');
+  if(!c||c.dataset.f!=='horror'||sl)return;
+  clearTimeout(ht);ht=setTimeout(()=>hc=0,2000);
+  if(++hc===5)halloween();
+  else if(hc===10){hc=0;sl=true;setTimeout(()=>sl=false,6000);scream()}
+});
+SND.chime=[1319,1568,2093,2637];
+function winter(on){
+  document.body.classList.toggle('wt',on);
+  let s=$('#snow');
+  if(!on){if(s)s.remove();const w=$('#wscene');if(w)w.remove();return}
+  if(s)return;
+  s=document.createElement('div');s.id='snow';s.className='snow';
+  let x='';
+  for(let i=0;i<46;i++)x+='<span style="left:'+Math.random()*100+'vw;font-size:'+(12+Math.random()*18)+'px;opacity:'+(.5+Math.random()*.5)+';animation-duration:'+(7+Math.random()*9)+'s;animation-delay:-'+Math.random()*14+'s">'+'❄❅❆'[i%3]+'</span>';
+  s.innerHTML=x;document.body.appendChild(s);
+  drifts();play('chime','sine');toast(pick(WIN));
+}
+$('#chips').addEventListener('click',e=>{if(e.target.closest('.chip'))winter(f==='winter')});
+function drifts(){
+  const r=(a,b)=>a+Math.random()*(b-a);
+  let x='';
+  const m=(c,n,h0,h1)=>{for(let i=0;i<n;i++)x+=`<i class='dr' style='left:${i*100/n-12+r(-4,4)}vw;width:${r(34,52)}vw;height:${r(h0,h1)}px;background:${c}'></i>`};
+  m('#E4EEFF',4,64,96);
+  for(let i=0;i<6;i++){const h=r(70,130);x+=`<svg class='fir' viewBox='0 0 60 100' style='left:${i*17+r(0,6)}vw;height:${h}px;width:${h*.6}px'><g stroke='#14123A' stroke-width='2.5' stroke-linejoin='round'><rect x='25' y='92' width='10' height='8' fill='#6B4423'/><polygon points='30,44 60,94 0,94' fill='#1F6A41'/><polygon points='30,20 55,62 5,62' fill='#27794D'/><polygon points='30,2 50,36 10,36' fill='#2E8B57'/></g></svg>`}
+  m('#D2E4FF',5,36,62);
+  const d=document.createElement('div');d.id='wscene';d.className='ws';d.innerHTML=x;document.body.appendChild(d);
+}
+const pick=a=>a[Math.random()*a.length|0];
+const HW_ON=[
+'Хеллоуин настал раньше времени. Скелеты уже вышли на пробежку.',
+'Тыквы расставлены, летучие мыши выпущены. Дальше сам.',
+'Кто-то нажал «Хоррор» пять раз и разбудил весь кладбищенский район.',
+'Скелеты сбежали из шкафа. Я, Claude, их не выпускал, честно.',
+'Добро пожаловать в хеллоуинский режим. Конфет не раздаём, зато тыквы стоят красиво.',
+'Тыквы заняли оборону. Конфеты только по паролю.',
+'Летучие мыши вылетели из кэша.',
+'На сайте обнаружена праздничная нечисть. Это не баг, это фича.',
+'Свет приглушён, скелеты в строю. Играть стало на 40% страшнее.',
+'Хеллоуин в ноябре? Мы не опаздываем, мы держим интригу.',
+'Скелеты бегают, мыши летают, тыквы стоят. Идеальный распорядок дня.',
+'Пять нажатий, и в доме завелась нечисть. Прописка оформлена.'
+];
+const HW_OFF=[
+'Хеллоуин закончился. Скелеты ушли в шкаф до следующего раза.',
+'Тыквы убраны, мыши улетели. Свет включён.',
+'Нечисть отправлена в отпуск. Вернётся по пяти нажатиям.',
+'Праздник окончен. Конфеты кончились ещё раньше.',
+'Скелеты сделали вид, что их тут не было.',
+'Всё, вернул обычный сайт. Страшно было весёло.'
+];
+const WIN=[
+'Зима пришла! Шапку не забудь, снег на экране не растает.',
+'Сайт побелел от холода. Это не баг, это сугробы.',
+'Снег пошёл. Я, Claude, проверил: лопату брать не нужно.',
+'На сайте ниже нуля, а игры горячие.',
+'Новый год не за горами. Ёлки уже вышли, украшать будешь сам.',
+'Включён режим «Зима»: сугробы по колено, ёлки без гирлянд, настроение отличное.',
+'Пушистый снег, голые ёлки и ни одного будильника.',
+'Снежинки падают строго по расписанию. Опоздавшие тают.',
+'Ёлки стоят без игрушек: коробки с украшениями ещё на антресолях.',
+'Мороз и солнце, день чудесный. Ну ладно, просто мороз и сайт.',
+'Тут холодно, зато играть тепло.',
+'Первый снег на экране, сугробы внизу. Осталось выбрать игру.'
+];
+const PS2=[
+'Опять ты? Я же сказал: иди вон.',
+'Дверь — это не игра. Хотя… ладно, не уходи.',
+'Ты что, тут живёшь? Иди играй, балбес.',
+'Стучать не надо. Тут никого нет. И брейнротов тоже нет.',
+'Если ты за секретом, его нет. Если за Роблоксом, это не сюда.',
+'Ещё раз зайдёшь, и я скажу, что ты вонючка. Ой, уже сказал.',
+'Ты тут уже был. Ничего не изменилось. Я проверял.',
+'Иди в Роблокс. Там тебя ждёт толпа брейнротов и твоя судьба.',
+'Скрип-скрип. Это дверь вздыхает от твоей настойчивости.',
+'У тебя на экране сотня игр, а ты в дверь ломишься. Тормоз.'
+];
+const PS3=[
+'Ладно, ладно. Заходи. Но играть всё равно придётся.',
+'Ты победил. Дверь сдаётся. Теперь иди выбирай игру.',
+'Хорошо, я устал спорить. Выбери уже игру, пожалуйста.',
+'Три раза подряд — это уже традиция. Традиция говорит: иди играть.',
+'Окей, ты упрямый. Это даже уважаю. Выбирай игру.',
+'Дверь капитулирует. Ну что, во что играем?'
+];
+const SC_AFTER=[
+'Хе-хе. Ты сам нажал 10 раз.',
+'Сердце на месте? Проверь, не убежало ли.',
+'Это был я. Извиняться не буду.',
+'Ты думал, десять нажатий — это просто так?',
+'Дыши. Всё закончилось. Пока что.',
+'Рекорд по прыжку на стуле зафиксирован.',
+'Надеюсь, ты не пил чай в этот момент.',
+'Не бойся, это всего лишь пиксели. Злые пиксели.',
+'Пятью нажатиями ты вызвал скелетов, десятью — меня.',
+'Скример выдан. Расписку не нужно.'
+];
+const FACES=['👹','💀','🤡','👻','😈','🧟','👺'];
+const CAPS=['БУ!','Я ЗДЕСЬ','ОБЕРНИСЬ','ПОПАЛСЯ','СЮРПРИЗ!','НЕ МОРГАЙ','ТЫ САМ НАЖАЛ','ХА-ХА-ХА','ПРИВЕТ','ДАВАЙ ЕЩЁ РАЗ'];
+SND.glitch=[1760,110,1568,98,2093,82];
+const D9T=[
+'Реальность дала трещину. Заходи, если не боишься.',
+'Ты нашёл то, что искали не все. Дальше жёлтые коридоры.',
+'Сигнал потерян. Новый сигнал: Dimension 9.',
+'Ты провалился сквозь стену. Удачи найти выход.',
+'Жёлтые обои, гудящий свет. Добро пожаловать в Backrooms.',
+'Баг в матрице? Нет, это приглашение.',
+'Секретная дверь без ручки. Но ты как-то её открыл.',
+'20 июля 1969 года, 20:17 по UTC. Что-то пошло не так.',
+'Тебя здесь не ждали. Но свет уже включили.',
+'Играй с друзьями: в одиночку там слишком тихо.'
+];
+$('#d9g').addEventListener('click',()=>{play('glitch','square');toast(pick(D9T))});
+$('#chips').addEventListener('click',e=>{if(e.target.closest('.chip'))$('#d9').hidden=f!=='horror'});
+$('#chips').addEventListener('click',e=>{if(e.target.closest('.chip')&&f==='horror'){const g=$('#d9g');g.style.left=(6+Math.random()*82)+'%';g.style.bottom=(6+Math.random()*64)+'px'}});
+const MV=.55,mu={mood:'n',step:0,next:0,id:0,on:true,ready:false,g:null,nb:null,mi:3};
+const fq=n=>440*Math.pow(2,(n-69)/12);
+function mn(n,t,d,type,v,a){
+  const o=AC.createOscillator(),g=AC.createGain();
+  o.type=type;o.frequency.value=fq(n);
+  g.gain.setValueAtTime(.0001,t);
+  g.gain.exponentialRampToValueAtTime(v,t+(a||.01));
+  g.gain.exponentialRampToValueAtTime(.0001,t+d);
+  o.connect(g);g.connect(mu.g);o.start(t);o.stop(t+d+.05);
+}
+function mk(t,v){const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(130,t);o.frequency.exponentialRampToValueAtTime(45,t+.12);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+.18);o.connect(g);g.connect(mu.g);o.start(t);o.stop(t+.2)}
+function mz(t,d,v,hp){const s=AC.createBufferSource(),g=AC.createGain(),f=AC.createBiquadFilter();s.buffer=mu.nb;f.type='highpass';f.frequency.value=hp;g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(f);f.connect(g);g.connect(mu.g);s.start(t);s.stop(t+d+.02)}
+function chirp(t){const o=AC.createOscillator(),g=AC.createGain();o.type='sine';o.frequency.setValueAtTime(3400,t);o.frequency.exponentialRampToValueAtTime(2100,t+.09);g.gain.setValueAtTime(.02,t);g.gain.exponentialRampToValueAtTime(.0001,t+.1);o.connect(g);g.connect(mu.g);o.start(t);o.stop(t+.12)}
+const CN=[[48,60,64,67],[45,57,60,64],[41,57,60,65],[43,55,59,62]],P1=[72,74,76,79,81,84,86];
+const CH=[[45,57,60,64],[41,57,60,65],[40,56,59,64],[45,57,60,64]],SH=[69,71,72,75,76,77,80,81];
+const CW=[[43,67,71,74],[40,64,67,71],[48,64,67,72],[50,62,66,69]],PW=[79,81,83,86,88,91];
+const rw=(a,k)=>{mu.mi=Math.max(0,Math.min(a.length-1,mu.mi+(Math.random()*(2*k+1)|0)-k));return a[mu.mi]};
+const MOODS={
+  n:{d:.15,s:(s,t)=>{
+    const c=CN[(s>>4)&3],k=s&15;
+    if(k===0)mn(c[0],t,.7,'triangle',.1);
+    if(k===8)mn(c[0]+7,t,.35,'triangle',.07);
+    if(k%2===0)mn(c[[1,2,3,2][(k>>1)&3]]+12,t,.2,'square',.016);
+    if([0,3,6,8,11,14].includes(k)&&Math.random()<.6)mn(rw(P1,2),t,.32,'triangle',.05);
+    if(k===0||k===8)mk(t,.1);
+    if(k===4||k===12)mz(t,.09,.04,1800);
+    if(k%2)mz(t,.03,.015,6500);
+  }},
+  hw:{d:.2,s:(s,t)=>{
+    const c=CH[(s>>4)&3],k=s&15;
+    if(k===0){[c[1],c[2],c[3]].forEach(n=>mn(n,t,3.2,'triangle',.022,.7));mn(c[0],t,3.2,'sine',.07,.5)}
+    if(k===0||k===3)mk(t,k?.09:.14);
+    if([2,6,10,13].includes(k)&&Math.random()<.5){const n=rw(SH,2);mn(n,t,1,'sine',.045,.02);mn(n+12,t,.4,'sine',.012,.02)}
+    if(Math.random()<.04)chirp(t);
+  }},
+  wt:{d:.16,s:(s,t)=>{
+    const c=CW[(s>>4)&3],k=s&15;
+    if(k===0){mn(c[0],t,2.6,'triangle',.05,.3);[c[1],c[2],c[3]].forEach(n=>mn(n,t,2.6,'sine',.02,.8))}
+    if(k%2===0){const n=c[[1,2,3,2,3,2,1,2][k>>1]]+12;mn(n,t,.5,'sine',.045);mn(n+12,t,.2,'sine',.012)}
+    if([0,4,8,10,14].includes(k)&&Math.random()<.5)mn(rw(PW,1),t,.8,'sine',.03);
+    if(k%4===0){mz(t,.07,.025,7000);mz(t+.045,.05,.015,8000)}
+  }}
+};
+function mtick(){
+  if(!mu.ready)return;
+  const q=MOODS[mu.mood];
+  if(mu.next<AC.currentTime-.1)mu.next=AC.currentTime+.05;
+  while(mu.next<AC.currentTime+.2){q.s(mu.step,mu.next);mu.next+=q.d;mu.step++}
+}
+function mfade(v,tc){if(mu.g)mu.g.gain.setTargetAtTime(v,AC.currentTime,tc)}
+function msync(){
+  if(!mu.ready)return;
+  if(mu.on&&on){if(!mu.id){mu.next=AC.currentTime+.1;mu.id=setInterval(mtick,25)}mfade(MV,.3)}
+  else{mfade(0,.1);clearInterval(mu.id);mu.id=0}
+}
+function mboot(){
+  if(mu.ready)return;
+  try{
+    AC=AC||new(window.AudioContext||window.webkitAudioContext)();
+    if(AC.state==='suspended')AC.resume();
+    mu.g=AC.createGain();mu.g.gain.value=0;mu.g.connect(AC.destination);
+    const d=AC.createDelay(1),fb=AC.createGain(),wet=AC.createGain();
+    d.delayTime.value=.32;fb.gain.value=.35;wet.gain.value=.3;
+    mu.g.connect(d);d.connect(fb);fb.connect(d);d.connect(wet);wet.connect(AC.destination);
+    const b=AC.createBuffer(1,AC.sampleRate,AC.sampleRate),a=b.getChannelData(0);
+    for(let i=0;i<a.length;i++)a[i]=Math.random()*2-1;
+    mu.nb=b;mu.ready=true;msync();
+  }catch(e){}
+}
+function mmood(m){
+  if(mu.mood===m)return;
+  if(mu.ready&&mu.id){mfade(0,.12);setTimeout(()=>{mu.mood=m;mu.step=0;msync()},400)}
+  else mu.mood=m;
+}
+let pri='';
+new MutationObserver(l=>{
+  const c=document.body.classList,o=(l[l.length-1].oldValue||'').split(' ');
+  if(c.contains('hw')&&!o.includes('hw'))pri='hw';
+  if(c.contains('wt')&&!o.includes('wt'))pri='wt';
+  ['ds','br'].forEach(k=>{if(c.contains(k)&&!o.includes(k))pri=k});
+  const act=['ds','br','hw','wt'].filter(k=>c.contains(k));
+  mmood(act.length?(act.includes(pri)?pri:act[0]):'n');
+}).observe(document.body,{attributes:true,attributeFilter:['class'],attributeOldValue:true});
+['pointerdown','keydown'].forEach(ev=>addEventListener(ev,mboot,{once:true,capture:true}));
+addEventListener('pointerdown',()=>{if(AC&&AC.state==='suspended')AC.resume()},true);
+document.addEventListener('visibilitychange',()=>{if(AC){document.hidden?AC.suspend():AC.resume()}});
+$('#mus').onclick=e=>{mu.on=!mu.on;e.currentTarget.setAttribute('aria-pressed',mu.on);e.currentTarget.textContent=mu.on?'♪ вкл':'♪ выкл';mboot();msync()};
+$('#snd').addEventListener('click',()=>msync());
+const DS_ON=[
+'ДИСКОТЕКА! Диско-шар включён, ритм на максимуме.',
+'Десять нажатий на лого: рейв-режим разблокирован.',
+'Свет, музыка, радуга. Танцуй, пока кэш не остыл.',
+'Я, Claude, ставлю на то, что ты не удержишься от пары па.',
+'Зеркальный шар спущен с потолка. Пол — это лава, танцуй на месте.',
+'Сайт ушёл в отрыв. Радуга включена до следующих десяти нажатий.',
+'Зеркальный шар, бас и немного безумия. Классика жанра.',
+'Тут стало слишком красиво. Включаю бит.',
+'Лого нажато десять раз, и танцпол открыт.',
+'Игры подождут. Сначала потанцуем.'
+],DS_OFF=[
+'Дискотека окончена. Шар уехал под потолок.',
+'Свет включили, все делают вид, что не танцевали.',
+'Музыка стихла. Радуга ушла в отпуск.',
+'Всё, вернули обычный сайт. Танцы были огонь.',
+'Диджей ушёл за кулисы.'
+],BR_ON=[
+'Ты не должен был подходить к нему. Обои уже заметили.',
+'Жёлтые стены, гудящий свет, и никого рядом. Почти никого.',
+'Исследователь шагнул в стену. Ты — следом. Удачи.',
+'Нулевой уровень. Здесь всегда пахнет сырым ковром.',
+'Если слышишь гул, это нормально. Если слышишь шаги, оглянись. Шутка. Наверное.',
+'Всё чуть-чуть неправильное. Тебе не кажется.',
+'Добро пожаловать в Backrooms. Выход мы сейчас поищем.',
+'Лампы мерцают, обои липнут, а музыка играет сама по себе.',
+'Он не двигался. Но ты точно видел, что он стоял иначе.',
+'Не смотри слишком долго на обои. Они смотрят в ответ.'
+],BR_OFF=[
+'Ты выбрался. Обои остались позади, но запах ковра ещё с тобой.',
+'Выход найден. Больше так не рискуй. Хотя…',
+'Свет перестал гудеть. Стало даже слишком тихо.',
+'Исследователь остался внизу. Он, кажется, не против.',
+'Реальность вернулась на место. Почти вся.',
+'Нулевой уровень закрыт. До следующего раза.'
+];
+const CD=[[45,57,60,64],[38,62,65,69],[43,59,62,67],[48,60,64,67]],RF=[76,0,79,76,0,0,74,0,72,0,74,76,0,0,72,0],SB=[69,72,74,76,79,81];
+MOODS.ds={d:.125,s:(s,t)=>{
+  const c=CD[(s>>4)&3],k=s&15;
+  if(k%4===0)mk(t,.15);
+  if(k%4===2)mz(t,.09,.03,7000);
+  if(k%2)mz(t,.02,.012,9000);
+  if(k===4||k===12){mz(t,.1,.06,1500);mz(t+.012,.08,.04,2500)}
+  if(k%2===0)mn(c[0]+(k%4===2?12:0),t,.13,'sawtooth',.03);
+  if([3,6,11,14].includes(k))[c[1],c[2],c[3]].forEach(n=>mn(n,t,.09,'square',.011));
+  if(k===0)[c[1],c[2],c[3]].forEach(n=>mn(n,t,.9,'triangle',.014,.05));
+  if(RF[k])mn(RF[k],t,.11,'square',.02);
+}};
+MOODS.br={d:.25,s:(s,t)=>{
+  const k=s&15,b=(s>>4)&3;
+  if(k===0){mn(35,t,4.3,'sawtooth',.02,.8);mn(47.2,t,4.3,'sawtooth',.008,1);mn(35.15,t,4.3,'sine',.03,.8);if(b===0){mn(57,t,8.5,'triangle',.012,2.5);mn(58,t,8.5,'triangle',.01,3)}}
+  if([0,4,8,12].includes(k)&&Math.random()<.4){const n=rw(SB,2)+(Math.random()<.15?1:0);mn(n,t,1.6,'sine',.03,.01);mn(n+.22,t,1.6,'sine',.025,.01)}
+  if(Math.random()<.05){mn(47,t,.06,'square',.012);mn(59,t,.06,'square',.008)}
+}};
+function disco(){
+  const d=document.body.classList.toggle('ds');
+  ['dsx','dsl'].forEach(i=>{const e=$('#'+i);if(e)e.remove()});
+  if(!d){play('down');toast(pick(DS_OFF));return}
+  const r=Math.random;
+  let h=`<div class='ball'><i></i></div>`;
+  for(let i=0;i<16;i++)h+=`<b class='sp' style='left:${r()*100}vw;top:${r()*100}vh;width:${12+r()*26}px;height:${12+r()*26}px;animation-duration:${3+r()*4}s;animation-delay:-${r()*6}s'></b>`;
+  const x=document.createElement('div');x.id='dsx';x.className='dsx';x.innerHTML=h;
+  const l=document.createElement('div');l.id='dsl';l.className='dsl';
+  document.body.append(l,x);
+  play('win');toast(pick(DS_ON)+' Выключить: ещё 10 нажатий на лого.');
+}
+function backrooms(){
+  const b=document.body.classList.toggle('br'),x=$('#brx'),hud=$('#brhud');
+  if(x)x.remove();
+  if(!b){
+    document.body.removeAttribute('data-brlevel');['--bg','--card','--ink','--mut'].forEach(v=>document.body.style.removeProperty(v));document.body.style.removeProperty('background-image');if(hud)hud.remove();const scene=$('#brscene');if(scene)scene.remove();const modal=$('#brmodal');if(modal)modal.remove();
+    play('down','sawtooth');toast(pick(BR_OFF));return;
+  }
+  brLevel=0;showBrLevel();play('creak','sawtooth');toast(pick(BR_ON));
+  const e=document.createElement('button');e.id='brx';e.className='brx';e.textContent='ВЫЙТИ ИЗ BACKROOMS';e.onclick=backrooms;document.body.appendChild(e);
+}
+let dc2=0,dt2;
+$('#logo').addEventListener('click',()=>{clearTimeout(dt2);dt2=setTimeout(()=>dc2=0,1500);if(++dc2===10){dc2=0;disco()}});
+$('#exp').onclick=backrooms;
+const DN_T=[
+'Ну вот, ты нажал. Теперь страдай вместе с этим битом.',
+'Я предупреждал. Кнопка так и называется.',
+'Уши — вещь необязательная. Держись.',
+'Сейчас будет плохо. Зато честно.',
+'Это не песня, это эксперимент над твоим терпением.',
+'Ты нажал «Не нажимай». Логика проиграла.',
+'Включаю музыку, от которой даже колонки краснеют.',
+'Всё, поздно. Оно уже играет.'
+];
+MOODS.dn={d:.09,s:(s,t)=>{
+  const k=s&15,b=(s>>4)&1;
+  if(k%4===0)mk(t,.2);
+  if(k%2)mz(t,.03,.03,8000);
+  if(k===4||k===12){mz(t,.12,.08,1200);mz(t+.01,.1,.05,2500)}
+  if([0,6,10,14].includes(k))mn(b?38:35,t,.3,'sine',.14);
+  const n=[69,70,73,75,76,78][Math.random()*6|0]+(Math.random()<.2?12:0);
+  mn(n,t,.08,'sawtooth',.03);mn(n+12,t,.08,'square',.014);
+  if(k===0&&b===1)mn(96,t,.5,'square',.016);
+}};
+function mrec(){const c=document.body.classList,act=['ds','br','hw','wt'].filter(k=>c.contains(k));mmood(act.length?(act.includes(pri)?pri:act[0]):'n')}
+let pk=0;
+function prank(){mboot();mmood('dn');clearTimeout(pk);pk=setTimeout(mrec,15000)}
+const KQ_T=[
+'Меня зовут Ёшикагэ Кира. Мне тридцать три года. Я хочу жить тихо.',
+'Killer Queen уже коснулась дверной ручки.',
+'Ты увидел то, чего видеть не должен был.',
+'Не волнуйся. Ты ничего не почувствуешь.',
+'Моя третья бомба. Прости, но тебе придётся начать заново.'
+],BE_T=[
+'Подожди… я что, только что был в другом месте?',
+'Странно. Ощущение, что это уже случалось.',
+'Часы показывают то же время. Подозрительно.',
+'Хм. Кто-то явно прокрутил время назад.',
+'Ты уверен, что ничего не нажимал? Я не уверен.',
+'Кнопка «Не нажимай» смотрит на тебя слишком спокойно.'
+];
+const KQSVG=`<svg viewBox='0 0 120 140'><g stroke='#14123A' stroke-width='3' stroke-linejoin='round'><path d='M10 140 Q12 96 36 88 H84 Q108 96 110 140Z' fill='#FF8EC4'/><path d='M26 50 L22 14 L46 30 Q60 26 74 30 L98 14 L94 50 Q96 84 60 90 Q24 84 26 50Z' fill='#FFA3D1'/><ellipse cx='44' cy='58' rx='10' ry='12' fill='#fff'/><ellipse cx='76' cy='58' rx='10' ry='12' fill='#fff'/><circle cx='46' cy='60' r='5' fill='#14123A'/><circle cx='78' cy='60' r='5' fill='#14123A'/><path d='M52 76 Q60 82 68 76' fill='none'/></g><path d='M52 106 l8 -8 l8 8 l-8 14z' fill='#fff' stroke='#14123A' stroke-width='2'/></svg>`;
+MOODS.sus={d:.17,s:(s,t)=>{
+  const k=s&15,b=(s>>4)&1;
+  if([0,3,8,11].includes(k))mn(k<8?45:46,t,.14,'triangle',.08);
+  if(b===0){if(k===4)mn(69,t,.12,'square',.03);if(k===6)mn(70,t,.12,'square',.03);if(k===7)mn(69,t,.25,'square',.03)}
+  else{if(k===4)mn(66,t,.12,'square',.03);if(k===6)mn(67,t,.12,'square',.03);if(k>=9&&k<=11)mn([72,74,77][k-9],t,.1,'square',.035);if(k===12)mn(78,t,.9,'sine',.04)}
+}};
+function resetAll(){
+  const c=document.body.classList;
+  ['hw','br','ds'].forEach(k=>c.remove(k));
+  ['hwx','brx','dsx','dsl'].forEach(i=>{const e=$('#'+i);if(e)e.remove()});
+  winter(false);
+  const ps=$('#psbox');if(ps)ps.hidden=true;
+  $('#door').classList.remove('open');
+  f='all';render();$('#d9').hidden=true;tab('g');scrollTo(0,0);
+}
+function bang(){
+  if(!on||!AC)return;
+  try{
+    const t=AC.currentTime,b=AC.createBuffer(1,AC.sampleRate*.7,AC.sampleRate),d=b.getChannelData(0);
+    for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/d.length,2);
+    const n=AC.createBufferSource(),g=AC.createGain(),o=AC.createOscillator(),og=AC.createGain();
+    n.buffer=b;g.gain.value=.18;n.connect(g);g.connect(AC.destination);n.start(t);
+    o.frequency.setValueAtTime(120,t);o.frequency.exponentialRampToValueAtTime(30,t+.5);
+    og.gain.setValueAtTime(.25,t);og.gain.exponentialRampToValueAtTime(.001,t+.6);
+    o.connect(og);og.connect(AC.destination);o.start(t);o.stop(t+.7);
+  }catch(e){}
+}
+function kira(){
+  mboot();mfade(0,.3);
+  const r=$('#dn').getBoundingClientRect(),cx=r.left+r.width/2-innerWidth/2,cy=r.top+r.height/2-innerHeight/2;
+  let g='';
+  for(let i=0;i<9;i++)g+=`<b class='kqg' style='left:${Math.random()*92}%;top:${Math.random()*90}%;animation-delay:-${Math.random()}s'>ゴ</b>`;
+  const w=document.createElement('div');w.className='kqw';
+  w.innerHTML=`<div class='kqs' style='transform:translate(${cx}px,${cy}px) scale(.1)'>${KQ3}</div><div class='kqa'></div>${g}<div class='kqt' hidden></div>`;
+  document.body.appendChild(w);
+  const s=w.firstChild,tx=w.lastChild,th=()=>play('down','sawtooth');
+  const z=(sc,ms)=>{s.style.transition=`transform ${ms}ms ease-in`;s.style.transform=`translate(0px,0px) scale(${sc})`};
+  play('coin');
+  setTimeout(()=>z(1,600),60);
+  setTimeout(()=>{z(2.6,350);th()},1000);
+  setTimeout(()=>{z(5.5,350);th()},1700);
+  setTimeout(()=>{z(12,350);th()},2400);
+  setTimeout(()=>{z(30,600);th()},3100);
+  setTimeout(()=>{tx.hidden=false;tx.textContent=pick(KQ_T)},3900);
+  setTimeout(()=>{tx.textContent='Bites the Dust';tone(1500,0,.04,'square')},6300);
+  setTimeout(()=>{
+    const f2=document.createElement('div');f2.className='kqf';f2.innerHTML='<span>💥</span>';document.body.appendChild(f2);
+    f2.style.transition='opacity .1s';requestAnimationFrame(()=>{f2.style.opacity=1});
+    bang();
+    setTimeout(()=>{w.remove();resetAll();f2.style.transition='opacity 1.1s';f2.style.opacity=0},420);
+    setTimeout(()=>{f2.remove();toast(pick(BE_T));mmood('sus');clearTimeout(pk);pk=setTimeout(mrec,16000)},1700);
+  },6900);
+}
+const KQ2=`<svg viewBox='0 0 120 200'><g fill='none' stroke-linecap='round' stroke-linejoin='round'><path d='M74 126 Q114 138 106 102' stroke='#14123A' stroke-width='11'/><path d='M74 126 Q114 138 106 102' stroke='#FF8EC4' stroke-width='6'/><path d='M46 118 L40 150 L42 182' stroke='#14123A' stroke-width='17'/><path d='M46 118 L40 150 L42 182' stroke='#FF8EC4' stroke-width='12'/><path d='M74 118 L82 150 L78 182' stroke='#14123A' stroke-width='17'/><path d='M74 118 L82 150 L78 182' stroke='#FF8EC4' stroke-width='12'/></g><g stroke='#14123A' stroke-width='2.5' stroke-linejoin='round'><path d='M29 187 H55 L58 197 H26Z' fill='#E86AA8'/><path d='M65 187 H91 L94 197 H62Z' fill='#E86AA8'/><path d='M28 60 Q60 50 92 60 L86 98 L82 122 H38 L34 98Z' fill='#FF8EC4'/><path d='M40 112 H80 M60 64 V98' fill='none'/><rect x='52' y='46' width='16' height='12' fill='#FF8EC4'/></g><circle cx='60' cy='82' r='7' fill='#14123A'/><path d='M60 75 Q64 70 68 72' stroke='#14123A' stroke-width='2' fill='none'/><circle cx='69' cy='71' r='2.2' fill='#FFE066'/><g fill='none' stroke-linecap='round' stroke-linejoin='round'><path d='M30 66 L16 92 L20 118' stroke='#14123A' stroke-width='14'/><path d='M30 66 L16 92 L20 118' stroke='#FF8EC4' stroke-width='9.5'/><path d='M90 66 L108 54 L104 32' stroke='#14123A' stroke-width='14'/><path d='M90 66 L108 54 L104 32' stroke='#FF8EC4' stroke-width='9.5'/><path d='M104 30 L104 12' stroke='#14123A' stroke-width='7'/><path d='M104 30 L104 12' stroke='#FF8EC4' stroke-width='3.5'/><path d='M14 104 L26 107 M99 42 L111 44' stroke='#fff' stroke-width='3.5'/></g><circle cx='20' cy='124' r='8' fill='#FF8EC4' stroke='#14123A' stroke-width='2.5'/><circle cx='104' cy='36' r='7.5' fill='#FF8EC4' stroke='#14123A' stroke-width='2.5'/><g stroke='#14123A' stroke-width='2.5' stroke-linejoin='round'><path d='M38 32 L34 4 L52 14 Q60 12 68 14 L86 4 L82 32 Q82 54 60 56 Q38 54 38 32Z' fill='#FFA3D1'/><path d='M38 12 L45 16 L38 24Z M82 12 L75 16 L82 24Z' fill='#FFC9E4' stroke-width='1.5'/><ellipse cx='49' cy='33' rx='7' ry='8' fill='#fff'/><ellipse cx='71' cy='33' rx='7' ry='8' fill='#fff'/><ellipse cx='50' cy='34' rx='2.4' ry='6' fill='#14123A' stroke='none'/><ellipse cx='70' cy='34' rx='2.4' ry='6' fill='#14123A' stroke='none'/><path d='M41 22 L56 28 M79 22 L64 28' fill='none' stroke-width='3'/><path d='M57 42 H63 L60 46Z' fill='#14123A'/><path d='M52 49 Q60 54 68 49' fill='none'/></g><path d='M34 40 L24 37 M34 45 L24 46 M86 40 L96 37 M86 45 L96 46' stroke='#14123A' stroke-width='1.6'/></svg>`;
+const KQ3=`<svg viewBox='0 0 140 230' xmlns='http://www.w3.org/2000/svg'>
+<defs>
+ <linearGradient id='kqBody' x1='0' y1='0' x2='1' y2='1'><stop stop-color='#ffd0e6'/><stop offset='.48' stop-color='#f28ab9'/><stop offset='1' stop-color='#c94f91'/></linearGradient>
+ <linearGradient id='kqShade' x1='0' y1='0' x2='0' y2='1'><stop stop-color='#ffb9d8'/><stop offset='1' stop-color='#dc659e'/></linearGradient>
+ <linearGradient id='kqGold'><stop stop-color='#fff5a6'/><stop offset='1' stop-color='#d7a83d'/></linearGradient>
+ <radialGradient id='kh'><stop stop-color='#ff7ad0' stop-opacity='.48'/><stop offset='1' stop-color='#b44cff' stop-opacity='0'/></radialGradient>
+ </defs>
+ <ellipse cx='70' cy='117' rx='67' ry='108' fill='url(#kh)'/>
+ <!-- tail -->
+ <path d='M91 145 Q127 158 127 119 Q127 105 117 100' fill='none' stroke='#24143e' stroke-width='13' stroke-linecap='round'/>
+ <path d='M91 145 Q127 158 127 119 Q127 105 117 100' fill='none' stroke='url(#kqBody)' stroke-width='8' stroke-linecap='round'/>
+ <path d='M112 101 Q116 88 127 91 Q137 96 132 108 Q128 117 116 112Z' fill='url(#kqBody)' stroke='#24143e' stroke-width='3'/>
+ <path d='M119 99 l5 -4 l5 4 l-1 7 l-5 3 l-5 -4Z' fill='#fff0dc' stroke='#24143e' stroke-width='1.7'/>
+ <!-- legs -->
+ <path d='M48 145 Q43 164 45 184 L42 211 Q42 218 51 219 L64 219 Q69 216 66 208 L68 184 L73 153Z' fill='url(#kqBody)' stroke='#24143e' stroke-width='3'/>
+ <path d='M76 151 L84 183 L82 208 Q79 218 89 219 L103 219 Q111 216 106 208 L104 181 Q105 161 94 145Z' fill='url(#kqBody)' stroke='#24143e' stroke-width='3'/>
+ <path d='M42 207 Q54 203 66 208 L68 220 H39Z M82 208 Q95 202 107 208 L112 220 H79Z' fill='#c94f91' stroke='#24143e' stroke-width='3'/>
+ <path d='M46 185 L65 185 M84 185 L103 185' stroke='#ffe0ed' stroke-width='3' opacity='.9'/>
+ <path d='M48 195 l15 0 M86 195 l15 0' stroke='#9d3d78' stroke-width='2'/>
+ <!-- torso and armor -->
+ <path d='M43 77 Q35 83 31 101 L36 143 Q39 158 53 163 L88 163 Q103 157 106 141 L109 101 Q104 82 95 77 L83 68 H56Z' fill='url(#kqBody)' stroke='#24143e' stroke-width='3.2' stroke-linejoin='round'/>
+ <path d='M49 83 Q60 91 70 86 Q82 91 94 82 L99 111 Q91 123 70 124 Q49 123 41 111Z' fill='url(#kqShade)' stroke='#24143e' stroke-width='2.5'/>
+ <path d='M48 91 Q56 99 70 96 Q84 99 92 91 M47 105 Q58 112 70 109 Q84 112 94 104' fill='none' stroke='#9e477e' stroke-width='2'/>
+ <path d='M56 120 Q70 112 84 120 L91 144 Q70 153 49 144Z' fill='#f7a6cb' stroke='#24143e' stroke-width='2.5'/>
+ <!-- chest skull emblem -->
+ <path d='M59 119 Q70 110 81 119 Q84 129 78 135 L77 141 H63 L62 135 Q56 129 59 119Z' fill='#fff0e8' stroke='#38213f' stroke-width='2'/>
+ <circle cx='65' cy='125' r='2.7' fill='#38213f'/><circle cx='75' cy='125' r='2.7' fill='#38213f'/>
+ <path d='M67 132 H73 M65 136 V140 M70 136 V140 M75 136 V140' stroke='#38213f' stroke-width='1.7'/>
+ <!-- shoulders -->
+ <path d='M42 79 Q27 74 22 88 L18 105 Q21 114 32 112 L43 101Z' fill='url(#kqBody)' stroke='#24143e' stroke-width='3'/>
+ <path d='M98 79 Q113 74 118 88 L122 105 Q119 114 108 112 L97 101Z' fill='url(#kqBody)' stroke='#24143e' stroke-width='3'/>
+ <path d='M23 89 Q31 84 39 91 M101 91 Q109 84 117 89' fill='none' stroke='#ffe0ed' stroke-width='3'/>
+ <!-- arms -->
+ <path d='M25 105 Q15 117 17 137 L22 153 Q26 160 34 155 L39 148 L34 128 L43 111Z' fill='url(#kqBody)' stroke='#24143e' stroke-width='3'/>
+ <path d='M115 105 Q125 117 123 137 L118 153 Q114 160 106 155 L101 148 L106 128 L97 111Z' fill='url(#kqBody)' stroke='#24143e' stroke-width='3'/>
+ <path d='M20 145 Q29 140 38 148 L37 160 Q31 168 23 161Z M102 148 Q111 140 120 145 L117 161 Q109 168 103 160Z' fill='#d85b99' stroke='#24143e' stroke-width='2.5'/>
+ <path d='M23 151 l12 3 M105 154 l12 -3' stroke='#ffe6f1' stroke-width='2'/>
+ <!-- neck and collar -->
+ <path d='M58 62 H82 L85 81 Q70 91 55 81Z' fill='#d75c9b' stroke='#24143e' stroke-width='3'/>
+ <path d='M48 72 L58 65 L70 72 L82 65 L92 73 L84 86 L70 82 L56 86Z' fill='#f7b4d2' stroke='#24143e' stroke-width='2.5'/>
+ <!-- head helmet with pointed cat ears -->
+ <path d='M43 42 L30 5 Q29 1 35 5 L62 22 Q70 19 78 22 L105 5 Q111 2 108 10 L97 44 Q100 67 84 77 Q70 85 56 77 Q39 68 43 42Z' fill='url(#kqBody)' stroke='#24143e' stroke-width='3.2' stroke-linejoin='round'/>
+ <path d='M38 14 L54 29 L45 48Z M101 14 L86 29 L96 48Z' fill='#f9d4e5' stroke='#a94b83' stroke-width='2'/>
+ <path d='M43 43 Q54 34 67 43 L70 53 Q55 60 43 52Z M97 43 Q86 34 73 43 L70 53 Q85 60 97 52Z' fill='#f8d5e5' stroke='#24143e' stroke-width='2'/>
+ <!-- eyes -->
+ <path d='M43 48 Q54 39 66 48 Q57 61 45 56Z M97 48 Q86 39 74 48 Q83 61 95 56Z' fill='url(#kqGold)' stroke='#24143e' stroke-width='2'/>
+ <ellipse class='pl' cx='55' cy='49' rx='2.7' ry='6' fill='#24143e'/><ellipse class='pl' cx='85' cy='49' rx='2.7' ry='6' fill='#24143e'/>
+ <path d='M42 43 Q55 34 67 43 M98 43 Q85 34 73 43' fill='none' stroke='#24143e' stroke-width='4' stroke-linecap='round'/>
+ <path d='M67 60 L73 60 L70 65Z' fill='#24143e'/><path d='M60 70 Q70 75 80 70' fill='none' stroke='#7c315f' stroke-width='2.5' stroke-linecap='round'/>
+ <!-- forehead mark and cheek seams -->
+ <path d='M65 29 L70 25 L75 29 L70 35Z' fill='#fff0e8' stroke='#24143e' stroke-width='1.8'/>
+ <path d='M39 58 L49 62 M101 58 L91 62' stroke='#9e477e' stroke-width='2'/>
+ <!-- belt and small skull -->
+ <path d='M48 157 Q70 164 92 157 L94 168 Q70 176 46 168Z' fill='#f8b5d4' stroke='#24143e' stroke-width='2.5'/>
+ <path d='M64 160 Q70 155 76 160 L77 167 L73 171 H67 L63 167Z' fill='#fff0e8' stroke='#24143e' stroke-width='1.5'/>
+ <circle cx='67' cy='163' r='1.5' fill='#24143e'/><circle cx='73' cy='163' r='1.5' fill='#24143e'/>
+ <path d='M67 168 V171 M70 168 V171 M73 168 V171' stroke='#24143e' stroke-width='1.2'/>
+ <!-- decorative armor seams -->
+ <path d='M34 117 L42 124 M106 117 L98 124 M40 137 Q46 145 53 146 M100 137 Q94 145 87 146' fill='none' stroke='#9e477e' stroke-width='2'/>
+ <path d='M55 178 L61 181 M85 178 L79 181' stroke='#ffe0ed' stroke-width='2.5' stroke-linecap='round'/>
+</svg>`;
+render();
+</script>
+</body>
+</html>
